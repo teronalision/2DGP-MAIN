@@ -1,12 +1,36 @@
 from pico2d import *
-open_canvas()
+
+
+
+def Quit():
+    global run
+    run = False
+
+def Run(state):
+    global run, state_stack
+    run = True
+
+    state_stack = [state]
+    state_stack.start()
+
+    while run:
+        state_stack[-1].handle()
+        state_stack[-1].update()
+        state_stack[-1].draw()
+
+    while(len(state_stack)>0):
+        state_stack[-1].end()
+        state_stack.pop()
+
 
 
 #초기화
 
+run = True
+state_stack
 
 
-
+open_canvas()
 
 #게임 본체
 while True:
