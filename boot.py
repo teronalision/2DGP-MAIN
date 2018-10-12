@@ -1,20 +1,30 @@
 from pico2d import *
 
 
+image = None
 
 def start():
-    pass
+    global image
+    image = load_image('test.png')
+
 
 def end():
-    pass
+    global image
+    del(image)
+
 
 def handle():
-    pass
+    get_events()
+
 
 def update():
-    pass
+    delay(0.1)
+
 
 def draw():
-    pass
+    clear_canvas()
+
+    image.draw(400,300)
 
 
+    update_canvas()

@@ -1,4 +1,6 @@
 from pico2d import *
+import 기본
+import boot
 
 
 
@@ -11,12 +13,13 @@ def Run(state):
     run = True
 
     state_stack = [state]
-    state_stack.start()
+    state.start()
 
     while run:
         state_stack[-1].handle()
         state_stack[-1].update()
         state_stack[-1].draw()
+
 
     while(len(state_stack)>0):
         state_stack[-1].end()
@@ -27,20 +30,14 @@ def Run(state):
 #초기화
 
 run = True
-state_stack
+state_stack = None
 
 
 open_canvas()
 
 #게임 본체
-while True:
-    get_events()
 
-
-    
-    clear_canvas()
-    update_canvas
-    delay(0.05)
+Run(기본)    
     
 
 
