@@ -1,6 +1,6 @@
 from pico2d import *
-import 기본
-import boot
+#import 기본
+import loading
 
 
 
@@ -37,7 +37,7 @@ open_canvas()
 
 #게임 본체
 
-Run(기본)    
+Run(loading)    
     
 
 
