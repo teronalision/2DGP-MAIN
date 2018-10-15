@@ -1,7 +1,4 @@
 from pico2d import *
-#import 기본
-import loading
-
 
 
 def Quit():
@@ -26,6 +23,14 @@ def Run(state):
         state_stack.pop()
 
 
+def Handle():
+    es = get_events()
+
+    for e in es:
+        if (e.type, e.key) == (SDL_KEYDOWN,SDLK_ESCAPE):
+            Quit()
+         
+
 
 #초기화
 
@@ -33,14 +38,3 @@ run = True
 state_stack = None
 
 
-open_canvas()
-
-#게임 본체
-
-Run(loading)    
-    
-
-
-
-#종료
-close_canvas()

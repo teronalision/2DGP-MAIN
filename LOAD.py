@@ -1,5 +1,5 @@
 from pico2d import *
-import main
+
 
 image = None
 
@@ -18,7 +18,9 @@ def handle():
 
     for e in events:
         if(e.type == SDL_QUIT):
-            main.Quit()
+            #main.Quit()
+            pass
+
 
 
 def update():
