@@ -1,10 +1,10 @@
 from pico2d import *
 import ENGINE
-import 기본
+import STAGE
 
 open_canvas()
 
-ENGINE.Run(기본)    
+ENGINE.Run(STAGE)    
     
 close_canvas()
 

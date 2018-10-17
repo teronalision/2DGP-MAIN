@@ -4,15 +4,17 @@ import HERO
 import BULLET
 
 image = None
-b = [BULLET.bullet(400,500,1), BULLET.bullet(300,500,1), BULLET.bullet(500,500,1)]
+b = [BULLET.bullet(200,500,1), BULLET.bullet(100,500,1), BULLET.bullet(300,500,1)]
 bimage = None
+simage = None
 time = 0
 
 def start():
-    global image, bimage
+    global image, bimage, simage
     image = load_image('test.png')
-    HERO.x,HERO.y = 400, 300
+    HERO.x,HERO.y = 250, 100
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
+    simage = [load_image('bg1.png')]
 
 
 
@@ -29,6 +31,12 @@ def handle():
             ENGINE.Quit()
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_ESCAPE):
             ENGINE.Quit()
+
+        HERO.handle(e.type, e.key)
+
+
+        
+
     
 
 
@@ -48,11 +56,11 @@ def update():
     
 
     if time>10:
-        b[0].order(0,-1)
+        b[0].order(0,-0.2)
     if time>20:
-        b[1].order(1,-1)
+        b[1].order(0.2,-0.2)
     if time>30:
-        b[2].order(-1,-1)
+        b[2].order(-0.2,-0.2)
 
     time +=1
 
@@ -64,4 +72,7 @@ def draw():
     for i in b:
         bimage[i.image].draw(i.x,i.y);
 
+
+    #UI
+    simage[0].draw(400,300)
     update_canvas()
