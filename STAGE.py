@@ -2,9 +2,11 @@ from pico2d import *
 import ENGINE
 import HERO
 import BULLET
+import SPONER
 
 image = None
-b = [BULLET.bullet(200,500,1), BULLET.bullet(100,500,1), BULLET.bullet(300,500,1)]
+b = []
+sp = SPONER.Sponer(200,500)
 bimage = None
 simage = None
 time = 0
@@ -46,6 +48,9 @@ def update():
     #캐릭터 이동
     HERO.update()
 
+    #생성
+    sp.update(b)
+
     for obj in b:
         #탄 이동
         obj.update()
@@ -70,7 +75,7 @@ def draw():
 
     image.draw(HERO.x,HERO.y,80,120)
     for i in b:
-        bimage[i.image].draw(i.x,i.y);
+        bimage[i.image].draw(i.x,i.y,10,10);
 
 
     #UI
