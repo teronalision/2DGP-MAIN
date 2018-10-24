@@ -5,7 +5,6 @@ import BULLET
 import SPONER
 
 image = None
-b = []
 sp = SPONER.Sponer(200,500)
 bimage = None
 simage = None
@@ -49,9 +48,9 @@ def update():
     HERO.update()
 
     #생성
-    sp.update(b)
+    sp.update()
 
-    for obj in b:
+    for obj in sp.b_list:
         #탄 이동
         obj.update()
 
@@ -60,12 +59,6 @@ def update():
             HERO.live = False
     
 
-    if time>10:
-        b[0].order(0,-0.2)
-    if time>20:
-        b[1].order(0.2,-0.2)
-    if time>30:
-        b[2].order(-0.2,-0.2)
 
     time +=1
 
@@ -74,7 +67,7 @@ def draw():
     clear_canvas()
 
     image.draw(HERO.x,HERO.y,80,120)
-    for i in b:
+    for i in sp.b_list:
         bimage[i.image].draw(i.x,i.y,10,10);
 
 
