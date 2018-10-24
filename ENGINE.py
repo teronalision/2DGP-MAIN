@@ -27,6 +27,13 @@ def Push_state(state):
     state_stack.append(state)
 
 
+def Change_state(state):
+    global state_stack
+
+    state.start()
+    state_stack[-1].end()
+    state_stack.remove(-1)
+    state_stack.append(state)
 
 
 #초기화
