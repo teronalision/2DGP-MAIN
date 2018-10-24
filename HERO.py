@@ -68,5 +68,10 @@ def handle(type, key):
 
 
 def draw():
-    image.clip_draw(32*(frame//30),0+48*2,32,48,x,y)
+    if w == 0:
+        image.clip_draw(32*(frame//30),0+48*2,32,48,x,y)
+    if w == -1:
+        image.clip_draw(32*(frame//30),0+48*1,32,48,x,y)
+    if w == 1:
+        image.clip_draw(32*(frame//30),0+48*0,32,48,x,y)
 
