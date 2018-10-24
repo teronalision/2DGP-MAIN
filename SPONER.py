@@ -10,7 +10,7 @@ class Sponer:
         self.b_list = []
 
     def update(self):
-
+        #생성
         if self.m == 0 and self.time % 100 == 0:
             for i in range(0,360,30):
                 b = BULLET.bullet(self.x,self.y,1)
@@ -18,7 +18,10 @@ class Sponer:
                 b.vy = math.cos(math.radians(i+self.time))
                 self.b_list.append(b)
 
-        #self.x+=1
+        #소멸
+        for b in self.b_list:
+            if b.x <0 or b.x >500 or b.y <0 or b.y >500:
+                self.b_list.remove(b)
 
         self.time+=1
 
