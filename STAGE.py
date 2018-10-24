@@ -4,7 +4,7 @@ import HERO
 import BULLET
 import SPONER
 
-image = None
+
 sp = SPONER.Sponer(200,500)
 bimage = None
 simage = None
@@ -12,7 +12,7 @@ time = 0
 
 def start():
     global image, bimage, simage
-    image = load_image('test.png')
+    HERO.start()
     HERO.x,HERO.y = 250, 100
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
     simage = [load_image('bg1.png')]
@@ -20,8 +20,7 @@ def start():
 
 
 def end():
-    global image
-    del(image)
+    pass
 
 
 def handle():
@@ -66,7 +65,8 @@ def update():
 def draw():
     clear_canvas()
 
-    image.draw(HERO.x,HERO.y,80,120)
+    HERO.draw()
+
     for i in sp.b_list:
         bimage[i.image].draw(i.x,i.y,10,10);
 

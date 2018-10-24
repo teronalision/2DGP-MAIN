@@ -1,11 +1,16 @@
 from pico2d import *
 
 
+
 x, y = 0, 0
 w, h = 0, 0
 speed = 0.4
 live = True
+image = None
 
+def start():
+    global image
+    image = load_image('C1.png')
 
 def update():
     global x,y
@@ -39,3 +44,7 @@ def handle(type, key):
             h = 0
         elif key == SDLK_DOWN:
             h = 0
+
+def draw():
+    image.clip_draw(0,0+48*2,32,48,x,y)
+

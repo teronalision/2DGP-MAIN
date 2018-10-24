@@ -14,10 +14,14 @@ class Sponer:
         if self.m == 0 and self.time % 100 == 0:
             for i in range(0,360,30):
                 b = BULLET.bullet(self.x,self.y,1)
-                b.vx = math.sin(math.radians(i))
-                b.vy = math.cos(math.radians(i))
+                b.vx = math.sin(math.radians(i+self.time))
+                b.vy = math.cos(math.radians(i+self.time))
                 self.b_list.append(b)
 
         #self.x+=1
 
         self.time+=1
+
+    def kill():
+
+        pass
