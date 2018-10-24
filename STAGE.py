@@ -5,7 +5,7 @@ import BULLET
 import SPONER
 
 
-sp = SPONER.Sponer(200,500)
+sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
 bimage = None
 simage = None
 time = 0
@@ -35,10 +35,6 @@ def handle():
         HERO.handle(e.type, e.key)
 
 
-        
-
-    
-
 
 def update():
     global time
@@ -47,15 +43,17 @@ def update():
     HERO.update()
 
     #생성
-    sp.update()
+    for list in sp:
+        list.update()
 
-    for obj in sp.b_list:
-        #탄 이동
-        obj.update()
+    for s_list in sp:
+        for obj in s_list.b_list:
+            #탄 이동
+            obj.update()
 
-        #충돌판정
-        if (HERO.x - obj.x)**2 + (HERO.y - obj.y)**2 < 60**2:
-            HERO.live = False
+            #충돌판정
+            if (HERO.x - obj.x)**2 + (HERO.y - obj.y)**2 < 60**2:
+                HERO.live = False
     
 
 
@@ -67,8 +65,9 @@ def draw():
 
     HERO.draw()
 
-    for i in sp.b_list:
-        bimage[i.image].draw(i.x,i.y,10,10);
+    for s_list in sp:
+        for i in s_list.b_list:
+            bimage[i.image].draw(i.x,i.y,10,10);
 
 
     #UI
