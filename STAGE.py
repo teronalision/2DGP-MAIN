@@ -1,7 +1,5 @@
-from pico2d import *
-import ENGINE
+from ENGINE import *
 import HERO
-import BULLET
 import SPONER
 
 
@@ -28,9 +26,9 @@ def handle():
 
     for e in events:
         if(e.type == SDL_QUIT):
-            ENGINE.Quit()
+            Quit()
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_ESCAPE):
-            ENGINE.Quit()
+            Quit()
 
         HERO.handle(e.type, e.key)
 

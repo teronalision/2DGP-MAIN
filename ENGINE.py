@@ -5,12 +5,9 @@ def Quit():
     global run
     run = False
 
-def Run(state):
+def Run():
     global run, state_stack
     run = True
-
-    state_stack = [state]
-    state.start()
 
     while run:
         state_stack[-1].handle()
@@ -23,18 +20,18 @@ def Run(state):
         state_stack.pop()
 
 
-def Handle():
-    es = get_events()
+def Push_state(state):
+    global state_stack
+    
+    state.start()
+    state_stack.append(state)
 
-    for e in es:
-        if (e.type, e.key) == (SDL_KEYDOWN,SDLK_ESCAPE):
-            Quit()
-         
+
 
 
 #초기화
 
 run = True
-state_stack = None
+state_stack = []
 
 

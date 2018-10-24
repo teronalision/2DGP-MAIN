@@ -1,10 +1,12 @@
-from pico2d import *
-import ENGINE
+from ENGINE import *
+import TITLE
 import STAGE
+
 
 open_canvas()
 
-ENGINE.Run(STAGE)    
+Push_state(TITLE)
+Run()
     
 close_canvas()
 
