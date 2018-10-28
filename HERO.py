@@ -1,11 +1,12 @@
 from pico2d import *
-
+import SHOT
 
 L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOTING = range(9)
 Key_Table = {(SDL_KEYUP, SDLK_LEFT): L_UP,(SDL_KEYDOWN, SDLK_LEFT): L_DOWN,
              (SDL_KEYUP, SDLK_RIGHT): R_UP,(SDL_KEYDOWN, SDLK_RIGHT): R_DOWN,
              (SDL_KEYUP, SDLK_UP): F_UP,(SDL_KEYDOWN, SDLK_UP): F_DOWN,
-             (SDL_KEYUP, SDLK_DOWN): B_UP,(SDL_KEYDOWN, SDLK_DOWN): B_DOWN}
+             (SDL_KEYUP, SDLK_DOWN): B_UP,(SDL_KEYDOWN, SDLK_DOWN): B_DOWN,
+             (SDL_KEYDOWN, SDLK_z):SHOTING}
 
 
 
@@ -16,16 +17,24 @@ class Hero:
         self.vx, self.vy = 0, 0 
         self.speed = 0.7
         self.live = True
-
+        self.fireList = []
         Hero.image = load_image("C1.png")
         self.frame = 0
         self.state = StopState
         self.state.enter(self, None)
 
-       
+
+    def fire(self):
+        new = SHOT.Shot(self.x,self.y)
+        new.v = 1
+        self.fireList.append(new)
+
+
     def draw(self):
         self.state.draw(self)
-        pass
+        for s in fireList:
+            s.draw()
+        
 
     def update(self):
        self.state.update(self)
@@ -120,7 +129,8 @@ class StopState:
 
 
 Change_State = {StopState:{L_UP:MoveState, L_DOWN:MoveState, R_UP:MoveState, R_DOWN:MoveState,F_UP:MoveState, F_DOWN:MoveState, B_UP:MoveState, B_DOWN:MoveState},
-                MoveState:{L_UP:StopState, L_DOWN:StopState, R_UP:StopState, R_DOWN:StopState,F_UP:StopState, F_DOWN:StopState, B_UP:StopState, B_DOWN:StopState}}
+                MoveState:{L_UP:StopState, L_DOWN:StopState, R_UP:StopState, R_DOWN:StopState,F_UP:StopState, F_DOWN:StopState, B_UP:StopState, B_DOWN:StopState},
+                }
 
 
 if __name__ == '__main__':

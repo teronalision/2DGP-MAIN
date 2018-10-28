@@ -1,12 +1,12 @@
 from pico2d import *
 
-class shot:
+class Shot:
 
     
-    def __init__(self,x,y,i):
+    def __init__(self,x,y):
         self.x, self.y = x, y
         self.v = 0
-        shot.image = load_image('dumy_b')
+        Shot.image = load_image('dumy_b')
 
 
     def update(self):
@@ -21,4 +21,4 @@ class shot:
 
 
     def draw(self):
-        shot.image.draw(self.x, self.y)
+        Shot.image.draw(self.x, self.y)
