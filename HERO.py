@@ -1,12 +1,12 @@
 from pico2d import *
 import SHOT
 
-L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOTING = range(9)
+L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOT_UP, SHOT_DOWN = range(10)
 Key_Table = {(SDL_KEYUP, SDLK_LEFT): L_UP,(SDL_KEYDOWN, SDLK_LEFT): L_DOWN,
              (SDL_KEYUP, SDLK_RIGHT): R_UP,(SDL_KEYDOWN, SDLK_RIGHT): R_DOWN,
              (SDL_KEYUP, SDLK_UP): F_UP,(SDL_KEYDOWN, SDLK_UP): F_DOWN,
              (SDL_KEYUP, SDLK_DOWN): B_UP,(SDL_KEYDOWN, SDLK_DOWN): B_DOWN,
-             (SDL_KEYDOWN, SDLK_z):SHOTING}
+             (SDL_KEYUP, SDLK_z):SHOT_UP, (SDL_KEYDOWN, SDLK_z):SHOT_DOWN}
 
 
 
@@ -18,13 +18,14 @@ class Hero:
         self.speed = 0.7
         self.live = True
         self.fireList = []
+        self.fire = False
         Hero.image = load_image("C1.png")
         self.frame = 0
         self.state = StopState
         self.state.enter(self, None)
 
 
-    def fire(self):
+    def shoting(self):
         new = SHOT.Shot(self.x,self.y)
         new.v = 1
         self.fireList.append(new)
@@ -38,8 +39,14 @@ class Hero:
 
     def update(self):
        self.state.update(self)
+
+       if self.fire == True:
+           self.shoting()
+
        for s in self.fireList:
            s.update()
+           if s.isOut():
+               self.fireList.remove(s)
 
 
     def handle(self, event):
@@ -72,8 +79,10 @@ class MoveState:
         elif event == F_UP:
             hero.vy -= 1
 
-        elif event == SHOTING:
-            fire()
+        elif event == SHOT_DOWN:
+            hero.fire = True
+        elif event == SHOT_UP:
+            hero.fire = False
     
     @staticmethod
     def exit(hero, event):
@@ -85,6 +94,7 @@ class MoveState:
         if hero.live == False:
             #return
             pass
+
 
         hero.frame = (hero.frame+1) %(8*30)
         hero.x += hero.vx*hero.speed
@@ -112,6 +122,7 @@ class StopState:
             hero.vx += 1
         elif event == R_UP:
             hero.vx -= 1
+
         if event == B_DOWN:
             hero.vy -= 1
         elif event == B_UP:
@@ -120,6 +131,11 @@ class StopState:
             hero.vy += 1
         elif event == F_UP:
             hero.vy -= 1
+
+        elif event == SHOT_DOWN:
+            hero.fire = True
+        elif event == SHOT_UP:
+            hero.fire = False
     
     @staticmethod
     def exit(hero, event):
@@ -142,8 +158,8 @@ class StopState:
 
 
 
-Change_State = {StopState:{L_UP:MoveState, L_DOWN:MoveState, R_UP:MoveState, R_DOWN:MoveState,F_UP:MoveState, F_DOWN:MoveState, B_UP:MoveState, B_DOWN:MoveState, SHOTING:StopState},
-                MoveState:{L_UP:StopState, L_DOWN:StopState, R_UP:StopState, R_DOWN:StopState,F_UP:StopState, F_DOWN:StopState, B_UP:StopState, B_DOWN:StopState, SHOTING:MoveState},
+Change_State = {StopState:{L_UP:MoveState, L_DOWN:MoveState, R_UP:MoveState, R_DOWN:MoveState,F_UP:MoveState, F_DOWN:MoveState, B_UP:MoveState, B_DOWN:MoveState, SHOT_UP:StopState, SHOT_DOWN:StopState},
+                MoveState:{L_UP:StopState, L_DOWN:StopState, R_UP:StopState, R_DOWN:StopState,F_UP:StopState, F_DOWN:StopState, B_UP:StopState, B_DOWN:StopState, SHOT_UP:MoveState, SHOT_DOWN:MoveState},
                 }
 
 
