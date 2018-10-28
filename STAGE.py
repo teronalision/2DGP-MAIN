@@ -2,8 +2,8 @@ from ENGINE import *
 import HERO
 import SPONER
 
-
-sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
+sp = [SPONER.Sponer(200,500)]
+#sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
 bimage = None
 simage = None
 time = 0
