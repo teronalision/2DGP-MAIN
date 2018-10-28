@@ -32,12 +32,15 @@ class Hero:
 
     def draw(self):
         self.state.draw(self)
-        for s in fireList:
+        for s in self.fireList:
             s.draw()
         
 
     def update(self):
        self.state.update(self)
+       for s in self.fireList:
+           s.update()
+
 
     def handle(self, event):
         if (event.type, event.key) in Key_Table:
