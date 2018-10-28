@@ -1,5 +1,4 @@
 from pico2d import *
-from builtins import staticmethod
 
 
 L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOTING = range(9)
@@ -51,7 +50,7 @@ class MoveState:
             hero.vx += 1
         elif event == R_UP:
             hero.vx -= 1
-        elif event == B_DOWN:
+        if event == B_DOWN:
             hero.vy -= 1
         elif event == B_UP:
             hero.vy += 1
@@ -91,7 +90,7 @@ class StopState:
             hero.vx += 1
         elif event == R_UP:
             hero.vx -= 1
-        elif event == B_DOWN:
+        if event == B_DOWN:
             hero.vy -= 1
         elif event == B_UP:
             hero.vy += 1

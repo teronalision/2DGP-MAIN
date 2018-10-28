@@ -28,5 +28,4 @@ class Sponer:
         for b in b_list:
             b.kill()
             b_list.remove(b)
-
         pass
