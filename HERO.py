@@ -1,77 +1,141 @@
 from pico2d import *
+from builtins import staticmethod
+
+
+L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOTING = range(9)
+Key_Table = {(SDL_KEYUP, SDLK_LEFT): L_UP,(SDL_KEYDOWN, SDLK_LEFT): L_DOWN,
+             (SDL_KEYUP, SDLK_RIGHT): R_UP,(SDL_KEYDOWN, SDLK_RIGHT): R_DOWN,
+             (SDL_KEYUP, SDLK_UP): F_UP,(SDL_KEYDOWN, SDLK_UP): F_DOWN,
+             (SDL_KEYUP, SDLK_DOWN): B_UP,(SDL_KEYDOWN, SDLK_DOWN): B_DOWN}
 
 
 
-x, y = 0, 0
-w, h = 0, 0
-key_down = [False,False,False,False] # 왼쪽 오른쪽 위 아래
-speed = 0.7
-live = True
+class Hero:
 
-image = None
-frame = 0
+    def __init__(self):  
+        self.x, self.y = 0, 0
+        self.vx, self.vy = 0, 0 
+        self.speed = 0.7
+        self.live = True
 
-def start():
-    global image
-    image = load_image('C1.png')
+        Hero.image = load_image("C1.png")
+        self.frame = 0
+        self.state = StopState
+        self.state.enter(self, None)
 
-def update():
-    global x,y,frame
-
-    if live == False:
-        #return
+       
+    def draw(self):
+        self.state.draw(self)
         pass
 
-    frame = (frame+1) %(8*30)
+    def update(self):
+       self.state.update(self)
 
-    if x +w*speed +40 < 500 and x +w*speed -40 > 0:
-        x += w*speed
-    if y +h*speed +60 < 600 and y +h*speed -60 > 0:
-        y += h*speed
-
-def handle(type, key):
-    global w,h
-    global key_down
-
-    if type == SDL_KEYDOWN:
-        if key == SDLK_LEFT:
-            key_down[0] = True
-        elif key == SDLK_RIGHT:
-            key_down[1] = True
-        if key == SDLK_UP:
-            key_down[2] = True
-        elif key == SDLK_DOWN:
-            key_down[3] = True
-    elif type == SDL_KEYUP:
-        if key == SDLK_LEFT:
-            key_down[0] = False
-        elif key == SDLK_RIGHT:
-            key_down[1] = False
-        if key == SDLK_UP:
-            key_down[2] = False
-        elif key == SDLK_DOWN:
-            key_down[3] = False
-
-    if key_down[0] and key_down[1] == False:
-        w = -1
-    elif key_down[1] and key_down[0] == False:
-        w = 1
-    else:
-        w = 0
-
-    if key_down[2] and key_down[3] == False:
-        h = 1
-    elif key_down[3] and key_down[2] == False:
-        h = -1
-    else:
-        h = 0
+    def handle(self, event):
+        if (event.type, event.key) in Key_Table:
+            key = Key_Table[(event.type, event.key)]
+            self.state.exit(self,key)
+            self.state = Change_State[self.state][key]
+            self.state.enter(self, key)
 
 
-def draw():
-    if w == 0:
-        image.clip_draw(32*(frame//30),0+48*2,32,48,x,y)
-    if w == -1:
-        image.clip_draw(32*(frame//30),0+48*1,32,48,x,y)
-    if w == 1:
-        image.clip_draw(32*(frame//30),0+48*0,32,48,x,y)
+class MoveState:
 
+    @staticmethod
+    def enter(hero, event):
+        if event == L_DOWN:
+            hero.vx -= 1
+        elif event == L_UP:
+            hero.vx += 1
+        elif event == R_DOWN:
+            hero.vx += 1
+        elif event == R_UP:
+            hero.vx -= 1
+        elif event == B_DOWN:
+            hero.vy -= 1
+        elif event == B_UP:
+            hero.vy += 1
+        elif event == F_DOWN:
+            hero.vy += 1
+        elif event == F_UP:
+            hero.vy -= 1
+    
+    @staticmethod
+    def exit(hero, event):
+        pass
+
+    @staticmethod
+    def update(hero):
+
+        if hero.live == False:
+            #return
+            pass
+
+        hero.frame = (hero.frame+1) %(8*30)
+        hero.x += hero.vx*hero.speed
+        hero.y += hero.vy*hero.speed
+
+    @staticmethod
+    def draw(hero):
+        hero.image.clip_draw(32*(hero.frame//30),1+48*2,32,48,hero.x,hero.y)
+
+class StopState:
+
+    @staticmethod
+    def enter(hero, event):
+        if event == L_DOWN:
+            hero.vx -= 1
+        elif event == L_UP:
+            hero.vx += 1
+        elif event == R_DOWN:
+            hero.vx += 1
+        elif event == R_UP:
+            hero.vx -= 1
+        elif event == B_DOWN:
+            hero.vy -= 1
+        elif event == B_UP:
+            hero.vy += 1
+        elif event == F_DOWN:
+            hero.vy += 1
+        elif event == F_UP:
+            hero.vy -= 1
+    
+    @staticmethod
+    def exit(hero, event):
+        pass
+
+    @staticmethod
+    def update(hero):
+
+        if hero.live == False:
+            #return
+            pass
+
+        hero.frame = (hero.frame+1) %(8*30)
+        
+
+    @staticmethod
+    def draw(hero):
+        hero.image.clip_draw(32*(hero.frame//30),0+48*2,32,48,hero.x,hero.y)
+
+
+
+Change_State = {StopState:{L_UP:MoveState, L_DOWN:MoveState, R_UP:MoveState, R_DOWN:MoveState,F_UP:MoveState, F_DOWN:MoveState, B_UP:MoveState, B_DOWN:MoveState},
+                MoveState:{L_UP:StopState, L_DOWN:StopState, R_UP:StopState, R_DOWN:StopState,F_UP:StopState, F_DOWN:StopState, B_UP:StopState, B_DOWN:StopState}}
+
+
+if __name__ == '__main__':
+    open_canvas()
+    
+    hero = Hero()
+    while 1:
+        clear_canvas()
+        events = get_events()
+        for e in events:
+            hero.handle(e)
+        hero.update()
+        hero.draw()
+        update_canvas()
+        #delay(0.1)
+
+    close_canvas()

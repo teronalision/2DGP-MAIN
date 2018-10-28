@@ -2,6 +2,7 @@ from ENGINE import *
 import HERO
 import SPONER
 
+hero = HERO.Hero()
 sp = [SPONER.Sponer(200,500)]
 #sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
 bimage = None
@@ -9,9 +10,9 @@ simage = None
 time = 0
 
 def start():
-    global image, bimage, simage
-    HERO.start()
-    HERO.x,HERO.y = 250, 100
+    global image, bimage, simage,hero
+
+    hero.x,hero.y = 250, 100
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
     simage = [load_image('bg1.png')]
 
@@ -30,7 +31,7 @@ def handle():
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_ESCAPE):
             Quit()
 
-        HERO.handle(e.type, e.key)
+        hero.handle(e)
 
 
 
@@ -38,7 +39,7 @@ def update():
     global time
 
     #캐릭터 이동
-    HERO.update()
+    hero.update()
 
     #생성
     for list in sp:
@@ -50,8 +51,8 @@ def update():
             obj.update()
 
             #충돌판정
-            if (HERO.x - obj.x)**2 + (HERO.y - obj.y)**2 < 60**2:
-                HERO.live = False
+            if (hero.x - obj.x)**2 + (hero.y - obj.y)**2 < 60**2:
+                hero.live = False
     
 
 
@@ -61,7 +62,7 @@ def update():
 def draw():
     clear_canvas()
 
-    HERO.draw()
+    hero.draw()
 
     for s_list in sp:
         for i in s_list.b_list:
