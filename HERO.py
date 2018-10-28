@@ -23,7 +23,7 @@ class Hero:
         self.frame = 0
         self.state = StopState
         self.state.enter(self, None)
-
+        self.time = 0
 
     def shoting(self):
         new = SHOT.Shot(self.x,self.y)
@@ -38,12 +38,16 @@ class Hero:
         
 
     def update(self):
-       self.state.update(self)
 
-       if self.fire == True:
+        self.state.update(self)
+
+        if self.fire and self.time == 0:
            self.shoting()
+           self.time = 100
+        elif self.time >0:
+            self.time -=1
 
-       for s in self.fireList:
+        for s in self.fireList:
            s.update()
            if s.isOut():
                self.fireList.remove(s)
