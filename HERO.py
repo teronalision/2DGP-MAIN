@@ -62,7 +62,8 @@ class MoveState:
             hero.vx += 1
         elif event == R_UP:
             hero.vx -= 1
-        if event == B_DOWN:
+
+        elif event == B_DOWN:
             hero.vy -= 1
         elif event == B_UP:
             hero.vy += 1
@@ -70,6 +71,9 @@ class MoveState:
             hero.vy += 1
         elif event == F_UP:
             hero.vy -= 1
+
+        elif event == SHOTING:
+            fire()
     
     @staticmethod
     def exit(hero, event):
@@ -88,7 +92,13 @@ class MoveState:
 
     @staticmethod
     def draw(hero):
-        hero.image.clip_draw(32*(hero.frame//30),1+48*2,32,48,hero.x,hero.y)
+        if hero.vx >0:
+            hero.image.clip_draw(32*(hero.frame//30),48*0,32,48,hero.x,hero.y)
+        elif hero.vx <0:
+            hero.image.clip_draw(32*(hero.frame//30),48*1,32,48,hero.x,hero.y)
+        else:
+            hero.image.clip_draw(32*(hero.frame//30),48*2,32,48,hero.x,hero.y)
+
 
 class StopState:
 
@@ -123,6 +133,7 @@ class StopState:
             pass
 
         hero.frame = (hero.frame+1) %(8*30)
+        hero.y += hero.vy*hero.speed
         
 
     @staticmethod
@@ -131,8 +142,8 @@ class StopState:
 
 
 
-Change_State = {StopState:{L_UP:MoveState, L_DOWN:MoveState, R_UP:MoveState, R_DOWN:MoveState,F_UP:MoveState, F_DOWN:MoveState, B_UP:MoveState, B_DOWN:MoveState},
-                MoveState:{L_UP:StopState, L_DOWN:StopState, R_UP:StopState, R_DOWN:StopState,F_UP:StopState, F_DOWN:StopState, B_UP:StopState, B_DOWN:StopState},
+Change_State = {StopState:{L_UP:MoveState, L_DOWN:MoveState, R_UP:MoveState, R_DOWN:MoveState,F_UP:MoveState, F_DOWN:MoveState, B_UP:MoveState, B_DOWN:MoveState, SHOTING:StopState},
+                MoveState:{L_UP:StopState, L_DOWN:StopState, R_UP:StopState, R_DOWN:StopState,F_UP:StopState, F_DOWN:StopState, B_UP:StopState, B_DOWN:StopState, SHOTING:MoveState},
                 }
 
 
