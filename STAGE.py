@@ -14,6 +14,7 @@ def start():
     global image, bimage, simage,hero
 
     hero.x,hero.y = 250, 100
+    hero.image = load_image('C1.png')
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
     simage = [load_image('bg1.png')]
 
