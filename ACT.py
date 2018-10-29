@@ -1,12 +1,12 @@
-from ENGINE import *
+import ENGINE
+import pico2d
 import TITLE
-import STAGE
 
 
-open_canvas()
+pico2d.open_canvas()
 
-Push_state(TITLE)
-Run()
+ENGINE.Push_state(TITLE)
+ENGINE.Run()
     
-close_canvas()
+pico2d.close_canvas()
 

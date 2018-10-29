@@ -1,4 +1,5 @@
-from ENGINE import *
+from pico2d import *
+import ENGINE
 import STAGE
 
 select = 0
@@ -23,7 +24,7 @@ def handle():
             elif(event.key == SDLK_UP and select > 0):
                 select -=1
             if(event.key == SDLK_SPACE and select == 0):
-                Push_state(STAGE)
+                ENGINE.Push_state(STAGE)
     pass
 
 

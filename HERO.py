@@ -19,7 +19,7 @@ class Hero:
         self.live = True
         self.fireList = []
         self.fire = False
-        Hero.image = load_image("C1.png")
+        self.image = load_image('C1.png')
         self.frame = 0
         self.state = StopState
         self.state.enter(self, None)
