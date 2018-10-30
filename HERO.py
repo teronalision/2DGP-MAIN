@@ -19,8 +19,8 @@ class Hero:
     def __init__(self):  
         self.x, self.y = 0, 0
         self.vx, self.vy = 0, 0 
-        self.speed = 1 * ENGINE.p_per_meter
-        self.live = True
+        self.speed = 1.5 * ENGINE.p_per_meter
+        self.life = 3
         self.fireList = []
         self.fire = False
         self.image = None
@@ -100,7 +100,7 @@ class MoveState:
     @staticmethod
     def update(hero):
 
-        if hero.live == False:
+        if hero.life == 0:
             #return
             pass
 
@@ -160,7 +160,7 @@ class StopState:
     @staticmethod
     def update(hero):
 
-        if hero.live == False:
+        if hero.life == 0:
             #return
             pass
 

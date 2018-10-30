@@ -22,7 +22,7 @@ def Run():
         frame_time = time.time() - c_time
         #frame_rate = 1.0 /frame_time
         c_time += frame_time
-        print('t: %f' %frame_time)
+        
 
     while(len(state_stack)>0):
         state_stack[-1].end()
@@ -51,3 +51,18 @@ run = True
 state_stack = []
 
 
+#물체들
+object_list = []
+
+
+def add_obj(obj, i):
+    object_list.append(obj)
+
+def del_obj(obj):
+    object_list.remove(obj)
+    del(obj)
+
+
+def yield_obj():
+    for o in object_list:
+        yield o

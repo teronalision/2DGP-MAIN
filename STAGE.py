@@ -4,7 +4,6 @@ import HERO
 import SPONER
 
 hero = HERO.Hero()
-sp = [SPONER.Sponer(200,500)]
 #sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
 bimage = None
 simage = None
@@ -18,6 +17,7 @@ def start():
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
     simage = [load_image('bg1.png')]
 
+    ENGINE.add_obj(SPONER.Sponer(200,500),None)
 
 
 def end():
@@ -44,10 +44,10 @@ def update():
     hero.update()
 
     #생성
-    for list in sp:
+    for list in ENGINE.yield_obj():
         list.update()
 
-    for s_list in sp:
+    for s_list in ENGINE.yield_obj():
         for obj in s_list.b_list:
             #탄 이동
             obj.update()
@@ -66,7 +66,7 @@ def draw():
 
     hero.draw()
 
-    for s_list in sp:
+    for s_list in ENGINE.yield_obj():
         for i in s_list.b_list:
             bimage[i.image].draw(i.x,i.y,10,10);
 
