@@ -1,6 +1,6 @@
 from pico2d import *
 import ENGINE
-import SELECT
+import STAGE
 
 select = 0
 image = None
@@ -20,12 +20,12 @@ def handle():
 
     for event in events:
         if(event.type == SDL_KEYDOWN):
-            if(event.key == SDLK_DOWN and select < 3):
+            if(event.key == SDLK_RIGHT and select < 1):
                 select +=1
-            elif(event.key == SDLK_UP and select > 0):
+            elif(event.key == SDLK_LEFT and select > 0):
                 select -=1
             if(event.key == SDLK_SPACE and select == 0):
-                ENGINE.Push_state(SELECT)
+                ENGINE.Push_state(STAGE)
     pass
 
 
@@ -36,7 +36,7 @@ def update():
 def draw():
     clear_canvas()
 
-    image.draw(200,300 -50*select)
+    image.draw(150 +250*select, 200)
 
     update_canvas()
     pass
