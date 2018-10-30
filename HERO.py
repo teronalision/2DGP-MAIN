@@ -5,12 +5,13 @@ import ENGINE
 round_per_sec = 1.0 / 1
 frame_per_round = 8
 
-L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOT_UP, SHOT_DOWN = range(10)
+L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOT_UP, SHOT_DOWN, DEAD = range(11)
 Key_Table = {(SDL_KEYUP, SDLK_LEFT): L_UP,(SDL_KEYDOWN, SDLK_LEFT): L_DOWN,
              (SDL_KEYUP, SDLK_RIGHT): R_UP,(SDL_KEYDOWN, SDLK_RIGHT): R_DOWN,
              (SDL_KEYUP, SDLK_UP): F_UP,(SDL_KEYDOWN, SDLK_UP): F_DOWN,
              (SDL_KEYUP, SDLK_DOWN): B_UP,(SDL_KEYDOWN, SDLK_DOWN): B_DOWN,
-             (SDL_KEYUP, SDLK_z):SHOT_UP, (SDL_KEYDOWN, SDLK_z):SHOT_DOWN}
+             (SDL_KEYUP, SDLK_z):SHOT_UP, (SDL_KEYDOWN, SDLK_z):SHOT_DOWN,
+             (100,100): DEAD}
 
 
 
@@ -21,10 +22,12 @@ class Hero:
         self.vx, self.vy = 0, 0 
         self.speed = 1.5 * ENGINE.p_per_meter
         self.life = 3
+        self.attack = False
         self.fireList = []
         self.fire = False
         self.image = None
         self.frame = 0
+        self.que = []
         self.state = StopState
         self.state.enter(self, None)
         self.time = 0
@@ -40,16 +43,25 @@ class Hero:
         for s in self.fireList:
             s.draw()
         
+    def add_que(self, q):
+        self.que.insert(0,q)
 
     def update(self):
 
         self.state.update(self)
 
-        if self.fire and self.time == 0:
+        if len(self.que) >0:
+            key = self.que.pop()
+            self.state.exit(self,key)
+            self.state = Change_State[self.state][key]
+            self.state.enter(self, key)
+
+
+        if self.fire and self.time <= 0:
            self.shoting()
-           self.time = 100
+           self.time = 0.3
         elif self.time >0:
-            self.time -=1
+            self.time -= ENGINE.frame_time
 
         for s in self.fireList:
            s.update()
@@ -58,11 +70,10 @@ class Hero:
 
 
     def handle(self, event):
+
         if (event.type, event.key) in Key_Table:
             key = Key_Table[(event.type, event.key)]
-            self.state.exit(self,key)
-            self.state = Change_State[self.state][key]
-            self.state.enter(self, key)
+            self.add_que(key)
 
 
 class MoveState:
@@ -100,9 +111,13 @@ class MoveState:
     @staticmethod
     def update(hero):
 
-        if hero.life == 0:
-            #return
+        if hero.attack:
+            hero.life -= 1
+            hero.add_que(DEAD)
             pass
+        if hero.life == 0:
+            ENGINE.run = False
+
 
         if hero.frame <4:
             hero.frame = (hero.frame+ frame_per_round*round_per_sec*ENGINE.frame_time)
@@ -160,8 +175,9 @@ class StopState:
     @staticmethod
     def update(hero):
 
-        if hero.life == 0:
-            #return
+        if hero.attack:
+            hero.life -= 1
+            hero.add_que(DEAD)
             pass
 
         hero.frame = (hero.frame+ frame_per_round*round_per_sec*ENGINE.frame_time) %8
@@ -174,9 +190,40 @@ class StopState:
         hero.image.clip_draw(32*int(hero.frame),0+48*2,32,48,hero.x,hero.y)
 
 
+class DeadState:
 
-Change_State = {StopState:{L_UP:MoveState, L_DOWN:MoveState, R_UP:MoveState, R_DOWN:MoveState,F_UP:MoveState, F_DOWN:MoveState, B_UP:MoveState, B_DOWN:MoveState, SHOT_UP:StopState, SHOT_DOWN:StopState},
-                MoveState:{L_UP:StopState, L_DOWN:StopState, R_UP:StopState, R_DOWN:StopState,F_UP:StopState, F_DOWN:StopState, B_UP:StopState, B_DOWN:StopState, SHOT_UP:MoveState, SHOT_DOWN:MoveState},
+    @staticmethod
+    def enter(hero, event):
+        if hero.vy != 0.2:
+            hero.x, hero.y = 250, 0 -32
+            hero.vy = 0.2
+        pass
+
+    
+    @staticmethod
+    def exit(hero, event):
+        pass
+
+    @staticmethod
+    def update(hero):
+
+        hero.frame = (hero.frame+ frame_per_round*round_per_sec*ENGINE.frame_time) %8
+
+        hero.y += hero.vy*hero.speed*ENGINE.frame_time
+        if hero.y > 100:
+            hero.attack = False
+            hero.add_que(DEAD)
+
+
+    @staticmethod
+    def draw(hero):
+        hero.image.clip_draw(32*int(hero.frame),0+48*2,32,48,hero.x,hero.y)
+
+
+
+Change_State = {StopState:{L_UP:MoveState, L_DOWN:MoveState, R_UP:MoveState, R_DOWN:MoveState,F_UP:MoveState, F_DOWN:MoveState, B_UP:MoveState, B_DOWN:MoveState, SHOT_UP:StopState, SHOT_DOWN:StopState, DEAD:DeadState},
+                MoveState:{L_UP:StopState, L_DOWN:StopState, R_UP:StopState, R_DOWN:StopState,F_UP:StopState, F_DOWN:StopState, B_UP:StopState, B_DOWN:StopState, SHOT_UP:MoveState, SHOT_DOWN:MoveState, DEAD:DeadState},
+                DeadState:{L_UP:DeadState, L_DOWN:DeadState, R_UP:DeadState, R_DOWN:DeadState,F_UP:DeadState, F_DOWN:DeadState, B_UP:DeadState, B_DOWN:DeadState, SHOT_UP:DeadState, SHOT_DOWN:DeadState, DEAD:StopState}
                 }
 
 

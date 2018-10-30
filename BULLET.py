@@ -1,12 +1,14 @@
 from math import *
+import ENGINE
 
 class bullet:
 
     
-    def __init__(self,x,y,i):
+    def __init__(self,x,y,size):
         self.x, self.y = x, y
         self.v, self.r = 0, 0
-        self.image = i
+        self.size = size
+        self.image = 1
 
     def order(self,v,r):
         self.v += v
@@ -14,5 +16,5 @@ class bullet:
 
     def update(self):
 
-        self.x += self.v *sin(radians(self.r))
-        self.y += self.v *cos(radians(self.r))
+        self.x += self.v *sin(radians(self.r)) *ENGINE.frame_time *ENGINE.p_per_meter
+        self.y += self.v *cos(radians(self.r)) *ENGINE.frame_time *ENGINE.p_per_meter

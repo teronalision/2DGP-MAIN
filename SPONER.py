@@ -12,8 +12,8 @@ class Sponer:
         #생성
         if self.m == 0 and self.time % 100 == 0:
             for i in range(0,360,30):
-                b = BULLET.bullet(self.x,self.y,1)
-                b.order(0.3,i+self.time)
+                b = BULLET.bullet(self.x,self.y,5)
+                b.order(0.5,i+self.time)
                 self.b_list.append(b)
             
 

@@ -53,8 +53,9 @@ def update():
             obj.update()
 
             #충돌판정
-            if (hero.x - obj.x)**2 + (hero.y - obj.y)**2 < 60**2:
-                hero.live = False
+            if (hero.x - obj.x)**2 + (hero.y - obj.y)**2 < (obj.size +10)**2:
+                hero.attack = True
+                
     
 
 
@@ -63,9 +64,9 @@ def update():
 
 def draw():
     clear_canvas()
-
+    #캐릭터
     hero.draw()
-
+    #총알
     for s_list in ENGINE.yield_obj():
         for i in s_list.b_list:
             bimage[i.image].draw(i.x,i.y,10,10);
@@ -73,4 +74,7 @@ def draw():
 
     #UI
     simage[0].draw(400,300)
+    for i in range(hero.life):
+        bimage[0].draw(600 +50*i,500)
+    
     update_canvas()
