@@ -2,6 +2,9 @@ from pico2d import *
 import SHOT
 import ENGINE
 
+round_per_sec = 1.0 / 1
+frame_per_round = 8
+
 L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOT_UP, SHOT_DOWN = range(10)
 Key_Table = {(SDL_KEYUP, SDLK_LEFT): L_UP,(SDL_KEYDOWN, SDLK_LEFT): L_DOWN,
              (SDL_KEYUP, SDLK_RIGHT): R_UP,(SDL_KEYDOWN, SDLK_RIGHT): R_DOWN,
@@ -101,8 +104,11 @@ class MoveState:
             #return
             pass
 
+        if hero.frame <4:
+            hero.frame = (hero.frame+ frame_per_round*round_per_sec*ENGINE.frame_time)
+        else:
+            hero.frame = 4+(hero.frame+ frame_per_round*round_per_sec*ENGINE.frame_time) %4
 
-        hero.frame = (hero.frame+1) %(8*30)
         hero.x += hero.vx*hero.speed*ENGINE.frame_time
         hero.y += hero.vy*hero.speed*ENGINE.frame_time
 
@@ -113,11 +119,11 @@ class MoveState:
     @staticmethod
     def draw(hero):
         if hero.vx >0:
-            hero.image.clip_draw(32*(hero.frame//30),48*0,32,48,hero.x,hero.y)
+            hero.image.clip_draw(32*int(hero.frame),48*0,32,48,hero.x,hero.y)
         elif hero.vx <0:
-            hero.image.clip_draw(32*(hero.frame//30),48*1,32,48,hero.x,hero.y)
+            hero.image.clip_draw(32*int(hero.frame),48*1,32,48,hero.x,hero.y)
         else:
-            hero.image.clip_draw(32*(hero.frame//30),48*2,32,48,hero.x,hero.y)
+            hero.image.clip_draw(32*int(hero.frame),48*2,32,48,hero.x,hero.y)
 
 
 class StopState:
@@ -158,14 +164,14 @@ class StopState:
             #return
             pass
 
-        hero.frame = (hero.frame+1) %(8*30)
+        hero.frame = (hero.frame+ frame_per_round*round_per_sec*ENGINE.frame_time) %8
 
         hero.y += hero.vy*hero.speed*ENGINE.frame_time
         hero.y = clamp(0 +32,hero.y,600 -32)
 
     @staticmethod
     def draw(hero):
-        hero.image.clip_draw(32*(hero.frame//30),0+48*2,32,48,hero.x,hero.y)
+        hero.image.clip_draw(32*int(hero.frame),0+48*2,32,48,hero.x,hero.y)
 
 
 
