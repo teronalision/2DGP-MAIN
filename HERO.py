@@ -1,5 +1,6 @@
 from pico2d import *
 import SHOT
+import ENGINE
 
 L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOT_UP, SHOT_DOWN = range(10)
 Key_Table = {(SDL_KEYUP, SDLK_LEFT): L_UP,(SDL_KEYDOWN, SDLK_LEFT): L_DOWN,
@@ -15,7 +16,7 @@ class Hero:
     def __init__(self):  
         self.x, self.y = 0, 0
         self.vx, self.vy = 0, 0 
-        self.speed = 0.7
+        self.speed = 1 * ENGINE.p_per_meter
         self.live = True
         self.fireList = []
         self.fire = False
@@ -65,6 +66,7 @@ class MoveState:
 
     @staticmethod
     def enter(hero, event):
+
         if event == L_DOWN:
             hero.vx -= 1
         elif event == L_UP:
@@ -101,8 +103,12 @@ class MoveState:
 
 
         hero.frame = (hero.frame+1) %(8*30)
-        hero.x += hero.vx*hero.speed
-        hero.y += hero.vy*hero.speed
+        hero.x += hero.vx*hero.speed*ENGINE.frame_time
+        hero.y += hero.vy*hero.speed*ENGINE.frame_time
+
+        hero.x = clamp(0 +16,hero.x,500 -16)
+        hero.y = clamp(0 +32,hero.y,600 -32)
+
 
     @staticmethod
     def draw(hero):
@@ -153,8 +159,9 @@ class StopState:
             pass
 
         hero.frame = (hero.frame+1) %(8*30)
-        hero.y += hero.vy*hero.speed
-        
+
+        hero.y += hero.vy*hero.speed*ENGINE.frame_time
+        hero.y = clamp(0 +32,hero.y,600 -32)
 
     @staticmethod
     def draw(hero):

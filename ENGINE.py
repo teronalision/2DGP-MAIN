@@ -1,19 +1,28 @@
-from pico2d import *
+#from pico2d import *
+import time
 
+p_per_meter = 100
+
+frame_time = 0.0
 
 def Quit():
     global run
     run = False
 
 def Run():
-    global run, state_stack
+    global run, state_stack, frame_time
     run = True
+    c_time = time.time()
 
     while run:
         state_stack[-1].handle()
         state_stack[-1].update()
         state_stack[-1].draw()
 
+        frame_time = time.time() - c_time
+        #frame_rate = 1.0 /frame_time
+        c_time += frame_time
+        print('t: %f' %frame_time)
 
     while(len(state_stack)>0):
         state_stack[-1].end()
