@@ -21,7 +21,7 @@ class Hero:
         self.x, self.y = 0, 0
         self.vx, self.vy = 0, 0 
         self.speed = 1.5 * ENGINE.p_per_meter
-        self.life = 3
+        self.life = 4
         self.attack = False
         self.fireList = []
         self.fire = False
@@ -197,6 +197,9 @@ class DeadState:
         if hero.vy != 0.2:
             hero.x, hero.y = 250, 0 -32
             hero.vy = 0.2
+
+        hero.fire = False
+        hero.fireList.clear()
         pass
 
     
@@ -212,12 +215,14 @@ class DeadState:
         hero.y += hero.vy*hero.speed*ENGINE.frame_time
         if hero.y > 100:
             hero.attack = False
+            hero.vy = 0
             hero.add_que(DEAD)
 
 
     @staticmethod
     def draw(hero):
         hero.image.clip_draw(32*int(hero.frame),0+48*2,32,48,hero.x,hero.y)
+        hero.image.draw(0,0)
 
 
 

@@ -17,7 +17,7 @@ def start():
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
     simage = [load_image('bg1.png')]
 
-    ENGINE.add_obj(SPONER.Sponer(200,500),None)
+    ENGINE.add_obj(SPONER.Sponer(200,500),1)
 
 
 def end():
@@ -44,10 +44,10 @@ def update():
     hero.update()
 
     #생성
-    for list in ENGINE.yield_obj():
+    for list in ENGINE.all_obj():
         list.update()
 
-    for s_list in ENGINE.yield_obj():
+    for s_list in ENGINE.yield_obj(1):
         for obj in s_list.b_list:
             #탄 이동
             obj.update()
@@ -55,6 +55,8 @@ def update():
             #충돌판정
             if (hero.x - obj.x)**2 + (hero.y - obj.y)**2 < (obj.size +10)**2:
                 hero.attack = True
+                for s in ENGINE.object_list[1]:
+                    s.kill()
                 
     
 
@@ -67,14 +69,14 @@ def draw():
     #캐릭터
     hero.draw()
     #총알
-    for s_list in ENGINE.yield_obj():
+    for s_list in ENGINE.yield_obj(1):
         for i in s_list.b_list:
             bimage[i.image].draw(i.x,i.y,10,10);
 
 
     #UI
     simage[0].draw(400,300)
-    for i in range(hero.life):
+    for i in range(hero.life -1):
         bimage[0].draw(600 +50*i,500)
     
     update_canvas()

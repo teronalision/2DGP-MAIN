@@ -52,17 +52,24 @@ state_stack = []
 
 
 #물체들
-object_list = []
+object_list = [[],[]]   #0아군 1적
 
 
 def add_obj(obj, i):
-    object_list.append(obj)
+    object_list[i].append(obj)
 
 def del_obj(obj):
-    object_list.remove(obj)
-    del(obj)
+    for i in range(len(object_list)):
+        if(obj in object_list[i]):
+            object_list[i].remove(obj)
+            del(obj)
 
 
-def yield_obj():
-    for o in object_list:
+def yield_obj(i):
+    for o in object_list[i]:
         yield o
+
+def all_obj():
+    for i in range(len(object_list)):
+        for o in object_list[i]:
+            yield o

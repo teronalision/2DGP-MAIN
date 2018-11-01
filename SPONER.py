@@ -24,8 +24,9 @@ class Sponer:
 
         self.time+=1
 
-    def kill():
-        for b in b_list:
-            b.kill()
-            b_list.remove(b)
-        pass
+    def kill(self):
+        for b in self.b_list:
+            #b.kill()
+            pass
+        self.b_list.clear()
+        
