@@ -19,7 +19,7 @@ def start():
     simage = [load_image('bg1.png')]
 
     ENGINE.add_obj(SPONER.Sponer(200,500),1)
-    ENGINE.add_obj(ZAKO.zako(0,600,0,bimage[1]),0)
+    ENGINE.add_obj(ZAKO.zako(0,600,1,bimage[1]),0)
 
 
 def end():
@@ -51,8 +51,6 @@ def update():
 
     for s_list in ENGINE.yield_obj(1):
         for obj in s_list.b_list:
-            #탄 이동
-            obj.update()
 
             #충돌판정
             if ENGINE.is_crash(hero,obj):

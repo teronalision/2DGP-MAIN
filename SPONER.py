@@ -18,12 +18,15 @@ class Sponer:
                 self.b_list.append(b)
                 self.time = 0
             
-
         #소멸
         for b in self.b_list:
             if b.x <0 or b.x >500 or b.y <0 or b.y >600:
                 self.b_list.remove(b)
                 del(b)
+
+        #탄이동
+        for b in self.b_list:
+            b.update()
 
         self.time+= ENGINE.frame_time
 

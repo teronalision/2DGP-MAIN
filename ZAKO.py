@@ -15,14 +15,17 @@ class zako:
         if f == 0:
             self.vx,self.vy = 1,-1
         elif f == 1:
-            self.sponer = SPONER.Sponer(200,500)
+            self.sponer = SPONER.Sponer(self.x,self.y)
+            self.vx = 1
 
     def update(self):
         self.x += self.vx*ENGINE.p_per_meter*ENGINE.frame_time
         self.y += self.vy*ENGINE.p_per_meter*ENGINE.frame_time
 
-        #if self.sponer != None:
-        #    self.sponer.update()
+        if self.sponer != None:
+            self.sponer.x = self.x
+            self.sponer.y = self.y
+            self.sponer.update()
 
         pass
 
@@ -30,4 +33,6 @@ class zako:
     def draw(self):
         self.image.draw(self.x,self.y)
 
-        pass
+        if self.sponer != None:
+            self.sponer.draw()
+            pass
