@@ -55,7 +55,7 @@ def update():
             obj.update()
 
             #충돌판정
-            if (hero.x - obj.x)**2 + (hero.y - obj.y)**2 < (obj.size +10)**2:
+            if ENGINE.is_crash(hero,obj):
                 hero.attack = True
                 for s in ENGINE.object_list[1]:
                     s.kill()

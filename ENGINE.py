@@ -88,3 +88,8 @@ def all_obj():
             yield o
 
 
+def is_crash(A, B):
+     if (A.x - B.x)**2 + (A.y - B.y)**2 < (B.size +10)**2:
+         return True
+     else:
+         return False
