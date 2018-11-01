@@ -1,9 +1,26 @@
-#from pico2d import *
+from pico2d import *
 import time
 
-p_per_meter = 100
 
+
+#초기화
+p_per_meter = 100
 frame_time = 0.0
+
+
+run = True
+state_stack = []
+
+himage, bimage, simage = None, None, None
+
+
+def init():
+    global himage,bimage,simage
+
+    himage = load_image('C1.png')
+    bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
+    simage = [load_image('bg1.png')]
+
 
 def Quit():
     global run
@@ -45,10 +62,6 @@ def Change_state(state):
     state_stack.append(state)
 
 
-#초기화
-
-run = True
-state_stack = []
 
 
 #물체들
@@ -73,3 +86,5 @@ def all_obj():
     for i in range(len(object_list)):
         for o in object_list[i]:
             yield o
+
+

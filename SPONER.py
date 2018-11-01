@@ -27,6 +27,12 @@ class Sponer:
 
         self.time+= ENGINE.frame_time
 
+
+    def draw(self):
+        for b in self.b_list:
+            b.draw()
+
+
     def kill(self):
         for b in self.b_list:
             #b.kill()

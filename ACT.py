@@ -5,6 +5,7 @@ import TITLE
 
 pico2d.open_canvas()
 
+ENGINE.init()
 ENGINE.Push_state(TITLE)
 ENGINE.Run()
     

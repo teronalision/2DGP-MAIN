@@ -2,6 +2,7 @@ from pico2d import *
 import ENGINE
 import HERO
 import SPONER
+import ZAKO
 
 hero = HERO.Hero()
 #sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
@@ -18,6 +19,7 @@ def start():
     simage = [load_image('bg1.png')]
 
     ENGINE.add_obj(SPONER.Sponer(200,500),1)
+    ENGINE.add_obj(ZAKO.zako(0,600,0,bimage[1]),0)
 
 
 def end():
@@ -69,9 +71,8 @@ def draw():
     #캐릭터
     hero.draw()
     #총알
-    for s_list in ENGINE.yield_obj(1):
-        for i in s_list.b_list:
-            bimage[i.image].draw(i.x,i.y,10,10);
+    for a in ENGINE.all_obj():
+        a.draw()
 
 
     #UI
