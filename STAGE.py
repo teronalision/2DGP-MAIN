@@ -8,7 +8,8 @@ hero = HERO.Hero()
 #sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
 bimage = None
 simage = None
-time = 0
+time = 0.0
+step = 0
 
 def start():
     global image, bimage, simage,hero
@@ -19,10 +20,7 @@ def start():
     simage = [load_image('bg1.png')]
 
     #ENGINE.add_obj(SPONER.Sponer(200,500),1)
-    ENGINE.add_obj(ZAKO.zako(0,600,1,bimage[1]),1)
-    ENGINE.add_obj(ZAKO.zako(-100,600,1,bimage[1]),1)
-    ENGINE.add_obj(ZAKO.zako(-200,600,1,bimage[1]),1)
-    ENGINE.add_obj(ZAKO.zako(-300,600,1,bimage[1]),1)
+   
     
 
 def end():
@@ -43,7 +41,21 @@ def handle():
 
 
 def update():
-    global time
+    global time,step
+
+    #로직
+    if step == 0 and int(time) == 0:
+        ENGINE.add_obj(ZAKO.zako(200,600,1,bimage[1]),1)
+        ENGINE.add_obj(ZAKO.zako(300,600,1,bimage[1]),1)
+        step += 1
+    elif step == 1 and int(time) == 2:
+        ENGINE.add_obj(ZAKO.zako(100,600,1,bimage[1]),1)
+        ENGINE.add_obj(ZAKO.zako(400,600,1,bimage[1]),1)
+        step += 1
+    elif step == 2 and int(time) == 4:
+        time, step = 0, 0
+
+
 
     #캐릭터 이동
     hero.update()
@@ -64,15 +76,16 @@ def update():
     #자코 충돌
     for e in ENGINE.yield_obj(1):
         for h_b in hero.fireList:
-            if ENGINE.is_crash(h_b, e):
+            if ENGINE.is_crash(h_b, e) and e.dead == False:
                 e.kill()
                 #총알 펑
+                hero.fireList.remove(h_b)
                 #ENGINE.object_list[1].remove(e)
                 break
     
 
 
-    time +=1
+    time += ENGINE.frame_time
 
 
 def draw():

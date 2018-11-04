@@ -103,6 +103,11 @@ class MoveState:
             hero.fire = True
         elif event == SHOT_UP:
             hero.fire = False
+
+        if abs(hero.vx) == 2:
+            hero.vx /= hero.vx
+        if abs(hero.vy) == 2:
+            hero.vy /= hero.vy
     
     @staticmethod
     def exit(hero, event):
@@ -167,7 +172,12 @@ class StopState:
             hero.fire = True
         elif event == SHOT_UP:
             hero.fire = False
-    
+        
+        if abs(hero.vx) == 2:
+            hero.vx /= hero.vx
+        if abs(hero.vy) == 2:
+            hero.vy /= hero.vy
+
     @staticmethod
     def exit(hero, event):
         pass
@@ -182,7 +192,10 @@ class StopState:
 
         hero.frame = (hero.frame+ frame_per_round*round_per_sec*ENGINE.frame_time) %8
 
+        hero.x += hero.vx*hero.speed*ENGINE.frame_time
         hero.y += hero.vy*hero.speed*ENGINE.frame_time
+
+        hero.x = clamp(0 +16,hero.x,500 -16)
         hero.y = clamp(0 +32,hero.y,600 -32)
 
     @staticmethod

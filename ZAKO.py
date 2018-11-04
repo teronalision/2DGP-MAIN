@@ -19,23 +19,27 @@ class zako:
             self.vx,self.vy = 1,-1
         elif f == 1:
             self.sponer = SPONER.Sponer(self.x,self.y)
-            self.vx = 1
+            self.vy = -1
 
     def update(self):
+        #로직
+        if self.form == 1:
+            if self.y < 400:
+                self.vy = 0
+
+
+        #
         if self.sponer != None:
                 self.sponer.x = self.x
                 self.sponer.y = self.y
                 self.sponer.update()
 
-
         if self.dead:
             if self.cnt > 100:#임시 값
                 pass
 
-            
             self.cnt += 1
             return
-
 
         else:
             self.x += self.vx*ENGINE.p_per_meter*ENGINE.frame_time
