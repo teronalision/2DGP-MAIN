@@ -22,6 +22,12 @@ class zako:
             self.vx = 1
 
     def update(self):
+        if self.sponer != None:
+                self.sponer.x = self.x
+                self.sponer.y = self.y
+                self.sponer.update()
+
+
         if self.dead:
             if self.cnt > 100:#임시 값
                 pass
@@ -34,17 +40,12 @@ class zako:
         else:
             self.x += self.vx*ENGINE.p_per_meter*ENGINE.frame_time
             self.y += self.vy*ENGINE.p_per_meter*ENGINE.frame_time
-
-            if self.sponer != None:
-                self.sponer.x = self.x
-                self.sponer.y = self.y
-                self.sponer.update()
-
         pass
 
 
     def draw(self):
-        self.image.draw(self.x,self.y)
+        if self.dead == False:
+            self.image.draw(self.x,self.y)
 
         if self.sponer != None:
             self.sponer.draw()
@@ -53,3 +54,4 @@ class zako:
 
     def kill(self):
         self.dead = True
+        self.sponer.dead = True

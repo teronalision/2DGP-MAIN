@@ -48,25 +48,26 @@ def update():
     #캐릭터 이동
     hero.update()
 
-    #생성
+    #내부 업데이트
     for list in ENGINE.all_obj():
         list.update()
 
+    #캐릭터 충돌
     for s_list in ENGINE.yield_obj(1):
         for obj in s_list.sponer.b_list:
 
-            #충돌판정
             if ENGINE.is_crash(hero,obj):
                 hero.attack = True
                 for s in ENGINE.object_list[1]:
                     s.kill()
 
+    #자코 충돌
     for e in ENGINE.yield_obj(1):
         for h_b in hero.fireList:
             if ENGINE.is_crash(h_b, e):
-                e.dead = True
+                e.kill()
                 #총알 펑
-                ENGINE.object_list[1].remove(e)
+                #ENGINE.object_list[1].remove(e)
                 break
     
 
