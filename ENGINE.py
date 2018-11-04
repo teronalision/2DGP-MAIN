@@ -59,7 +59,7 @@ def Change_state(state):
 
     state.start()
     state_stack[-1].end()
-    state_stack.remove(-1)
+    state_stack.remove(state_stack[-1])
     state_stack.append(state)
 
 

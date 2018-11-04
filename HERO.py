@@ -1,6 +1,7 @@
 from pico2d import *
 import SHOT
 import ENGINE
+import GAME_OVER
 
 round_per_sec = 1.0 / 1
 frame_per_round = 8
@@ -121,7 +122,7 @@ class MoveState:
             hero.add_que(DEAD)
             pass
         if hero.life == 0:
-            ENGINE.run = False
+            ENGINE.Change_state(GAME_OVER)
 
 
         if hero.frame <4:
