@@ -4,6 +4,7 @@ import SELECT
 
 select = 0
 image = None
+font = None
 
 def start():
     global image
@@ -37,6 +38,11 @@ def draw():
     clear_canvas()
 
     image.draw(200,300 -50*select)
+
+    ENGINE.font.draw(300, 300,'스타트', (0,0,0))
+    ENGINE.font.draw(300, 250,'난이도', (0,0,0))
+    ENGINE.font.draw(300, 200,'옵션', (0,0,0))
+    ENGINE.font.draw(300, 150,'종료', (0,0,0))
 
     update_canvas()
     pass

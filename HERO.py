@@ -235,7 +235,7 @@ class DeadState:
     @staticmethod
     def draw(hero):
         hero.image.clip_draw(32*int(hero.frame),0+48*2,32,48,hero.x,hero.y)
-        hero.image.draw(0,0)
+        ENGINE.font.draw(250, 250,'리스폰', (0,0,0))
 
 
 

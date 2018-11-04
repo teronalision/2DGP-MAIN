@@ -99,7 +99,12 @@ def draw():
 
     #UI
     simage[0].draw(400,300)
+    ENGINE.font.draw(510, 550,'Point', (0,0,0))
+
     for i in range(hero.life -1):
         bimage[0].draw(600 +50*i,500)
-    
+    ENGINE.font.draw(510, 500,'Lift', (0,0,0))
+
+    ENGINE.font.draw(510, 450,'boom', (0,0,0))
+
     update_canvas()

@@ -12,14 +12,15 @@ run = True
 state_stack = []
 
 himage, bimage, simage = None, None, None
-
+font = None
 
 def init():
-    global himage,bimage,simage
+    global himage,bimage,simage,font
 
     himage = load_image('C1.png')
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
     simage = [load_image('bg1.png')]
+    font = load_font('Maplestory Light.TTF')
 
 
 def Quit():
