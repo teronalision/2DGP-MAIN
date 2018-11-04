@@ -34,7 +34,7 @@ class Hero:
 
     def shoting(self):
         new = SHOT.Shot(self.x,self.y)
-        new.v = 1
+        new.v = 10
         self.fireList.append(new)
 
 

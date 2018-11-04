@@ -18,9 +18,12 @@ def start():
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
     simage = [load_image('bg1.png')]
 
-    ENGINE.add_obj(SPONER.Sponer(200,500),1)
-    ENGINE.add_obj(ZAKO.zako(0,600,1,bimage[1]),0)
-
+    #ENGINE.add_obj(SPONER.Sponer(200,500),1)
+    ENGINE.add_obj(ZAKO.zako(0,600,1,bimage[1]),1)
+    ENGINE.add_obj(ZAKO.zako(-100,600,1,bimage[1]),1)
+    ENGINE.add_obj(ZAKO.zako(-200,600,1,bimage[1]),1)
+    ENGINE.add_obj(ZAKO.zako(-300,600,1,bimage[1]),1)
+    
 
 def end():
     pass
@@ -50,14 +53,21 @@ def update():
         list.update()
 
     for s_list in ENGINE.yield_obj(1):
-        for obj in s_list.b_list:
+        for obj in s_list.sponer.b_list:
 
             #충돌판정
             if ENGINE.is_crash(hero,obj):
                 hero.attack = True
                 for s in ENGINE.object_list[1]:
                     s.kill()
-                
+
+    for e in ENGINE.yield_obj(1):
+        for h_b in hero.fireList:
+            if ENGINE.is_crash(h_b, e):
+                e.dead = True
+                #총알 펑
+                ENGINE.object_list[1].remove(e)
+                break
     
 
 

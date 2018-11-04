@@ -10,8 +10,11 @@ class zako:
         self.x, self.y = x,y
         self.vx, self.vy = 0.0, 0.0
         self.form = f
+        self.size = 50
         self.image = image
+        self.dead = False
         self.sponer = None
+        self.cnt = 0
         if f == 0:
             self.vx,self.vy = 1,-1
         elif f == 1:
@@ -19,13 +22,23 @@ class zako:
             self.vx = 1
 
     def update(self):
-        self.x += self.vx*ENGINE.p_per_meter*ENGINE.frame_time
-        self.y += self.vy*ENGINE.p_per_meter*ENGINE.frame_time
+        if self.dead:
+            if self.cnt > 100:#임시 값
+                pass
 
-        if self.sponer != None:
-            self.sponer.x = self.x
-            self.sponer.y = self.y
-            self.sponer.update()
+            
+            self.cnt += 1
+            return
+
+
+        else:
+            self.x += self.vx*ENGINE.p_per_meter*ENGINE.frame_time
+            self.y += self.vy*ENGINE.p_per_meter*ENGINE.frame_time
+
+            if self.sponer != None:
+                self.sponer.x = self.x
+                self.sponer.y = self.y
+                self.sponer.update()
 
         pass
 
@@ -36,3 +49,7 @@ class zako:
         if self.sponer != None:
             self.sponer.draw()
             pass
+
+
+    def kill(self):
+        self.dead = True

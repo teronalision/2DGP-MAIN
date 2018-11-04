@@ -1,4 +1,5 @@
 from pico2d import *
+import ENGINE
 
 class Shot:
 
@@ -10,7 +11,7 @@ class Shot:
 
 
     def update(self):
-        self.y += self.v
+        self.y += self.v *ENGINE.frame_time * ENGINE.p_per_meter
 
 
     def isOut(self):
