@@ -1,6 +1,7 @@
 from pico2d import *
 import ENGINE
 import STAGE
+import TITLE
 
 select = 0
 image = None
@@ -24,8 +25,10 @@ def handle():
                 select +=1
             elif(event.key == SDLK_LEFT and select > 0):
                 select -=1
-            if(event.key == SDLK_SPACE and select == 0):
+            elif(event.key == SDLK_SPACE or event.key == SDLK_z and select == 0):
                 ENGINE.Push_state(STAGE)
+            elif(event.key == SDLK_ESCAPE):
+                ENGINE.Change_state(TITLE)
     pass
 
 

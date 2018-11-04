@@ -3,6 +3,7 @@ import ENGINE
 import HERO
 import SPONER
 import ZAKO
+import GAME_OVER
 
 hero = HERO.Hero()
 #sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
@@ -69,9 +70,16 @@ def update():
         for obj in s_list.sponer.b_list:
 
             if ENGINE.is_crash(hero,obj):
+                if hero.life == 1:
+                    ENGINE.Change_state(GAME_OVER)
+                    return
+
                 hero.attack = True
                 for s in ENGINE.object_list[1]:
-                    s.kill()
+                    del(s)
+                #    s.kill()
+                ENGINE.object_list[1].clear()
+                break
 
     #자코 충돌
     for e in ENGINE.yield_obj(1):
@@ -80,7 +88,6 @@ def update():
                 e.kill()
                 #총알 펑
                 hero.fireList.remove(h_b)
-                #ENGINE.object_list[1].remove(e)
                 break
     
 

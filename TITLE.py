@@ -25,8 +25,11 @@ def handle():
                 select +=1
             elif(event.key == SDLK_UP and select > 0):
                 select -=1
-            if(event.key == SDLK_SPACE and select == 0):
-                ENGINE.Push_state(SELECT)
+            if(event.key == SDLK_SPACE or event.key == SDLK_z):
+                if (select == 0):
+                    ENGINE.Push_state(SELECT)
+                elif (select == 3):
+                    ENGINE.run = False
     pass
 
 

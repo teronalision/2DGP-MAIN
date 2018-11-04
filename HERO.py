@@ -1,7 +1,6 @@
 from pico2d import *
 import SHOT
 import ENGINE
-import GAME_OVER
 
 round_per_sec = 1.0 / 1
 frame_per_round = 8
@@ -26,6 +25,7 @@ class Hero:
         self.attack = False
         self.fireList = []
         self.fire = False
+        self.power = 2
         self.image = None
         self.frame = 0
         self.que = []
@@ -34,9 +34,10 @@ class Hero:
         self.time = 0
 
     def shoting(self):
-        new = SHOT.Shot(self.x,self.y)
-        new.v = 10
-        self.fireList.append(new)
+        for i in range(self.power):
+            new = SHOT.Shot(self.x -(self.power*10) +(i*20),self.y)
+            new.v = 10
+            self.fireList.append(new)
 
 
     def draw(self):
@@ -121,8 +122,6 @@ class MoveState:
             hero.life -= 1
             hero.add_que(DEAD)
             pass
-        if hero.life == 0:
-            ENGINE.Change_state(GAME_OVER)
 
 
         if hero.frame <4:
@@ -208,7 +207,7 @@ class DeadState:
 
     @staticmethod
     def enter(hero, event):
-        if hero.vy != 0.2:
+        if event == DEAD:
             hero.x, hero.y = 250, 0 -32
             hero.vy = 0.2
 
@@ -219,6 +218,7 @@ class DeadState:
     
     @staticmethod
     def exit(hero, event):
+        #hero.vx = hero.vy = 0
         pass
 
     @staticmethod
@@ -236,7 +236,8 @@ class DeadState:
     @staticmethod
     def draw(hero):
         hero.image.clip_draw(32*int(hero.frame),0+48*2,32,48,hero.x,hero.y)
-        ENGINE.font.draw(250, 250,'리스폰', (0,0,0))
+        #임시
+        ENGINE.font.draw(10, 15,'리스폰', (0,0,0))
 
 
 

@@ -22,4 +22,4 @@ class Shot:
 
 
     def draw(self):
-        Shot.image.draw(self.x, self.y)
+        Shot.image.draw(self.x, self.y,20,20)

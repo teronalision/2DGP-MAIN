@@ -10,7 +10,7 @@ class zako:
         self.x, self.y = x,y
         self.vx, self.vy = 0.0, 0.0
         self.form = f
-        self.size = 50
+        self.size = 25
         self.image = image
         self.dead = False
         self.sponer = None
@@ -49,7 +49,7 @@ class zako:
 
     def draw(self):
         if self.dead == False:
-            self.image.draw(self.x,self.y)
+            self.image.draw(self.x,self.y,50,50)
 
         if self.sponer != None:
             self.sponer.draw()

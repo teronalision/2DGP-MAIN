@@ -20,7 +20,7 @@ def init():
     himage = load_image('C1.png')
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png'), load_image('91834.png')]
     simage = [load_image('bg1.png')]
-    font = load_font('Maplestory Light.TTF')
+    font = load_font('Maplestory Bold.TTF')
 
 
 def Quit():
