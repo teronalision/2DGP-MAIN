@@ -41,8 +41,8 @@ def draw():
 
     image.draw(150 +250*select, 200)
 
-    ENGINE.font.draw(150, 300,'1번', (0,0,0))
-    ENGINE.font.draw(400, 300,'2번', (0,0,0))
+    ENGINE.font.draw(150, 250,'1번', (0,0,0))
+    ENGINE.font.draw(400, 250,'2번', (0,0,0))
 
     update_canvas()
     pass
