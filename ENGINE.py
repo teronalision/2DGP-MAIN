@@ -59,7 +59,7 @@ def Change_state(state):
 
     state.start()
     state_stack[-1].end()
-    state_stack.remove(state_stack[-1])
+    state_stack.pop()
     state_stack.append(state)
 
 
@@ -72,11 +72,14 @@ object_list = [[],[]]   #0아군 1적
 def add_obj(obj, i):
     object_list[i].append(obj)
 
-def del_obj(obj):
+def del_obj():
+    global object_list
+
     for i in range(len(object_list)):
-        if(obj in object_list[i]):
-            object_list[i].remove(obj)
-            del(obj)
+        object_list[i].clear()
+            
+            
+            
 
 
 def yield_obj(i):

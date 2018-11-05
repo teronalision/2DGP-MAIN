@@ -5,7 +5,7 @@ import SPONER
 import ZAKO
 import GAME_OVER
 
-hero = HERO.Hero()
+hero = None
 #sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
 bimage = None
 simage = None
@@ -15,6 +15,7 @@ step = 0
 def start():
     global image, bimage, simage,hero
 
+    hero = HERO.Hero()
     hero.x,hero.y = 250, 100
     hero.image = load_image('C1.png')
     bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
@@ -25,6 +26,14 @@ def start():
     
 
 def end():
+    global image, bimage, simage,hero
+
+    ENGINE.del_obj()
+    del(hero)
+    del(bimage)
+    del(simage)
+    time = 0.0
+    step = 0
     pass
 
 
