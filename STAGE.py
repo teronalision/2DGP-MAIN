@@ -106,6 +106,9 @@ def update():
 
 def draw():
     clear_canvas()
+    #BG
+    ENGINE.background[1].clip_draw(0,0,720,1280,250,250)
+
     #캐릭터
     hero.draw()
     #총알
@@ -119,7 +122,7 @@ def draw():
 
     for i in range(hero.life -1):
         bimage[0].draw(600 +50*i,500)
-    ENGINE.font.draw(510, 500,'Lift', (0,0,0))
+    ENGINE.font.draw(510, 500,'Life', (0,0,0))
 
     ENGINE.font.draw(510, 450,'boom', (0,0,0))
 

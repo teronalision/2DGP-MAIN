@@ -40,6 +40,8 @@ def update():
 def draw():
     clear_canvas()
 
+    ENGINE.background[0].draw(400,300,800,600)
+
     image.draw(200,300 -50*select)
 
     ENGINE.font.draw(300, 300,'스타트', (0,0,0))
