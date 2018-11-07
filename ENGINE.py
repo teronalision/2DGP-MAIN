@@ -20,7 +20,7 @@ def init():
     global himage,bimage,simage,background,bgm,font
 
     himage = load_image('C1.png')
-    bimage = [load_image('dumy_b.png'), load_image('dumy_c.png'), load_image('91834.png')]
+    bimage = [load_image('dumy_b.png'), load_image('dumy_c.png'), load_image('etama6.png'), load_image('etama2.png')]
     simage = [load_image('bg1.png')]
     background = [load_image('sky0.png'),load_image('sky1.jpg'),load_image('sky2.jpg')]
 
@@ -99,7 +99,7 @@ def all_obj():
 
 
 def is_crash(A, B):
-     if (A.x - B.x)**2 + (A.y - B.y)**2 < (B.size +10)**2:
+     if (A.x - B.x)**2 + (A.y - B.y)**2 < (B.size +A.size)**2:
          return True
      else:
          return False

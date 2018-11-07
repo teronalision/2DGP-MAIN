@@ -4,6 +4,7 @@ import ENGINE
 
 round_per_sec = 1.0 / 1
 frame_per_round = 8
+time = 0
 
 L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOT_UP, SHOT_DOWN, DEAD = range(11)
 Key_Table = {(SDL_KEYUP, SDLK_LEFT): L_UP,(SDL_KEYDOWN, SDLK_LEFT): L_DOWN,
@@ -20,6 +21,7 @@ class Hero:
     def __init__(self):  
         self.x, self.y = 0, 0
         self.vx, self.vy = 0, 0 
+        self.size = 5
         self.speed = 1.5 * ENGINE.p_per_meter
         self.life = 4
         self.attack = False
@@ -42,6 +44,7 @@ class Hero:
 
     def draw(self):
         self.state.draw(self)
+        ENGINE.bimage[3].clip_composite_draw(0,64+16,64,64,time*3.14/16,'',self.x,self.y,64,64)
         for s in self.fireList:
             s.draw()
         
@@ -49,8 +52,10 @@ class Hero:
         self.que.insert(0,q)
 
     def update(self):
+        global time
 
         self.state.update(self)
+        time += ENGINE.frame_time        
 
         if len(self.que) >0:
             key = self.que.pop()
@@ -207,9 +212,27 @@ class DeadState:
 
     @staticmethod
     def enter(hero, event):
+        if event == L_DOWN:
+            hero.vx -= 1
+        elif event == L_UP:
+            hero.vx += 1
+        elif event == R_DOWN:
+            hero.vx += 1
+        elif event == R_UP:
+            hero.vx -= 1
+
+        if event == B_DOWN:
+            hero.vy -= 1
+        elif event == B_UP:
+            hero.vy += 1
+        elif event == F_DOWN:
+            hero.vy += 1
+        elif event == F_UP:
+            hero.vy -= 1
+
+
         if event == DEAD:
             hero.x, hero.y = 250, 0 -32
-            hero.vy = 0.2
 
         hero.fire = False
         hero.fireList.clear()
@@ -218,7 +241,6 @@ class DeadState:
     
     @staticmethod
     def exit(hero, event):
-        #hero.vx = hero.vy = 0
         pass
 
     @staticmethod
@@ -226,10 +248,9 @@ class DeadState:
 
         hero.frame = (hero.frame+ frame_per_round*round_per_sec*ENGINE.frame_time) %8
 
-        hero.y += hero.vy*hero.speed*ENGINE.frame_time
+        hero.y += 0.2*hero.speed*ENGINE.frame_time
         if hero.y > 100:
             hero.attack = False
-            hero.vy = 0
             hero.add_que(DEAD)
 
 

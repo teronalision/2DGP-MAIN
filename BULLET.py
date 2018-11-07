@@ -12,6 +12,7 @@ class bullet:
         self.v, self.r = 0, 0
         self.size = size
         self.image = 2
+        self.d = 0
 
     def order(self,v,r):
         self.v += v
@@ -22,5 +23,7 @@ class bullet:
         self.x += self.v *sin(radians(self.r)) *ENGINE.frame_time *ENGINE.p_per_meter
         self.y += self.v *cos(radians(self.r)) *ENGINE.frame_time *ENGINE.p_per_meter
 
+        self.d +=1
+
     def draw(self):
-        ENGINE.bimage[self.image].clip_draw(16,772-(16*4),16,16,self.x,self.y,10,10)
+        ENGINE.bimage[self.image].clip_composite_draw(32,256-32,32,32,radians(self.d),'',self.x,self.y,self.size*2,self.size*2)

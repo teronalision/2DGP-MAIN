@@ -7,6 +7,7 @@ class Shot:
     def __init__(self,x,y):
         self.x, self.y = x, y
         self.v = 0
+        self.size = 10
         Shot.image = load_image('dumy_b.png')
 
 
