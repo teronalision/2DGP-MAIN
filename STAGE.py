@@ -55,12 +55,12 @@ def update():
 
     #로직
     if step == 0 and int(time) == 0:
-        ENGINE.add_obj(ZAKO.zako(200,600,1,bimage[1]),1)
-        ENGINE.add_obj(ZAKO.zako(300,600,1,bimage[1]),1)
+        ENGINE.add_obj(ZAKO.zako(200,600,1),1)
+        ENGINE.add_obj(ZAKO.zako(300,600,1),1)
         step += 1
     elif step == 1 and int(time) == 5:
-        ENGINE.add_obj(ZAKO.zako(100,600,1,bimage[1]),1)
-        ENGINE.add_obj(ZAKO.zako(400,600,1,bimage[1]),1)
+        ENGINE.add_obj(ZAKO.zako(100,600,1),1)
+        ENGINE.add_obj(ZAKO.zako(400,600,1),1)
         step += 1
     elif step == 2 and int(time) == 10:
         time, step = 0, 0

@@ -6,12 +6,11 @@ from pico2d import *
 class zako:
 
 
-    def __init__(self, x, y, f, image = None):
+    def __init__(self, x, y, f):
         self.x, self.y = x,y
         self.vx, self.vy = 0.0, 0.0
         self.form = f
         self.size = 20
-        self.image = image
         self.dead = False
         self.sponer = None
         self.cnt = 0
@@ -44,7 +43,7 @@ class zako:
 
     def draw(self):
         if self.dead == False:
-            self.image.draw(self.x,self.y,50,50)
+            ENGINE.bimage[1].draw(self.x,self.y,50,50)
 
         if self.sponer != None:
             self.sponer.draw()
@@ -62,7 +61,7 @@ class fairy:
     def __init__(self,x,y,version):
         self.version = version
         self.timer = 0.0
-        self.z = zako(x,y,0, None)
+        self.z = zako(x,y,0)
 
     def update(self):
         #
