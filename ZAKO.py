@@ -61,7 +61,7 @@ class fairy:
     def __init__(self,x,y,version):
         self.version = version
         self.timer = 0.0
-        self.z = zako(x,y,0)
+        self.z = zako(x,y,1)
 
     def update(self):
         #
@@ -90,5 +90,5 @@ class fairy:
 
         self.z.draw()
 
-    def kill():
+    def kill(self):
         self.z.kill()

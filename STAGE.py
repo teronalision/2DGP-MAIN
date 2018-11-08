@@ -55,12 +55,11 @@ def update():
 
     #로직
     if step == 0 and int(time) == 0:
-        ENGINE.add_obj(ZAKO.zako(200,600,1),1)
-        ENGINE.add_obj(ZAKO.zako(300,600,1),1)
+        ENGINE.add_obj(ZAKO.fairy(0,500,1),1)
+
         step += 1
     elif step == 1 and int(time) == 5:
-        ENGINE.add_obj(ZAKO.zako(100,600,1),1)
-        ENGINE.add_obj(ZAKO.zako(400,600,1),1)
+        ENGINE.add_obj(ZAKO.fairy(500, 500, 2), 1)
         step += 1
     elif step == 2 and int(time) == 10:
         time, step = 0, 0
@@ -76,7 +75,7 @@ def update():
 
     #캐릭터 충돌
     for s_list in ENGINE.yield_obj(1):
-        for obj in s_list.sponer.b_list:
+        for obj in s_list.z.sponer.b_list:
 
             if ENGINE.is_crash(hero,obj):
                 if hero.life == 1:
