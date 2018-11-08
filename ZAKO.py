@@ -20,7 +20,7 @@ class zako:
             self.sponer = SPONER.Sponer(self.x,self.y)
             self.vy = -1
 
-    def update(self):
+    def update_zako(self):
 
         #
         if self.sponer != None:
@@ -41,54 +41,39 @@ class zako:
         pass
 
 
-    def draw(self):
-        if self.dead == False:
-            ENGINE.bimage[1].draw(self.x,self.y,50,50)
-
-        if self.sponer != None:
-            self.sponer.draw()
-            pass
-
-
     def kill(self):
         self.dead = True
         self.sponer.dead = True
 
 
 
-class fairy:
+class fairy(zako):
 
     def __init__(self,x,y,version):
+        zako.__init__(self,x,y,1)
         self.version = version
         self.timer = 0.0
-        self.z = zako(x,y,1)
 
     def update(self):
         #
         if(self.version == 1):
             if(self.timer == 0):
-                self.x, self.y = 0, 400
-                self.z.vx = 1
-                self.z.vy = -0.3
+                self.vx = 1
+                self.vy = -0.3
 
 
         elif(self.version == 2):
             if(self.timer == 0):
-                self.x, self.y = 400, 0
-                self.z.vx = -1
-                self.z.vy = -0.3
+                self.vx = -1
+                self.vy = -0.3
 
 
                 
         
-        self.z.update()
+        self.update_zako()
         self.timer += ENGINE.frame_time
 
 
     def draw(self):
-        #
-
-        self.z.draw()
-
-    def kill(self):
-        self.z.kill()
+        if self.dead == False:
+            ENGINE.bimage[1].draw(self.x,self.y,50,50)

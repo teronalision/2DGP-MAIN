@@ -11,15 +11,15 @@ frame_time = 0.0
 run = True
 state_stack = []
 
-himage, bimage, simage = None, None, None
+hero_image, bimage, simage = None, None, None
 background = None
 bgm = None
 font = None
 
 def init():
-    global himage,bimage,simage,background,bgm,font
+    global hero_image,bimage,simage,background,bgm,font
 
-    himage = load_image('Image\C1.png')
+    hero_image = [load_image('Image\C1.png')]
     bimage = [load_image('Image\dumy_b.png'), load_image('Image\dumy_c.png'),
               load_image('Image\etama6.png'), load_image('Image\etama2.png')]
     simage = [load_image('Image\\bg1.png')]
@@ -73,7 +73,7 @@ def Change_state(state):
 
 
 #물체들
-object_list = [[],[]]   #0아군 1적
+object_list = [[],[],[]]   #0아군 1적 2총알
 
 
 def add_obj(obj, i):

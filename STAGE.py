@@ -65,23 +65,19 @@ def update():
         list.update()
 
     #캐릭터 충돌
-    for s_list in ENGINE.yield_obj(1):
-        for obj in s_list.z.sponer.b_list:
+    for obj in ENGINE.object_list[1] + ENGINE.object_list[2]:
+        if ENGINE.is_crash(hero,obj):
+            if hero.life == 1:
+                ENGINE.Change_state(GAME_OVER)
+                return
 
-            if ENGINE.is_crash(hero,obj):
-                if hero.life == 1:
-                    ENGINE.Change_state(GAME_OVER)
-                    return
+            hero.attack = True
+            break
+    
 
-                hero.attack = True
-                for s in ENGINE.object_list[1]:
-                    del(s)
-                #    s.kill()
-                ENGINE.object_list[1].clear()
-                break
 
-    #자코 충돌
-    for e in ENGINE.yield_obj(1):
+    #자코-공격 충돌
+    for e in ENGINE.object_list[1]:
         for h_b in hero.fireList:
             if ENGINE.is_crash(h_b, e) and e.dead == False:
                 e.kill()

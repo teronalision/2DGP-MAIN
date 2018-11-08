@@ -1,10 +1,11 @@
 from pico2d import *
-import SHOT
 import ENGINE
 
 round_per_sec = 1.0 / 1
 frame_per_round = 8
 time = 0
+hero_select = 0
+
 
 L_UP, L_DOWN, R_UP, R_DOWN, F_UP, F_DOWN, B_UP, B_DOWN, SHOT_UP, SHOT_DOWN, DEAD = range(11)
 Key_Table = {(SDL_KEYUP, SDLK_LEFT): L_UP,(SDL_KEYDOWN, SDLK_LEFT): L_DOWN,
@@ -15,6 +16,27 @@ Key_Table = {(SDL_KEYUP, SDLK_LEFT): L_UP,(SDL_KEYDOWN, SDLK_LEFT): L_DOWN,
              (100,100): DEAD}
 
 
+class Shot:
+    
+    def __init__(self,x,y):
+        self.x, self.y = x, y
+        self.v = 0
+        self.size = 10
+
+
+    def update(self):
+        self.y += self.v *ENGINE.frame_time * ENGINE.p_per_meter
+
+
+    def isOut(self):
+        if self.y > 600:
+            return True
+        else:
+            return False
+
+
+    def draw(self):
+        ENGINE.hero_image[hero_select].clip_draw(0,16,64,32,self.x, self.y,20,80)
 
 class Hero:
 
@@ -28,7 +50,6 @@ class Hero:
         self.fireList = []
         self.fire = False
         self.power = 2
-        self.image = load_image('Image\\C1.png')
         self.frame = 0
         self.que = []
         self.state = StopState
@@ -37,7 +58,7 @@ class Hero:
 
     def shoting(self):
         for i in range(self.power):
-            new = SHOT.Shot(self.x -(self.power*10) +(i*20),self.y)
+            new = Shot(self.x -(self.power*10) +(i*20),self.y)
             new.v = 10
             self.fireList.append(new)
 
@@ -143,12 +164,12 @@ class MoveState:
 
     @staticmethod
     def draw(hero):
-        if hero.vx >0:
-            hero.image.clip_draw(32*int(hero.frame),48*0,32,48,hero.x,hero.y)
+        if hero.vx == 0:
+            ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48*1,32,48,hero.x,hero.y)
         elif hero.vx <0:
-            hero.image.clip_draw(32*int(hero.frame),48*1,32,48,hero.x,hero.y)
+            ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48*2,32,48,hero.x,hero.y)
         else:
-            hero.image.clip_draw(32*int(hero.frame),48*2,32,48,hero.x,hero.y)
+            ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48*3,32,48,hero.x,hero.y)
 
 
 class StopState:
@@ -205,7 +226,7 @@ class StopState:
 
     @staticmethod
     def draw(hero):
-        hero.image.clip_draw(32*int(hero.frame),0+48*2,32,48,hero.x,hero.y)
+        ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48,32,48,hero.x,hero.y)
 
 
 class DeadState:
@@ -256,7 +277,7 @@ class DeadState:
 
     @staticmethod
     def draw(hero):
-        hero.image.clip_draw(32*int(hero.frame),0+48*2,32,48,hero.x,hero.y)
+        ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48,32,48,hero.x,hero.y)
         #임시
         ENGINE.font.draw(10, 15,'리스폰', (0,0,0))
 

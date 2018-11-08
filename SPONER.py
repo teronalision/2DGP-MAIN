@@ -8,7 +8,6 @@ class Sponer:
         self.m = m
         self.time = 0.0
         self.dead = False
-        self.b_list = []
 
     def update(self):
         #생성
@@ -18,30 +17,14 @@ class Sponer:
                 for i in range(0,360,30):
                     b = BULLET.bullet(self.x,self.y,10)
                     b.order(0.5,i+self.time)
-                    self.b_list.append(b)
+                    ENGINE.object_list[2].append(b)
                     self.time = 0
-            
-        #소멸
-        for b in self.b_list:
-            if b.x <0 or b.x >500 or b.y <0 or b.y >600:
-                self.b_list.remove(b)
-                del(b)
-
-        #탄이동
-        for b in self.b_list:
-            b.update()
+      
 
         self.time+= ENGINE.frame_time
 
 
-    def draw(self):
-        for b in self.b_list:
-            b.draw()
-
 
     def kill(self):
-        for b in self.b_list:
-            #b.kill()
-            pass
-        self.b_list.clear()
+        pass
         
