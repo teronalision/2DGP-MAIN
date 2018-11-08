@@ -19,13 +19,14 @@ font = None
 def init():
     global himage,bimage,simage,background,bgm,font
 
-    himage = load_image('C1.png')
-    bimage = [load_image('dumy_b.png'), load_image('dumy_c.png'), load_image('etama6.png'), load_image('etama2.png')]
-    simage = [load_image('bg1.png')]
-    background = [load_image('sky0.png'),load_image('sky1.jpg'),load_image('sky2.jpg')]
+    himage = load_image('Image\C1.png')
+    bimage = [load_image('Image\dumy_b.png'), load_image('Image\dumy_c.png'),
+              load_image('Image\etama6.png'), load_image('Image\etama2.png')]
+    simage = [load_image('Image\\bg1.png')]
+    background = [load_image('Image\sky0.png'),load_image('Image\sky1.jpg'),load_image('Image\sky2.jpg')]
 
     bgm
-    font = load_font('Maplestory Bold.TTF')
+    font = load_font('Image\Maplestory Bold.TTF')
 
 
 

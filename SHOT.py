@@ -8,7 +8,7 @@ class Shot:
         self.x, self.y = x, y
         self.v = 0
         self.size = 10
-        Shot.image = load_image('dumy_b.png')
+        Shot.image = load_image('Image\dumy_b.png')
 
 
     def update(self):

@@ -7,31 +7,22 @@ import GAME_OVER
 
 hero = None
 #sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
-bimage = None
-simage = None
 time = 0.0
 step = 0
 
 def start():
-    global image, bimage, simage,hero
+    global hero
 
     hero = HERO.Hero()
     hero.x,hero.y = 250, 100
-    hero.image = load_image('C1.png')
-    bimage = [load_image('dumy_b.png'), load_image('dumy_c.png')]
-    simage = [load_image('bg1.png')]
-
-    #ENGINE.add_obj(SPONER.Sponer(200,500),1)
-   
+    
     
 
 def end():
-    global image, bimage, simage,hero
+    global hero
 
     ENGINE.del_obj()
     del(hero)
-    del(bimage)
-    del(simage)
     time = 0.0
     step = 0
     pass
@@ -116,11 +107,11 @@ def draw():
 
 
     #UI
-    simage[0].draw(400,300)
+    ENGINE.simage[0].draw(400,300)
     ENGINE.font.draw(510, 550,'Point', (0,0,0))
 
     for i in range(hero.life -1):
-        bimage[0].draw(600 +50*i,500)
+        ENGINE.bimage[0].draw(600 +50*i,500)
     ENGINE.font.draw(510, 500,'Life', (0,0,0))
 
     ENGINE.font.draw(510, 450,'boom', (0,0,0))

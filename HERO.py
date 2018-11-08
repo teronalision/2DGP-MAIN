@@ -28,7 +28,7 @@ class Hero:
         self.fireList = []
         self.fire = False
         self.power = 2
-        self.image = None
+        self.image = load_image('Image\\C1.png')
         self.frame = 0
         self.que = []
         self.state = StopState

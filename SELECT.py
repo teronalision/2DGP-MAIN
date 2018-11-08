@@ -4,11 +4,9 @@ import STAGE
 import TITLE
 
 select = 0
-image = None
 
 def start():
-    global image
-    image = load_image('dumy_b.png')
+    pass
 
 
 def end():
@@ -39,7 +37,7 @@ def update():
 def draw():
     clear_canvas()
 
-    image.draw(150 +250*select, 200)
+    ENGINE.bimage[1].draw(150 +250*select, 200)
 
     ENGINE.font.draw(150, 250,'1번', (0,0,0))
     ENGINE.font.draw(400, 250,'2번', (0,0,0))
