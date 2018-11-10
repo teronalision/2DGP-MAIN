@@ -1,7 +1,6 @@
 from pico2d import *
 import ENGINE
 import HERO
-import SPONER
 import ZAKO
 import GAME_OVER
 
