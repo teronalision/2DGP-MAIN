@@ -19,10 +19,8 @@ class Zako:
         self.cnt = 0
         if f == 0:
             self.sponer = SPONER.Sponer(self.x,self.y,0)
-            self.size = 15
         elif f == 1:
             self.sponer = SPONER.Sponer(self.x,self.y,1)
-            self.vy = -1
 
     def update_zako(self):
 
@@ -88,6 +86,42 @@ class fairy(Zako):
     def draw(self):
         if self.dead == False:
             ENGINE.bimage[1].draw(self.x,self.y,50,50)
+        
+        if(ENGINE.rect_mode):
+            draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
+
+
+    def kill(self):
+        ENGINE.add_obj(ITEM.PowerUp(self.x, self.y),3)
+
+        self.kill_zako()
+
+
+class rune(Zako):
+
+    def __init__(self,x,y,version):
+        Zako.__init__(self,x,y,1)
+        self.version = version
+        self.vy = -0.3
+        self.size = 30
+        self.hp = 50
+        self.timer = 0.0
+
+    def update(self):
+        #
+        if(self.version == 1):
+            pass
+        
+        if(self.y < 400):
+            self.vy = 0
+        
+        self.update_zako()
+        self.timer += ENGINE.frame_time
+
+
+    def draw(self):
+        if self.dead == False:
+            ENGINE.bimage[3].clip_draw(0,16,64,64,self.x,self.y,self.size*2,self.size*2)
         
         if(ENGINE.rect_mode):
             draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)

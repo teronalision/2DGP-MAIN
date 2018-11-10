@@ -23,7 +23,7 @@ class Shot:
         self.v = 0.1 * ENGINE.p_per_meter
         self.size = 10
         self.type = ENGINE.RECT
-        self.r = 3.14/2#더미값
+        self.r = 0
 
 
     def update(self):
@@ -51,7 +51,7 @@ class Hero:
         self.size = 5
         self.speed = 1.5 * ENGINE.p_per_meter
         self.life = 4
-        self.attack = False
+        self.attacked = False
         self.fireList = []
         self.fire = False
         self.power = 1
@@ -150,7 +150,7 @@ class MoveState:
     @staticmethod
     def update(hero):
 
-        if hero.attack:
+        if hero.attacked:
             hero.life -= 1
             hero.add_que(DEAD)
             pass
@@ -217,7 +217,7 @@ class StopState:
     @staticmethod
     def update(hero):
 
-        if hero.attack:
+        if hero.attacked:
             hero.life -= 1
             hero.add_que(DEAD)
             pass
@@ -260,6 +260,7 @@ class DeadState:
 
         if event == DEAD:
             hero.x, hero.y = 250, 0 -32
+            hero.power = max(1, hero.power - 5)
 
         hero.fire = False
         hero.fireList.clear()
@@ -277,7 +278,7 @@ class DeadState:
 
         hero.y += 0.2*hero.speed*ENGINE.frame_time
         if hero.y > 100:
-            hero.attack = False
+            hero.attacked = False
             hero.add_que(DEAD)
 
 

@@ -8,6 +8,7 @@ class Item:
 
     def __init__(self,x,y):
         self.x, self.y = x, y
+        self.type = ENGINE.SQUARE
         self.size = 10
         self.v = 1.0
         self.image = 0
@@ -20,6 +21,8 @@ class Item:
         self.v = max(self.v-(1*ENGINE.frame_time) , -1)
         pass
 
+    def kill(self):
+        pass
 
     def draw(self):
         if(ENGINE.rect_mode):
