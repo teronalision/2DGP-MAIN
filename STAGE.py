@@ -2,6 +2,7 @@ from pico2d import *
 import ENGINE
 import HERO
 import ZAKO
+import ITEM
 import GAME_OVER
 
 hero = None
@@ -53,6 +54,7 @@ def update():
         step += 1
     elif step == 2 and int(time) == 10:
         time, step = 0, 0
+        ENGINE.add_obj(ITEM.Item(300,300),3)
 
 
 
@@ -60,8 +62,8 @@ def update():
     hero.update()
 
     #내부 업데이트
-    for list in ENGINE.all_obj():
-        list.update()
+    for obj in ENGINE.all_obj():
+        obj.update()
 
     #캐릭터 충돌
     for obj in ENGINE.object_list[1] + ENGINE.object_list[2]:
@@ -84,6 +86,7 @@ def update():
     #시체 청소
     for obj in ENGINE.object_list[1]:
         if obj.dead:
+            ENGINE.add_obj(ITEM.Item(obj.x,obj.y),3)
             ENGINE.object_list[1].remove(obj)
     for obj in ENGINE.object_list[2]:
         if obj.dead:
@@ -100,7 +103,7 @@ def draw():
 
     #캐릭터
     hero.draw()
-    #총알
+    #모든 객체
     for a in ENGINE.all_obj():
         a.draw()
 

@@ -79,7 +79,7 @@ def Change_state(state):
 
 
 #물체들
-object_list = [[],[],[]]   #0아군 1적 2총알
+object_list = [[],[],[],[]]   #0아군 1적 2총알 3아이템
 
 
 def add_obj(obj, i):
