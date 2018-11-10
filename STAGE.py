@@ -86,11 +86,9 @@ def update():
     for obj in ENGINE.object_list[1]:
         if obj.dead:
             ENGINE.object_list[1].remove(obj)
-            del(obj)
     for obj in ENGINE.object_list[2]:
         if obj.dead:
             ENGINE.object_list[2].remove(obj)
-            del(obj)
 
 
     time += ENGINE.frame_time

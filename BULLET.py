@@ -26,7 +26,7 @@ class bullet:
 
         self.d +=1
 
-        if(self.x < 0 or self.x > 500 or self.y <0 or self.y >500):
+        if(self.x < 0 or self.x > 500 or self.y <0 or self.y >600):
             self.dead = True
 
 
