@@ -20,7 +20,7 @@ class Shot:
     
     def __init__(self,x,y):
         self.x, self.y = x, y
-        self.v = 0
+        self.v = 0.01 * ENGINE.p_per_meter
         self.size = 10
 
 
@@ -36,7 +36,8 @@ class Shot:
 
 
     def draw(self):
-        ENGINE.hero_image[hero_select].clip_draw(0,16,64,32,self.x, self.y,20,80)
+        draw_rectangle(self.x-10,self.y-40,self.x+10,self.y+40)
+        ENGINE.hero_image[hero_select].clip_composite_draw(0,16,64,16,3.14/2,'',self.x, self.y,80,20)
 
 class Hero:
 
@@ -59,7 +60,6 @@ class Hero:
     def shoting(self):
         for i in range(self.power):
             new = Shot(self.x -(self.power*10) +(i*20),self.y)
-            new.v = 10
             self.fireList.append(new)
 
 
