@@ -22,6 +22,8 @@ class Shot:
         self.x, self.y = x, y
         self.v = 0.1 * ENGINE.p_per_meter
         self.size = 10
+        self.type = ENGINE.RECT
+        self.r = 3.14/2#더미값
 
 
     def update(self):
