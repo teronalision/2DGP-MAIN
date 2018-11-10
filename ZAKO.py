@@ -1,5 +1,6 @@
 import ENGINE
 import SPONER
+import ITEM
 from pico2d import *
 
 
@@ -41,16 +42,17 @@ class Zako:
         pass
 
 
-    def kill(self):
+    def kill_zako(self):
         self.dead = True
-        self.sponer.dead = True
+        if(self.sponer != None):
+            self.sponer.dead = True
 
 
 
 class fairy(Zako):
 
     def __init__(self,x,y,version):
-        Zako.__init__(self,x,y,1)
+        Zako.__init__(self,x,y,0)
         self.version = version
         self.timer = 0.0
 
@@ -80,3 +82,9 @@ class fairy(Zako):
         
         if(ENGINE.rect_mode):
             draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
+
+
+    def kill(self):
+        ENGINE.add_obj(ITEM.Item(self.x, self.y),3)
+
+        self.kill_zako()

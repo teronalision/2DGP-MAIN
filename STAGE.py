@@ -54,7 +54,6 @@ def update():
         step += 1
     elif step == 2 and int(time) == 10:
         time, step = 0, 0
-        ENGINE.add_obj(ITEM.Item(300,300),3)
 
 
 
@@ -74,6 +73,9 @@ def update():
 
             hero.attack = True
             break
+    for item in ENGINE.object_list[3]:
+        if ENGINE.is_crash(hero,item):
+            item.effect(hero)
 
 
     #자코-공격 충돌
@@ -86,7 +88,6 @@ def update():
     #시체 청소
     for obj in ENGINE.object_list[1]:
         if obj.dead:
-            ENGINE.add_obj(ITEM.Item(obj.x,obj.y),3)
             ENGINE.object_list[1].remove(obj)
     for obj in ENGINE.object_list[2]:
         if obj.dead:
