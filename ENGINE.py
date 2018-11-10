@@ -96,10 +96,6 @@ def del_obj():
     for i in range(len(object_list)):
         object_list[i].clear()
             
-            
-            
-
-
 def yield_obj(i):
     for o in object_list[i]:
         yield o
@@ -108,6 +104,11 @@ def all_obj():
     for i in range(len(object_list)):
         for o in object_list[i]:
             yield o
+
+
+
+#충돌박스
+CIRCLE, SQUARE, RECT = range(0,3)
 
 
 def is_crash(A, B):

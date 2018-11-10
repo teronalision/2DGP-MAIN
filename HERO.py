@@ -45,6 +45,7 @@ class Hero:
     def __init__(self,x,y):  
         self.x, self.y = x, y
         self.vx, self.vy = 0, 0 
+        self.type = ENGINE.CIRCLE
         self.size = 5
         self.speed = 1.5 * ENGINE.p_per_meter
         self.life = 4
@@ -90,7 +91,7 @@ class Hero:
 
         if self.fire and self.time <= 0:
            self.shoting()
-           self.time = 0.3
+           self.time = 0.1
         elif self.time >0:
             self.time -= ENGINE.frame_time
 

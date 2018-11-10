@@ -11,8 +11,9 @@ class Zako:
         self.x, self.y = x,y
         self.vx, self.vy = 0.0, 0.0
         self.hp = 1
-        self.form = f
+        self.type = ENGINE.CIRCLE
         self.size = 20
+        self.form = f
         self.dead = False
         self.sponer = None
         self.cnt = 0

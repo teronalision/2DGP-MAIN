@@ -17,7 +17,7 @@ class Sponer:
             if self.m == 0 and self.time >1:
                 x, y = ENGINE.object_list[0][0].x-self.x, ENGINE.object_list[0][0].y-self.y
 
-                b = BULLET.Bullet(self.x, self.y,10)
+                b = BULLET.Bullet(self.x, self.y,ENGINE.RECT)
                 b.order(1, math.degrees(math.atan2(x,y)))     
                 ENGINE.add_obj(b,2)
                 self.time = 0
@@ -25,7 +25,7 @@ class Sponer:
 
             elif self.m == 1 and self.time > 1:#12개 원형
                 for i in range(0,360,30):
-                    b = BULLET.Bullet(self.x,self.y,10)
+                    b = BULLET.Bullet(self.x,self.y,ENGINE.CIRCLE)
                     b.order(0.5,i+self.time)
                     ENGINE.add_obj(b,2)
                     self.time = 0

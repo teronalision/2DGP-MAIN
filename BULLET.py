@@ -7,13 +7,18 @@ import ENGINE
 class Bullet:
 
     
-    def __init__(self,x,y,size):
+    def __init__(self,x,y,type):
         self.x, self.y = x, y
         self.v, self.r = 0, 0
-        self.size = size
-        self.image = 2
+        self.type = type
+        #self.image = 2
         self.d = 0
         self.dead = False
+        if(type == ENGINE.RECT):
+            self.size = 20
+        elif(type == ENGINE.CIRCLE):
+            self.size = 10
+
 
     def order(self,v,r):
         self.v += v
@@ -24,7 +29,8 @@ class Bullet:
         self.x += self.v *sin(radians(self.r)) *ENGINE.frame_time *ENGINE.p_per_meter
         self.y += self.v *cos(radians(self.r)) *ENGINE.frame_time *ENGINE.p_per_meter
 
-        self.d +=1
+        if(type == ENGINE.CIRCLE):
+            self.d +=1
 
         if(self.x < 0 or self.x > 500 or self.y <0 or self.y >600):
             self.dead = True
@@ -33,4 +39,8 @@ class Bullet:
     def draw(self):
         if(ENGINE.rect_mode):
             draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
-        ENGINE.bimage[self.image].clip_composite_draw(32,256-32,32,32,radians(self.d),'',self.x,self.y,self.size*2,self.size*2)
+        
+        if(self.type == ENGINE.RECT):
+            ENGINE.bimage[2].clip_composite_draw(32,32,32,32,radians(-self.r),'',self.x,self.y,self.size*2,self.size*2)
+        if(self.type == ENGINE.CIRCLE):
+            ENGINE.bimage[2].clip_composite_draw(32,256-32,32,32,radians(self.d),'',self.x,self.y,self.size*2,self.size*2)
