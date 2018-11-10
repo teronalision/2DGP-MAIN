@@ -10,6 +10,7 @@ class Zako:
     def __init__(self, x, y, f):
         self.x, self.y = x,y
         self.vx, self.vy = 0.0, 0.0
+        self.hp = 1
         self.form = f
         self.size = 20
         self.dead = False
@@ -41,6 +42,11 @@ class Zako:
             self.y += self.vy*ENGINE.p_per_meter*ENGINE.frame_time
         pass
 
+    def attacked(self, damage):
+        self.hp -= damage
+        if(self.hp <=0):
+            self.dead = True
+
 
     def kill_zako(self):
         self.dead = True
@@ -54,6 +60,7 @@ class fairy(Zako):
     def __init__(self,x,y,version):
         Zako.__init__(self,x,y,0)
         self.version = version
+        self.hp = 5
         self.timer = 0.0
 
     def update(self):

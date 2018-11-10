@@ -82,7 +82,8 @@ def update():
     for e in ENGINE.object_list[1]:
         for h_b in hero.fireList:
             if ENGINE.is_crash(h_b, e) and e.dead == False:
-                e.kill()
+                e.attacked(hero.power)
+                h_b.x = -100
                 break
     
     #시체 청소
