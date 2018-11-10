@@ -11,6 +11,7 @@ class Item:
         self.size = 10
         self.v = 1.0
         self.image = 0
+        self.dead = False
 
 
     def update(self):
@@ -29,11 +30,12 @@ class Item:
 
 
 class PowerUp(Item):
+
     def __init__(self, x, y):
-        Item(x, y)
+        Item.__init__(self,x, y)
         self.image = 2
 
 
     def effect(self, hero):
-        hero.power += 1
-        min(hero.power, 5)
+        hero.power = min(hero.power+1, 10)
+        self.dead = True

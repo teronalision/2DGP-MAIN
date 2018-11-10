@@ -86,12 +86,10 @@ def update():
                 break
     
     #시체 청소
-    for obj in ENGINE.object_list[1]:
-        if obj.dead:
-            ENGINE.object_list[1].remove(obj)
-    for obj in ENGINE.object_list[2]:
-        if obj.dead:
-            ENGINE.object_list[2].remove(obj)
+    for i in range(1,4):
+        for obj in ENGINE.object_list[i]:
+            if obj.dead:
+                ENGINE.object_list[i].remove(obj)
 
 
     time += ENGINE.frame_time

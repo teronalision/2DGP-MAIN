@@ -60,7 +60,7 @@ class Hero:
 
     def shoting(self):
         for i in range(self.power):
-            new = Shot(self.x -(self.power*10) +(i*20),self.y)
+            new = Shot(self.x -((self.power-1)*10) +(i*20),self.y)
             self.fireList.append(new)
 
 
@@ -68,7 +68,7 @@ class Hero:
         self.state.draw(self)
         if(ENGINE.rect_mode):
             draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
-        #ENGINE.bimage[3].clip_composite_draw(0,64+16,64,64,time*3.14/16,'',self.x,self.y,64,64)
+        ENGINE.bimage[3].clip_composite_draw(0,64+16,64,64,time*3.14/16,'',self.x,self.y,64,64)
         for s in self.fireList:
             s.draw()
         

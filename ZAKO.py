@@ -85,6 +85,6 @@ class fairy(Zako):
 
 
     def kill(self):
-        ENGINE.add_obj(ITEM.Item(self.x, self.y),3)
+        ENGINE.add_obj(ITEM.PowerUp(self.x, self.y),3)
 
         self.kill_zako()
