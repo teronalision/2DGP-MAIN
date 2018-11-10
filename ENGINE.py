@@ -11,10 +11,15 @@ frame_time = 0.0
 run = True
 state_stack = []
 
+#디버그 모드
+rect_mode = True
+
+#이미지
 hero_image, bimage, simage = None, None, None
 background = None
 bgm = None
 font = None
+
 
 def init():
     global hero_image,bimage,simage,background,bgm,font

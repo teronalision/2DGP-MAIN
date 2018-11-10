@@ -77,3 +77,6 @@ class fairy(zako):
     def draw(self):
         if self.dead == False:
             ENGINE.bimage[1].draw(self.x,self.y,50,50)
+        
+        if(ENGINE.rect_mode):
+            draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)

@@ -20,7 +20,7 @@ class Shot:
     
     def __init__(self,x,y):
         self.x, self.y = x, y
-        self.v = 0.01 * ENGINE.p_per_meter
+        self.v = 0.1 * ENGINE.p_per_meter
         self.size = 10
 
 
@@ -36,7 +36,8 @@ class Shot:
 
 
     def draw(self):
-        draw_rectangle(self.x-10,self.y-40,self.x+10,self.y+40)
+        if(ENGINE.rect_mode):
+            draw_rectangle(self.x-10,self.y-40,self.x+10,self.y+40)
         ENGINE.hero_image[hero_select].clip_composite_draw(0,16,64,16,3.14/2,'',self.x, self.y,80,20)
 
 class Hero:
@@ -50,7 +51,7 @@ class Hero:
         self.attack = False
         self.fireList = []
         self.fire = False
-        self.power = 2
+        self.power = 1
         self.frame = 0
         self.que = []
         self.state = StopState
@@ -65,7 +66,9 @@ class Hero:
 
     def draw(self):
         self.state.draw(self)
-        ENGINE.bimage[3].clip_composite_draw(0,64+16,64,64,time*3.14/16,'',self.x,self.y,64,64)
+        if(ENGINE.rect_mode):
+            draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
+        #ENGINE.bimage[3].clip_composite_draw(0,64+16,64,64,time*3.14/16,'',self.x,self.y,64,64)
         for s in self.fireList:
             s.draw()
         

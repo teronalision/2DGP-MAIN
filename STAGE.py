@@ -73,7 +73,6 @@ def update():
 
             hero.attack = True
             break
-    
 
 
     #자코-공격 충돌
@@ -81,10 +80,17 @@ def update():
         for h_b in hero.fireList:
             if ENGINE.is_crash(h_b, e) and e.dead == False:
                 e.kill()
-                #총알 펑
-                hero.fireList.remove(h_b)
                 break
     
+    #시체 청소
+    for obj in ENGINE.object_list[1]:
+        if obj.dead:
+            ENGINE.object_list[1].remove(obj)
+            del(obj)
+    for obj in ENGINE.object_list[2]:
+        if obj.dead:
+            ENGINE.object_list[2].remove(obj)
+            del(obj)
 
 
     time += ENGINE.frame_time

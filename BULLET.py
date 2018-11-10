@@ -13,7 +13,7 @@ class bullet:
         self.size = size
         self.image = 2
         self.d = 0
-        self.die = False
+        self.dead = False
 
     def order(self,v,r):
         self.v += v
@@ -27,8 +27,10 @@ class bullet:
         self.d +=1
 
         if(self.x < 0 or self.x > 500 or self.y <0 or self.y >500):
-            self.die = True
+            self.dead = True
 
 
     def draw(self):
+        if(ENGINE.rect_mode):
+            draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
         ENGINE.bimage[self.image].clip_composite_draw(32,256-32,32,32,radians(self.d),'',self.x,self.y,self.size*2,self.size*2)
