@@ -4,7 +4,7 @@ import ENGINE
 
 
 
-class bullet:
+class Bullet:
 
     
     def __init__(self,x,y,size):

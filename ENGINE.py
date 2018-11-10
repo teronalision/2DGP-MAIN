@@ -13,6 +13,7 @@ state_stack = []
 
 #디버그 모드
 rect_mode = True
+undead = False
 
 #이미지
 hero_image, bimage, simage = None, None, None
@@ -105,7 +106,10 @@ def all_obj():
 
 
 def is_crash(A, B):
-     if (A.x - B.x)**2 + (A.y - B.y)**2 < (B.size +A.size)**2:
-         return True
-     else:
-         return False
+    if(A.size == 0 or B.size == 0):
+        return False
+
+    if (A.x - B.x)**2 + (A.y - B.y)**2 < (B.size +A.size)**2:
+        return True
+    else:
+        return False

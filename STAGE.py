@@ -66,7 +66,7 @@ def update():
 
     #캐릭터 충돌
     for obj in ENGINE.object_list[1] + ENGINE.object_list[2]:
-        if ENGINE.is_crash(hero,obj):
+        if ENGINE.is_crash(hero,obj) and ENGINE.undead == False:
             if hero.life == 1:
                 ENGINE.Change_state(GAME_OVER)
                 return

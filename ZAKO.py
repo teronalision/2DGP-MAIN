@@ -3,7 +3,7 @@ import SPONER
 from pico2d import *
 
 
-class zako:
+class Zako:
 
 
     def __init__(self, x, y, f):
@@ -47,10 +47,10 @@ class zako:
 
 
 
-class fairy(zako):
+class fairy(Zako):
 
     def __init__(self,x,y,version):
-        zako.__init__(self,x,y,1)
+        Zako.__init__(self,x,y,1)
         self.version = version
         self.timer = 0.0
 

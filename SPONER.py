@@ -15,7 +15,7 @@ class Sponer:
 
             if self.m == 0 and self.time > 1:
                 for i in range(0,360,30):
-                    b = BULLET.bullet(self.x,self.y,10)
+                    b = BULLET.Bullet(self.x,self.y,10)
                     b.order(0.5,i+self.time)
                     ENGINE.object_list[2].append(b)
                     self.time = 0
