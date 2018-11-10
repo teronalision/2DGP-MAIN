@@ -66,6 +66,11 @@ def Push_state(state):
     state.start()
     state_stack.append(state)
 
+def Pop_state():
+    global state_stack
+
+    state.end()
+    state_stack.remove(-1)
 
 def Change_state(state):
     global state_stack

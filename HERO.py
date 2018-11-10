@@ -42,8 +42,8 @@ class Shot:
 
 class Hero:
 
-    def __init__(self):  
-        self.x, self.y = 0, 0
+    def __init__(self,x,y):  
+        self.x, self.y = x, y
         self.vx, self.vy = 0, 0 
         self.size = 5
         self.speed = 1.5 * ENGINE.p_per_meter

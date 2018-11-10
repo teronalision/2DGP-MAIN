@@ -17,9 +17,10 @@ class Zako:
         self.sponer = None
         self.cnt = 0
         if f == 0:
+            self.sponer = SPONER.Sponer(self.x,self.y,0)
             self.size = 15
         elif f == 1:
-            self.sponer = SPONER.Sponer(self.x,self.y)
+            self.sponer = SPONER.Sponer(self.x,self.y,1)
             self.vy = -1
 
     def update_zako(self):

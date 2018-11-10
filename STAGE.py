@@ -6,16 +6,14 @@ import ITEM
 import GAME_OVER
 
 hero = None
-#sp = [SPONER.Sponer(100,500),SPONER.Sponer(200,500),SPONER.Sponer(400,500),SPONER.Sponer(300,500)]
 time = 0.0
 step = 0
 
 def start():
     global hero
 
-    hero = HERO.Hero()
-    hero.x,hero.y = 250, 100
-    
+    ENGINE.add_obj(HERO.Hero(250, 100),0)
+    hero = ENGINE.object_list[0][0]
     
 
 def end():
