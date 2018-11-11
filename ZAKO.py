@@ -3,13 +3,28 @@ import SPONER
 import ITEM
 from pico2d import *
 
+frame_per_round = 5
+
+U, D, L, R, LU, LD, RU, RD ,PATROL = range(9)
+Moving_dic = {U:(0,1), D:(0,-1), L:(-1,0), R:(1,0), LU:(-1,1), LD:(-1,-1), RU:(1,1), RD:(1,-1) ,PATROL:(1,0)}
+
+def set_moving(order, obj):
+    if(order == PATROL):
+        if(obj.x>450 or obj.vx==0):
+            obj.vx = -1
+        elif(obj.x<50):
+            obj.vx = 1
+
+    elif(order != None):
+        obj.vx, obj.vy = Moving_dic[order]
+
 
 class Zako:
 
 
     def __init__(self, x, y):
         self.x, self.y = x,y
-        self.vx, self.vy = 1, 0
+        self.vx, self.vy = 0, 0
         self.hp = 0
         self.type = ENGINE.CIRCLE
         self.size = 20
@@ -17,7 +32,9 @@ class Zako:
         self.drap = None
         self.dead = False
         self.sponer = None
-        self.cnt = 0
+
+        self.frame = 0
+        self.time = 0.0
 
     def update(self):
 
@@ -27,15 +44,23 @@ class Zako:
                 self.sponer.y = self.y
                 self.sponer.update()
 
+        set_moving(self.moving,self)
+
         
         self.x += self.vx*ENGINE.p_per_meter*ENGINE.frame_time
         self.y += self.vy*ENGINE.p_per_meter*ENGINE.frame_time
+
+        self.frame = (self.frame +frame_per_round*ENGINE.frame_time)%5
+        self.time +=ENGINE.frame_time
         pass
 
 
     def draw(self):
         if self.dead == False:
-            ENGINE.mimage[0].clip_draw(0,60,50,50,self.x,self.y,self.size*2,self.size*2)
+            d = ''
+            if(self.vx >0):
+                d+='h'
+            ENGINE.mimage[0].clip_composite_draw(int(self.frame)*50,60,50,50,0,d,self.x,self.y,self.size*2,self.size*2)
         
         if(ENGINE.rect_mode):
             draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
@@ -68,11 +93,11 @@ class Monster_sponer:
     def __init__(self):
         pass
 
-    def add_monster(self, name, x ,y):
+    def add_monster(self, name, x ,y, order):
         m = Zako(x,y)
         m.hp, m.size, sp, m.drap = Monster_dic[name]
-        m.sponer = SPONER.Sponer(x,y,sp)
-
+        #m.sponer = SPONER.Sponer(x,y,sp)
+        m.moving = order
 
         ENGINE.add_obj(m,1)
         pass

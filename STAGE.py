@@ -45,11 +45,11 @@ def update():
 
     #로직
     if step == 0 and int(time) == 0:
-        sponer.add_monster(ZAKO.FAIRY,0,500)
+        sponer.add_monster(ZAKO.FAIRY,0,500,ZAKO.R)
 
         step += 1
     elif step == 1 and int(time) == 5:
-        sponer.add_monster(ZAKO.RUNE,250,250)
+        sponer.add_monster(ZAKO.RUNE,250,500,ZAKO.PATROL)
         step += 1
     elif step == 2 and int(time) == 10:
         time, step = 0, 0
