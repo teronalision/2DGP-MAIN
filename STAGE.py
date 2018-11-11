@@ -6,6 +6,7 @@ import ITEM
 import GAME_OVER
 
 hero = None
+sponer = ZAKO.Monster_sponer()
 time = 0.0
 step = 0
 
@@ -44,12 +45,12 @@ def update():
 
     #로직
     if step == 0 and int(time) == 0:
-        ENGINE.add_obj(ZAKO.fairy(0,500,1),1)
+        sponer.add_monster(ZAKO.FAIRY,0,500)
 
         step += 1
     elif step == 1 and int(time) == 5:
-        ENGINE.add_obj(ZAKO.fairy(500, 500, 2), 1)
-        ENGINE.add_obj(ZAKO.j_wraith(250,500,0), 1)
+        #ENGINE.add_obj(ZAKO.fairy(500, 500, 2), 1)
+        #ENGINE.add_obj(ZAKO.j_wraith(250,500,0), 1)
         step += 1
     elif step == 2 and int(time) == 10:
         time, step = 0, 0

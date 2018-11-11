@@ -12,9 +12,9 @@ class Sponer:
 
     def update(self):
         #생성
-        if self.dead == False:#저격탄
+        if self.dead == False:
 
-            if self.m == 0 and self.time >1:
+            if self.m == 0 and self.time >1:#저격탄
                 x, y = ENGINE.object_list[0][0].x-self.x, ENGINE.object_list[0][0].y-self.y
 
                 b = BULLET.Bullet(self.x, self.y,ENGINE.RECT)
