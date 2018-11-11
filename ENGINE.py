@@ -16,19 +16,20 @@ rect_mode = True
 undead = False
 
 #이미지
-hero_image, bimage, simage = None, None, None
+hero_image, bimage, simage, mimage = None, None, None, None
 background = None
 bgm = None
 font = None
 
 
 def init():
-    global hero_image,bimage,simage,background,bgm,font
+    global hero_image,bimage,simage,mimage,background,bgm,font
 
     hero_image = [load_image('Image\C1.png')]
     bimage = [load_image('Image\dumy_b.png'), load_image('Image\dumy_c.png'),
               load_image('Image\etama6.png'), load_image('Image\etama2.png')]
     simage = [load_image('Image\\bg1.png')]
+    mimage = [load_image('Image\\jr_wraith.png')]
     background = [load_image('Image\sky0.png'),load_image('Image\sky1.jpg'),load_image('Image\sky2.jpg')]
 
     bgm

@@ -41,8 +41,12 @@ class Bullet:
 
     def draw(self):
         if(ENGINE.rect_mode):
-            draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
-        
+            #if(self.type == ENGINE.CIRCLE or self.type == ENGINE.SQUARE):
+                draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
+            #elif(self.type == ENGINE.RECT):
+            #    dx, dy = self.size*(math.sin(self.r))/2, self.size*(math.cos(self.r))
+            #    draw_rectangle(self.x -dx,self.y), (self.x +dx,self.y), (self.x,self.y -dy), (self.x,self.y +dy)
+
         if(self.type == ENGINE.RECT):
             ENGINE.bimage[2].clip_composite_draw(32,32*3,32,32,-self.r,'',self.x,self.y,self.size*2,self.size*2)
         if(self.type == ENGINE.CIRCLE):

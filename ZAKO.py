@@ -131,3 +131,32 @@ class rune(Zako):
         ENGINE.add_obj(ITEM.PowerUp(self.x, self.y),3)
 
         self.kill_zako()
+
+
+class j_wraith(Zako):
+
+    def __init__(self,x,y,ver):
+        Zako.__init__(self,x,y,-1)
+        self.version = ver
+        self.size = 20
+        self.hp = 2
+
+
+
+    def update(self):
+
+
+        self.update_zako()
+
+
+    def draw(self):
+        if self.dead == False:
+            ENGINE.mimage[0].clip_draw(0,60,50,50,self.x,self.y,self.size*2,self.size*2)
+        
+        if(ENGINE.rect_mode):
+            draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
+
+
+    def kill(self):
+        
+        self.kill_zako()

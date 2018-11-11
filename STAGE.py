@@ -49,7 +49,7 @@ def update():
         step += 1
     elif step == 1 and int(time) == 5:
         ENGINE.add_obj(ZAKO.fairy(500, 500, 2), 1)
-        ENGINE.add_obj(ZAKO.rune(250,500,0), 1)
+        ENGINE.add_obj(ZAKO.j_wraith(250,500,0), 1)
         step += 1
     elif step == 2 and int(time) == 10:
         time, step = 0, 0
@@ -65,9 +65,11 @@ def update():
 
     #캐릭터 충돌
     for obj in ENGINE.object_list[1] + ENGINE.object_list[2]:
-        if ENGINE.is_crash(hero,obj) and ENGINE.undead == False:
+        if ENGINE.is_crash(hero,obj) and hero.attacked == False and ENGINE.undead == False:
             hero.attacked = True
             obj.kill()
+
+            ENGINE.add_obj(ITEM.PowerUp(hero.x,hero.y),3)
 
             if hero.life == 1:
                 ENGINE.Change_state(GAME_OVER)

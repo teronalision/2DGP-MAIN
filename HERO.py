@@ -48,7 +48,7 @@ class Hero:
         self.x, self.y = x, y
         self.vx, self.vy = 0, 0 
         self.type = ENGINE.CIRCLE
-        self.size = 5
+        self.size = 10
         self.speed = 1.5 * ENGINE.p_per_meter
         self.life = 4
         self.attacked = False
@@ -71,7 +71,7 @@ class Hero:
         self.state.draw(self)
         if(ENGINE.rect_mode):
             draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
-        ENGINE.bimage[3].clip_composite_draw(0,64+16,64,64,time*3.14/16,'',self.x,self.y,64,64)
+        #ENGINE.bimage[3].clip_composite_draw(0,64+16,64,64,time*3.14/16,'',self.x,self.y,64,64)
         for s in self.fireList:
             s.draw()
         
