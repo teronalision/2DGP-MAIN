@@ -44,12 +44,14 @@ def update():
     global time,step
 
     #로직
-    if step == 0 and int(time) == 0:
+    if step == 0 and time-int(time) < 0.01 :
         sponer.add_monster(ZAKO.FAIRY,0,500,ZAKO.R)
 
-        step += 1
-    elif step == 1 and int(time) == 5:
+        if(time>5):
+            step += 1
+    elif step == 1:
         sponer.add_monster(ZAKO.RUNE,250,500,ZAKO.PATROL)
+
         step += 1
     elif step == 2 and int(time) == 10:
         time, step = 0, 0
