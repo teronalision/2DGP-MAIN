@@ -9,7 +9,7 @@ class Zako:
 
     def __init__(self, x, y):
         self.x, self.y = x,y
-        self.vx, self.vy = 0.1, -0.1
+        self.vx, self.vy = 1, 0
         self.hp = 0
         self.type = ENGINE.CIRCLE
         self.size = 20
@@ -27,9 +27,9 @@ class Zako:
                 self.sponer.y = self.y
                 self.sponer.update()
 
-        else:
-            self.x += self.vx*ENGINE.p_per_meter*ENGINE.frame_time
-            self.y += self.vy*ENGINE.p_per_meter*ENGINE.frame_time
+        
+        self.x += self.vx*ENGINE.p_per_meter*ENGINE.frame_time
+        self.y += self.vy*ENGINE.p_per_meter*ENGINE.frame_time
         pass
 
 
@@ -52,7 +52,7 @@ class Zako:
         if(self.sponer != None):
             self.sponer.dead = True
         if(self.drap != None):
-            self.drap(self.x,self.y)
+            ENGINE.add_obj(self.drap(self.x,self.y),3)
 
 
 

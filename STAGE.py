@@ -49,8 +49,7 @@ def update():
 
         step += 1
     elif step == 1 and int(time) == 5:
-        #ENGINE.add_obj(ZAKO.fairy(500, 500, 2), 1)
-        #ENGINE.add_obj(ZAKO.j_wraith(250,500,0), 1)
+        sponer.add_monster(ZAKO.RUNE,250,250)
         step += 1
     elif step == 2 and int(time) == 10:
         time, step = 0, 0
