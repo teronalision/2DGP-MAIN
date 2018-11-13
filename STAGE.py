@@ -45,12 +45,12 @@ def update():
 
     #로직
     if step == 0 and time-int(time) < 0.01 :
-        sponer.add_monster(ZAKO.FAIRY,0,500,ZAKO.R)
+        sponer.add_monster(ZAKO.JWRAITH,0,500,ZAKO.R)
 
         if(time>5):
             step += 1
     elif step == 1:
-        sponer.add_monster(ZAKO.RUNE,250,500,ZAKO.PATROL)
+        sponer.add_monster(ZAKO.WRAITH,250,500,ZAKO.PATROL)
 
         step += 1
     elif step == 2 and int(time) == 10:
@@ -67,15 +67,15 @@ def update():
 
     #캐릭터 충돌
     for obj in ENGINE.object_list[1] + ENGINE.object_list[2]:
-        if ENGINE.is_crash(hero,obj) and hero.attacked == False and ENGINE.undead == False:
-            hero.attacked = True
+        if ENGINE.is_crash(hero,obj):
+            if hero.attacked == False and ENGINE.undead == False:
+                hero.attacked = True
+                ENGINE.add_obj(ITEM.PowerUp(hero.x,hero.y),3)
+            
+                if hero.life == 1:
+                    ENGINE.Change_state(GAME_OVER)
+                    return
             obj.kill()
-
-            ENGINE.add_obj(ITEM.PowerUp(hero.x,hero.y),3)
-
-            if hero.life == 1:
-                ENGINE.Change_state(GAME_OVER)
-                return
             break
     for item in ENGINE.object_list[3]:
         if ENGINE.is_crash(hero,item):

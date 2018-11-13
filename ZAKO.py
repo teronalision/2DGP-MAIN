@@ -29,6 +29,7 @@ class Zako:
         self.type = ENGINE.CIRCLE
         self.size = 20
         self.moving = None
+        self.draw_m = None
         self.drap = None
         self.dead = False
         self.sponer = None
@@ -56,11 +57,8 @@ class Zako:
 
 
     def draw(self):
-        if self.dead == False:
-            d = ''
-            if(self.vx >0):
-                d+='h'
-            ENGINE.mimage[0].clip_composite_draw(int(self.frame)*50,60,50,50,0,d,self.x,self.y,self.size*2,self.size*2)
+        if self.dead == False and self.draw_m != None:
+           self.draw_m(self)
         
         if(ENGINE.rect_mode):
             draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
@@ -81,12 +79,24 @@ class Zako:
 
 
 
+#몬스터 드로우
+def draw_jwraith(mob):
+    d = ''
+    if(mob.vx >0):
+        d+='h'
+    ENGINE.mimage[0].clip_composite_draw(int(mob.frame)*50,60,50,50,0,d,mob.x,mob.y,mob.size*2,mob.size*2)
+def draw_wraith(mob):
+    d = ''
+    if(mob.vx >0):
+        d+='h'
+    ENGINE.mimage[1].clip_composite_draw(int(mob.frame)*75,0,75,70,0,d,mob.x,mob.y,mob.size*2,mob.size*2)
 
 
 #몬스터 스포너
-FAIRY, JWRAITH, RUNE = range(3)
-#체력, 크기, 탄스포너, 아이템
-Monster_dic = {FAIRY:(1,20,0,None), JWRAITH:(20,20,-1,None), RUNE:(50,30,1,ITEM.PowerUp)}
+FAIRY, JWRAITH, WRAITH, RUNE = range(4)
+#체력, 크기, 탄스포너, 아이템, 그리기
+Monster_dic = {FAIRY:(1,20,0,None,draw_jwraith), JWRAITH:(1,20,0,None,draw_jwraith), WRAITH:(70,40,1,None,draw_wraith),
+              RUNE:(50,30,1,ITEM.PowerUp,draw_wraith)}
 
 class Monster_sponer:
 
@@ -95,8 +105,8 @@ class Monster_sponer:
 
     def add_monster(self, name, x ,y, order):
         m = Zako(x,y)
-        m.hp, m.size, sp, m.drap = Monster_dic[name]
-        #m.sponer = SPONER.Sponer(x,y,sp)
+        m.hp, m.size, sp, m.drap, m.draw_m = Monster_dic[name]
+        m.sponer = SPONER.Sponer(x,y,sp)
         m.moving = order
 
         ENGINE.add_obj(m,1)
