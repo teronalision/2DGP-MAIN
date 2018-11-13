@@ -90,13 +90,18 @@ def draw_wraith(mob):
     if(mob.vx >0):
         d+='h'
     ENGINE.mimage[1].clip_composite_draw(int(mob.frame)*75,0,75,70,0,d,mob.x,mob.y,mob.size*2,mob.size*2)
+def draw_stirge(mob):
+    d = ''
+    if(mob.vx >0):
+        d+='h'
+    ENGINE.mimage[2].clip_composite_draw(int(mob.frame%2)*46,0,46,46,0,d,mob.x,mob.y,mob.size*2,mob.size*2)
 
 
 #몬스터 스포너
 FAIRY, JWRAITH, WRAITH, STIRGE, RUNE = range(5)
 #체력, 크기, 탄스포너, 아이템, 그리기
-Monster_dic = {FAIRY:(1,20,0,None,draw_jwraith), JWRAITH:(1,20,0,None,draw_jwraith), WRAITH:(70,40,1,None,draw_wraith),
-              STIRGE:(1,10,0,None,None) ,RUNE:(50,30,1,ITEM.PowerUp,draw_wraith)}
+Monster_dic = {FAIRY:(1,20,0,None,draw_jwraith), JWRAITH:(1,20,0,None,draw_jwraith), WRAITH:(70,40,1,ITEM.PowerUp,draw_wraith),
+              STIRGE:(1,20,-1,None,draw_stirge) ,RUNE:(50,30,1,ITEM.PowerUp,draw_wraith)}
 
 class Monster_sponer:
 
@@ -108,6 +113,7 @@ class Monster_sponer:
         m.hp, m.size, sp, m.drap, m.draw_m = Monster_dic[name]
         m.sponer = SPONER.Sponer(x,y,sp)
         m.moving = order
+        m.frame = ENGINE.randint(0,4)
 
         ENGINE.add_obj(m,1)
         pass

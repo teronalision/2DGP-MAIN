@@ -44,8 +44,9 @@ def update():
     global time,step
 
     #로직
-    if step == 0 and time-int(time) < 0.01 :
+    if step == 0 and time-int(time) < 0.005 :
         sponer.add_monster(ZAKO.JWRAITH,0,500,ZAKO.R)
+        sponer.add_monster(ZAKO.STIRGE,500,500,ZAKO.L)
 
         if(time>5):
             step += 1
