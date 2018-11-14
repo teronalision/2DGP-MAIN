@@ -1,6 +1,8 @@
 from pico2d import *
 
 musics, sounds = None, None
+volume = None
+
 
 def init():
     global musics, sounds

@@ -1,19 +1,19 @@
 from pico2d import *
 import ENGINE
 import AUDIO
+import GIMMICK
 import HERO
 import ZAKO
 import ITEM
 import GAME_OVER
 
 hero = None
-sponer = ZAKO.Monster_sponer()
-time = 0.0
-step = 0
+
 
 def start():
     global hero
 
+    GIMMICK.init()
     AUDIO.play_music(1)
     ENGINE.add_obj(HERO.Hero(250, 100),0)
     hero = ENGINE.object_list[0][0]
@@ -44,21 +44,8 @@ def handle():
 
 
 def update():
-    global time,step
-
     #로직
-    if step == 0 and time-int(time) < 0.005 :
-        sponer.add_monster(ZAKO.JWRAITH,0,500,ZAKO.R)
-        sponer.add_monster(ZAKO.STIRGE,500,500,ZAKO.L)
-
-        if(time>5):
-            step += 1
-    elif step == 1:
-        sponer.add_monster(ZAKO.WRAITH,250,500,ZAKO.PATROL)
-
-        step += 1
-    elif step == 2 and int(time) == 10:
-        time, step = 0, 0
+    GIMMICK.run_stage()
 
 
 
@@ -101,8 +88,6 @@ def update():
                 obj.kill()
                 ENGINE.object_list[i].remove(obj)
 
-
-    time += ENGINE.frame_time
 
 
 def draw():
