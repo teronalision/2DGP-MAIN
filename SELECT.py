@@ -26,7 +26,7 @@ def handle():
                 select -=1
             elif(event.key == SDLK_SPACE or event.key == SDLK_z and select == 0):
                 HERO.hero_select = 0
-                ENGINE.Push_state(STAGE)
+                ENGINE.Change_state(STAGE)
             elif(event.key == SDLK_ESCAPE):
                 HERO.hero_select = 1
                 ENGINE.Change_state(TITLE)

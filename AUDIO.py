@@ -5,7 +5,7 @@ musics, sounds = None, None
 def init():
     global musics, sounds
 
-    musics = [load_music('Sound\OP.mp3'),load_music('Sound\1st.mp3')]
+    musics = [load_music('Sound\OP.mp3'),load_music('Sound\\1st.mp3')]
     sounds = []
 
 

@@ -1,5 +1,6 @@
 from pico2d import *
 import ENGINE
+import AUDIO
 import HERO
 import ZAKO
 import ITEM
@@ -13,6 +14,7 @@ step = 0
 def start():
     global hero
 
+    AUDIO.play_music(1)
     ENGINE.add_obj(HERO.Hero(250, 100),0)
     hero = ENGINE.object_list[0][0]
     
@@ -20,6 +22,7 @@ def start():
 def end():
     global hero
 
+    AUDIO.stop_music()
     ENGINE.del_obj()
     del(hero)
     time = 0.0
