@@ -26,7 +26,7 @@ class Sponer:
             elif self.m == 1 and self.time > 1:#12개 원형
                 for i in range(0,360,30):
                     b = BULLET.Bullet(self.x,self.y,ENGINE.CIRCLE)
-                    b.order(0.5,math.radians(i))
+                    b.order(1,math.radians(i))
                     ENGINE.add_obj(b,2)
                     self.time = 0
       

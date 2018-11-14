@@ -1,15 +1,13 @@
 import ENGINE
 import ZAKO
 
-time = 0
+time = 0.0
 sponer = ZAKO.Monster_sponer()
 
 #시간, 실행내용
-doing = [(0,sponer.add_monster(ZAKO.JWRAITH,0,500,ZAKO.R)),
-      (0,sponer.add_monster(ZAKO.STIRGE,500,500,ZAKO.L)),
-      (2,sponer.add_monster(ZAKO.JWRAITH,0,500,ZAKO.R)),
-      (2,sponer.add_monster(ZAKO.STIRGE,500,500,ZAKO.L)),
-      (5,sponer.add_monster(ZAKO.WRAITH,250,500,ZAKO.PATROL))]
+doing = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(0,10)]+[
+        (7+(i*0.3),(ZAKO.STIRGE,500,600,ZAKO.LD)) for i in range(0,10)]+[
+        (10,(ZAKO.WRAITH,250,500,ZAKO.PATROL))]
 
 
 def init():
@@ -24,7 +22,8 @@ def run_stage():
 
 
     if time > doing[0][0]:
-        doing[0][1]
+        a,b,c,d = doing[0][1]
+        sponer.add_monster(a,b,c,d)
         doing.remove(doing[0])
 
 
