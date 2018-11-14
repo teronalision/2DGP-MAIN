@@ -4,16 +4,17 @@ import ZAKO
 time = 0.0
 sponer = ZAKO.Monster_sponer()
 
-#시간, 실행내용
-doing = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(0,10)]+[
-        (7+(i*0.3),(ZAKO.STIRGE,500,600,ZAKO.LD)) for i in range(0,10)]+[
-        (10,(ZAKO.WRAITH,250,500,ZAKO.PATROL))]
+doing = []
+
 
 
 def init():
-    global time
+    global time, doing
     time= 0
-
+    #시간, 실행내용
+    doing = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(0,10)]+[
+            (7+(i*0.3),(ZAKO.STIRGE,500,600,ZAKO.LD)) for i in range(0,10)]+[
+            (10,(ZAKO.WRAITH,250,500,ZAKO.PATROL))]
 
 def run_stage():
     global time
