@@ -1,15 +1,18 @@
 from pico2d import *
 import ENGINE
+import AUDIO
 import SELECT
 
 select = 0
 font = None
 
 def start():
+    AUDIO.play_music(0)
     pass
 
 
 def end():
+    AUDIO.stop_music()
     pass
 
 

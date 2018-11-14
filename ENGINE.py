@@ -1,7 +1,7 @@
 from pico2d import *
 from random import *
 import time
-
+import AUDIO
 
 
 #초기화
@@ -33,7 +33,7 @@ def init():
     mimage = [load_image('Image\\jr_wraith.png'),load_image('Image\\wraith.png'),load_image('Image\\stirge.png')]
     background = [load_image('Image\sky0.png'),load_image('Image\sky1.jpg'),load_image('Image\sky2.jpg')]
 
-    bgm
+    AUDIO.init()
     font = load_font('Image\Maplestory Bold.TTF')
 
 
