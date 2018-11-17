@@ -19,10 +19,12 @@ def handle():
 
     for event in events:
         if(event.type == SDL_KEYDOWN):
-            if(event.key == SDLK_RIGHT and select < 1):
-                select +=1
-            elif(event.key == SDLK_LEFT and select > 0):
-                select -=1
+            if(event.key == SDLK_LEFT):
+                AUDIO.volume = max(0, AUDIO.volume-5)
+                AUDIO.set_volume()
+            elif(event.key == SDLK_RIGHT):
+                AUDIO.volume = min(100, AUDIO.volume+5)
+                AUDIO.set_volume()
             elif(event.key == SDLK_SPACE or event.key == SDLK_z):
                 pass
             elif(event.key == SDLK_ESCAPE):

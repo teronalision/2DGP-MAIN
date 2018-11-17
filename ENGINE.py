@@ -33,7 +33,7 @@ def init():
     background = [load_image('Image\\bg1.png'),load_image('Image\\bg2.png'),load_image('Image\\sky0.png'),load_image('Image\\sky1.jpg'),load_image('Image\sky2.jpg')]
 
     AUDIO.init()
-    font = load_font('Image\Maplestory Bold.TTF')
+    font = load_font('Image\Maplestory Bold.TTF',40)
 
 
 

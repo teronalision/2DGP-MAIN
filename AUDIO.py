@@ -22,3 +22,7 @@ def play_music(n):
 
 def stop_music():
     musics[select].pause()
+
+def set_volume():
+    for m in musics:
+        m.set_volume(volume)
