@@ -17,7 +17,7 @@ rect_mode = True
 undead = False
 
 #이미지
-hero_image, bimage, simage, mimage = None, None, None, None
+hero_image, bimage, mimage = None, None, None
 background = None
 bgm = None
 font = None
@@ -29,9 +29,8 @@ def init():
     hero_image = [load_image('Image\C1.png')]
     bimage = [load_image('Image\dumy_b.png'), load_image('Image\dumy_c.png'),
               load_image('Image\etama6.png'), load_image('Image\etama2.png')]
-    simage = [load_image('Image\\bg1.png')]
     mimage = [load_image('Image\\jr_wraith.png'),load_image('Image\\wraith.png'),load_image('Image\\stirge.png')]
-    background = [load_image('Image\sky0.png'),load_image('Image\sky1.jpg'),load_image('Image\sky2.jpg')]
+    background = [load_image('Image\\bg1.png'),load_image('Image\\bg2.png'),load_image('Image\\sky0.png'),load_image('Image\\sky1.jpg'),load_image('Image\sky2.jpg')]
 
     AUDIO.init()
     font = load_font('Image\Maplestory Bold.TTF')
@@ -71,8 +70,8 @@ def Push_state(state):
 def Pop_state():
     global state_stack
 
-    state.end()
-    state_stack.remove(-1)
+    state_stack[-1].end()
+    state_stack.pop()
 
 def Change_state(state):
     global state_stack

@@ -93,7 +93,7 @@ def update():
 def draw():
     clear_canvas()
     #BG
-    ENGINE.background[1].clip_draw(0,0,720,1280,250,250)
+    ENGINE.background[2].clip_draw(0,0,720,1280,250,250)
 
     #캐릭터
     hero.draw()
@@ -103,7 +103,7 @@ def draw():
 
 
     #UI
-    ENGINE.simage[0].draw(400,300)
+    ENGINE.background[0].draw(400,300)
     ENGINE.font.draw(510, 550,'Point', (0,0,0))
 
     for i in range(hero.life -1):

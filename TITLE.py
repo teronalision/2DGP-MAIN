@@ -2,6 +2,7 @@ from pico2d import *
 import ENGINE
 import AUDIO
 import SELECT
+import OPTION
 
 select = 0
 font = None
@@ -27,7 +28,9 @@ def handle():
                 select -=1
             if(event.key == SDLK_SPACE or event.key == SDLK_z):
                 if (select == 0):
-                    ENGINE.Change_state(SELECT)
+                    ENGINE.Push_state(SELECT)
+                elif (select == 2):
+                    ENGINE.Push_state(OPTION)
                 elif (select == 3):
                     ENGINE.run = False
     pass
@@ -40,7 +43,7 @@ def update():
 def draw():
     clear_canvas()
 
-    ENGINE.background[0].draw(400,300,800,600)
+    ENGINE.background[2].draw(400,300,800,600)
 
     ENGINE.bimage[1].draw(200,300 -50*select)
 

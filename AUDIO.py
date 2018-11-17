@@ -2,7 +2,7 @@ from pico2d import *
 
 musics, sounds = None, None
 select = -1
-volume = None
+volume = 100
 
 
 def init():
