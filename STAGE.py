@@ -34,10 +34,10 @@ def handle():
     events = get_events()
 
     for e in events:
-        if(e.type == SDL_QUIT):
-            ENGINE.Quit()
-        elif(e.type == SDL_KEYDOWN and e.key == SDLK_ESCAPE):
-            ENGINE.Quit()
+        if(e.type == SDL_KEYDOWN and e.key == SDLK_ESCAPE):
+            ENGINE.Pop_state()
+            ENGINE.state_stack[-1].start()
+            break
 
         hero.handle(e)
 
@@ -93,7 +93,7 @@ def update():
 def draw():
     clear_canvas()
     #BG
-    ENGINE.background[2].clip_draw(0,0,720,1280,250,250)
+    ENGINE.background[3].clip_draw(0,0,720,1280,250,250)
 
     #캐릭터
     hero.draw()
