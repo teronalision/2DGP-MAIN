@@ -13,7 +13,7 @@ run = True
 state_stack = []
 
 #디버그 모드
-rect_mode = True
+rect_mode = False
 undead = False
 
 #이미지

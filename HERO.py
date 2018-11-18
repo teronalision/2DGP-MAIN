@@ -27,7 +27,8 @@ class Shot:
 
 
     def update(self):
-        self.y += self.v *ENGINE.frame_time * ENGINE.p_per_meter
+        self.x += math.cos(math.radians(self.r)) *self.v *ENGINE.frame_time * ENGINE.p_per_meter
+        self.y += math.sin(math.radians(self.r)) *self.v *ENGINE.frame_time * ENGINE.p_per_meter
 
 
     def isOut(self):
@@ -40,7 +41,7 @@ class Shot:
     def draw(self):
         if(ENGINE.rect_mode):
             draw_rectangle(self.x-10,self.y-40,self.x+10,self.y+40)
-        ENGINE.hero_image[hero_select].clip_composite_draw(0,96,64,16,3.14/2,'',self.x, self.y,80,20)
+        ENGINE.hero_image[hero_select].clip_composite_draw(0,96,64,16,math.radians(self.r),'',self.x, self.y,80,20)
 
 class Hero:
 
@@ -65,9 +66,18 @@ class Hero:
         self.time = 0
 
     def shoting(self):
-        for i in range(self.power):
-            new = Shot(self.x -((self.power-1)*10) +(i*20),self.y)
+        if hero_select == 0:
+            new = Shot(self.x,self.y)
+            new.r = 90
             self.fireList.append(new)
+        else:
+            for i in range(self.power):
+                new = Shot(self.x,self.y)
+                if self.power%2== 0:
+                    new.r = 90
+                else:
+                    new.r = 90-30 +(30/self.power)*i
+                self.fireList.append(new)
 
 
     def draw(self):
