@@ -1,18 +1,21 @@
 from pico2d import *
 
-musics, sounds = None, None
+musics, se = None, None
 select = -1
-volume = 100
+bgm_volume = 100
+se_volume = 100
 
 
 def init():
-    global musics, sounds, select
+    global musics, se, select
 
     musics = [load_music('Sound\OP.mp3'),load_music('Sound\\1st.mp3')]
-    sounds = []
+    se = [load_wav('Sound\select.wav'),load_wav('Sound\dead.wav')]
     select = -1
 
 
+def play_se(n):
+    se[n].play()
 
 def play_music(n):
     global select
@@ -25,4 +28,7 @@ def stop_music():
 
 def set_volume():
     for m in musics:
-        m.set_volume(volume)
+        m.set_volume(bgm_volume)
+def set_SEvolume():
+    for s in se:
+        s.set_volume(se_volume)

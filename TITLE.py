@@ -24,10 +24,12 @@ def handle():
         if(event.type == SDL_KEYDOWN):
             if(event.key == SDLK_ESCAPE):
                 ENGINE.run = False
-            elif(event.key == SDLK_DOWN and select < 3):
-                select +=1
-            elif(event.key == SDLK_UP and select > 0):
-                select -=1
+            elif(event.key == SDLK_DOWN):
+                select = (select+1)%4
+                AUDIO.play_se(0)
+            elif(event.key == SDLK_UP):
+                select = (select+3)%4
+                AUDIO.play_se(0)
             if(event.key == SDLK_SPACE or event.key == SDLK_z):
                 if (select == 0):
                     ENGINE.Push_state(SELECT)
