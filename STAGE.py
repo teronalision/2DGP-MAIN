@@ -17,7 +17,7 @@ def start():
     AUDIO.play_music(1)
     ENGINE.add_obj(HERO.Hero(250, 100),0)
     hero = ENGINE.object_list[0][0]
-    cloud = [0,0]
+    cloud = [0.0,0.0]
     
 
 def end():
@@ -47,6 +47,7 @@ def handle():
 def update():
     global cloud
     cloud[0] += ENGINE.frame_time
+    cloud[1] += ENGINE.frame_time/3
     #로직
     GIMMICK.run_stage()
     
@@ -100,7 +101,8 @@ def draw():
     clear_canvas()
     #BG
     ENGINE.background[3].clip_draw(0,int(ENGINE.frame_time),500,600,250,300)
-    ENGINE.background[6].clip_draw(0,0,800,300,250,100-cloud[0],500,200)
+    ENGINE.background[6].clip_draw(0,0,800,350,250,150-cloud[0],500,300)
+    ENGINE.background[6].clip_draw(800,0,200,200,150,550-cloud[1],200,200)
     #캐릭터
     hero.draw()
     #모든 객체

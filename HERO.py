@@ -246,6 +246,7 @@ class StopState:
 
 
 class DeadState:
+    timer = 0.0
 
     @staticmethod
     def enter(hero, event):
@@ -269,7 +270,8 @@ class DeadState:
 
 
         if event == DEAD:
-            hero.x, hero.y = 250, 0 -32
+            DeadState.timer = 0
+            hero.x, hero.y = 250, 100
             hero.power = max(1, hero.power - 5)
 
         hero.fire = False
@@ -279,21 +281,31 @@ class DeadState:
     
     @staticmethod
     def exit(hero, event):
+        ENGINE.hero_image[hero_select].opacify(1)
         pass
 
     @staticmethod
     def update(hero):
-
+        DeadState.timer += ENGINE.frame_time
         hero.frame = (hero.frame+ frame_per_round*round_per_sec*ENGINE.frame_time) %8
 
-        hero.y += 0.2*hero.speed*ENGINE.frame_time
-        if hero.y > 100:
+        if DeadState.timer > 5:
             hero.attacked = False
             hero.add_que(DEAD)
+
+        hero.x += hero.vx*hero.speed*ENGINE.frame_time/2
+        hero.y += hero.vy*hero.speed*ENGINE.frame_time/2
+
+        hero.x = clamp(0 +16,hero.x,500 -16)
+        hero.y = clamp(0 +32,hero.y,600 -32)
 
 
     @staticmethod
     def draw(hero):
+        if (DeadState.timer %1 <0.5):
+            ENGINE.hero_image[hero_select].opacify(0)
+        else:
+            ENGINE.hero_image[hero_select].opacify(0.5)
         ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),256-48,32,48,hero.x,hero.y)
         #임시
         ENGINE.font.draw(10, 15,'리스폰', (0,0,0))
