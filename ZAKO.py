@@ -30,6 +30,7 @@ class Zako:
         self.hp = 0
         self.type = ENGINE.CIRCLE
         self.size = 20
+        self.point = 5
         self.moving = None
         self.speed = 1
         self.draw_m = None

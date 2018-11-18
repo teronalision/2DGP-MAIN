@@ -9,15 +9,17 @@ import GAME_OVER
 
 hero = None
 cloud = None
+point = 0
 
 def start():
-    global hero,cloud
+    global hero,cloud,point
 
     GIMMICK.init()
     AUDIO.play_music(1)
     ENGINE.add_obj(HERO.Hero(250, 100),0)
     hero = ENGINE.object_list[0][0]
     cloud = [0.0,0.0]
+    point = 0
     
 
 def end():
@@ -45,7 +47,7 @@ def handle():
 
 
 def update():
-    global cloud
+    global cloud, point
     cloud[0] += ENGINE.frame_time
     cloud[1] += ENGINE.frame_time/3
     #로직
@@ -75,6 +77,7 @@ def update():
     for item in ENGINE.object_list[3]:
         if ENGINE.is_crash(hero,item):
             item.effect(hero)
+            point += 100
 
 
     #자코-공격 충돌
@@ -85,7 +88,8 @@ def update():
                     e.attacked(hero.power)
                 else:
                     e.attacked(1)
-                h_b.x = -100
+                h_b.x = -1000
+                point += e.point
                 break
     
     #시체 청소
@@ -113,7 +117,7 @@ def draw():
     #UI
     ENGINE.background[0].draw(400,300)
 
-    ENGINE.font.draw(510, 550,'Point', (255,255,255))
+    ENGINE.font.draw(510, 550,'Point  %r'%point, (255,255,255))
 
     for i in range(hero.life -1):
         ENGINE.bimage[5].clip_draw(0,0,100,100,620 +50*i,490,40,40)
@@ -121,4 +125,5 @@ def draw():
 
     ENGINE.font.draw(510, 430,'boom', (255,255,255))
 
+    ENGINE.font.draw(510, 370,'Power  %r'%hero.power, (255,255,255))
     update_canvas()
