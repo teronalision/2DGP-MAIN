@@ -23,15 +23,15 @@ class Sponer:
                 self.time = 0
 
 
-            elif self.m == 1 and self.time > 1:#12개 원형
-                for i in range(0,360,30):
-                    b = BULLET.Bullet(self.x,self.y,BULLET.STAR)
+            elif self.m == 1 and self.time > 1:#페어리
+                for i in range(0,360,10):
+                    b = BULLET.Bullet(self.x,self.y,BULLET.SUN)
                     b.order(1,math.radians(i))
                     ENGINE.add_obj(b,2)
                     self.time = 0
            
-            elif self.m == 2 and self.time >0.25:#사방
-                for i in range(0,361,90):
+            elif self.m == 2 and self.time >0.25:#4방향
+                for i in range(0,360,90):
                     b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
                     b.order(1,math.radians(i))
                     ENGINE.add_obj(b,2)

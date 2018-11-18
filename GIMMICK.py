@@ -18,6 +18,7 @@ def init():
     for i in range(10):
         doing.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
         doing.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
+    doing += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(20,(ZAKO.FAIRY,400,600,ZAKO.D_400))]
 
 
 def run_stage():
