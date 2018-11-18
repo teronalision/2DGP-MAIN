@@ -10,7 +10,7 @@ def init():
     global musics, se, select
 
     musics = [load_music('Sound\OP.mp3'),load_music('Sound\\1st.mp3')]
-    se = [load_wav('Sound\select.wav'),load_wav('Sound\dead.wav')]
+    se = [load_wav('Sound\se_select.wav'),load_wav('Sound\se_dead.wav')]
     select = -1
 
 
