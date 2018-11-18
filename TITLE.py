@@ -22,7 +22,9 @@ def handle():
 
     for event in events:
         if(event.type == SDL_KEYDOWN):
-            if(event.key == SDLK_DOWN and select < 3):
+            if(event.key == SDLK_ESCAPE):
+                ENGINE.run = False
+            elif(event.key == SDLK_DOWN and select < 3):
                 select +=1
             elif(event.key == SDLK_UP and select > 0):
                 select -=1
@@ -47,10 +49,10 @@ def draw():
 
     ENGINE.bimage[1].draw(200,300 -50*select)
 
-    ENGINE.font.draw(300, 300,'스타트', (0,0,0))
-    ENGINE.font.draw(300, 250,'난이도', (0,0,0))
-    ENGINE.font.draw(300, 200,'옵션', (0,0,0))
-    ENGINE.font.draw(300, 150,'종료', (0,0,0))
+    ENGINE.font.draw(300, 300,'스타트', (255,255,255))
+    ENGINE.font.draw(300, 250,'난이도', (255,255,255))
+    ENGINE.font.draw(300, 200,'옵션', (255,255,255))
+    ENGINE.font.draw(300, 150,'종료', (255,255,255))
 
     update_canvas()
     pass

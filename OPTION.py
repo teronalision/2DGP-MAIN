@@ -43,7 +43,7 @@ def draw():
 
     ENGINE.bimage[1].draw(150,300 -50*select)
 
-    ENGINE.font.draw(200, 300,'볼륨 :    %r'%AUDIO.volume, (0,0,0))
+    ENGINE.font.draw(200, 300,'볼륨 :    %r'%AUDIO.volume, (255,255,255))
 
     update_canvas()
     pass

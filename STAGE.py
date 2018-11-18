@@ -93,7 +93,7 @@ def update():
 def draw():
     clear_canvas()
     #BG
-    ENGINE.background[3].clip_draw(0,0,720,1280,250,250)
+    ENGINE.background[3].clip_draw(0,int(ENGINE.frame_time),500,600,250,300)
 
     #캐릭터
     hero.draw()
