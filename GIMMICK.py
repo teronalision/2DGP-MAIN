@@ -12,9 +12,13 @@ def init():
     global time, doing
     time= 0
     #시간, 실행내용
-    doing = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(0,10)]+[
-            (7+(i*0.3),(ZAKO.STIRGE,500,600,ZAKO.LD)) for i in range(0,10)]+[
-            (10,(ZAKO.WRAITH,250,500,ZAKO.PATROL))]
+    doing = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
+             (7+(i*0.3),(ZAKO.STIRGE,500,600,ZAKO.LD)) for i in range(10)]+[
+             (10,(ZAKO.WRAITH,250,500,ZAKO.PATROL))]
+    for i in range(10):
+        doing.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
+        doing.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
+
 
 def run_stage():
     global time
