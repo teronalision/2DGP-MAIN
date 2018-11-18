@@ -116,7 +116,7 @@ def draw():
     ENGINE.font.draw(510, 550,'Point', (255,255,255))
 
     for i in range(hero.life -1):
-        ENGINE.bimage[0].draw(600 +50*i,500)
+        ENGINE.bimage[5].clip_draw(0,0,100,100,620 +50*i,490,40,40)
     ENGINE.font.draw(510, 490,'Life', (255,255,255))
 
     ENGINE.font.draw(510, 430,'boom', (255,255,255))

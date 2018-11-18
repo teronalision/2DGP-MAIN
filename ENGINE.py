@@ -29,7 +29,7 @@ def init():
     hero_image = [load_image('Image\C1.png'),load_image('Image\\C2.png')]
     bimage = [load_image('Image\dumy_b.png'), load_image('Image\dumy_c.png'),
               load_image('Image\etama6.png'), load_image('Image\etama2.png'),
-              load_image('Image\etama.png')]
+              load_image('Image\etama.png'), load_image('Image\\UI.png')]
     mimage = [load_image('Image\\jr_wraith.png'),load_image('Image\\wraith.png'),load_image('Image\\stirge.png')]
     background = [load_image('Image\\bg1.png'),load_image('Image\\bg2.png'),load_image('Image\\sky0.png'),
                   load_image('Image\\sky1.jpg'),load_image('Image\\sky2.jpg'),load_image('Image\\bg3.png'),
