@@ -2,7 +2,7 @@ from math import *
 from pico2d import *
 import ENGINE
 
-
+STAR, KNIFE, BULL = range(3)
 
 class Bullet:
 
@@ -11,13 +11,17 @@ class Bullet:
         self.x, self.y = x, y
         self.v, self.r = 0, 0
         self.type = type
-        #self.image = 2
         self.d = 0
         self.dead = False
-        if(type == ENGINE.RECT):
+        if(type == KNIFE):
             self.size = 20
-        elif(type == ENGINE.CIRCLE):
+            self.box = ENGINE.RECT
+        elif(type == STAR):
+            self.size = 20
+            self.box = ENGINE.CIRCLE
+        elif(type == BULL):
             self.size = 10
+            self.box = ENGINE.RECT
 
 
     def order(self,v,r):
@@ -32,22 +36,18 @@ class Bullet:
         self.x += self.v *sin(self.r) *ENGINE.frame_time *ENGINE.p_per_meter
         self.y += self.v *cos(self.r) *ENGINE.frame_time *ENGINE.p_per_meter
 
-        if(self.type == ENGINE.CIRCLE):
-            self.d +=radians(1)
-
         if(self.x < 0 or self.x > 500 or self.y <0 or self.y >600):
             self.dead = True
 
 
     def draw(self):
         if(ENGINE.rect_mode):
-            #if(self.type == ENGINE.CIRCLE or self.type == ENGINE.SQUARE):
-                draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
-            #elif(self.type == ENGINE.RECT):
-            #    dx, dy = self.size*(math.sin(self.r))/2, self.size*(math.cos(self.r))
-            #    draw_rectangle(self.x -dx,self.y), (self.x +dx,self.y), (self.x,self.y -dy), (self.x,self.y +dy)
-
-        if(self.type == ENGINE.RECT):
+            draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
+            
+        if(self.type == KNIFE):
             ENGINE.bimage[2].clip_composite_draw(32,32*3,32,32,-self.r,'',self.x,self.y,self.size*2,self.size*2)
-        if(self.type == ENGINE.CIRCLE):
+        elif(self.type == STAR):
             ENGINE.bimage[2].clip_composite_draw(32,256-32,32,32,self.d,'',self.x,self.y,self.size*2,self.size*2)
+        elif(self.type == BULL):
+            ENGINE.bimage[2].clip_composite_draw(32*5,32,32,32,-self.r,'',self.x,self.y,self.size*2,self.size*2)
+        
