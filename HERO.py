@@ -40,7 +40,7 @@ class Shot:
     def draw(self):
         if(ENGINE.rect_mode):
             draw_rectangle(self.x-10,self.y-40,self.x+10,self.y+40)
-        ENGINE.hero_image[hero_select].clip_composite_draw(0,16,64,16,3.14/2,'',self.x, self.y,80,20)
+        ENGINE.hero_image[hero_select].clip_composite_draw(0,96,64,16,3.14/2,'',self.x, self.y,80,20)
 
 class Hero:
 
@@ -49,7 +49,10 @@ class Hero:
         self.vx, self.vy = 0, 0 
         self.type = ENGINE.CIRCLE
         self.size = 10
-        self.speed = 1.5 * ENGINE.p_per_meter
+        if hero_select == 0:
+            self.speed = 1.5 * ENGINE.p_per_meter
+        else:
+            self.speed = 1.0 * ENGINE.p_per_meter
         self.life = 4
         self.attacked = False
         self.fireList = []
@@ -171,11 +174,11 @@ class MoveState:
     @staticmethod
     def draw(hero):
         if hero.vx == 0:
-            ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48*1,32,48,hero.x,hero.y)
+            ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),256-48*1,32,48,hero.x,hero.y)
         elif hero.vx <0:
-            ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48*2,32,48,hero.x,hero.y)
+            ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),256-48*2,32,48,hero.x,hero.y)
         else:
-            ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48*3,32,48,hero.x,hero.y)
+            ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),256-48*3,32,48,hero.x,hero.y)
 
 
 class StopState:
@@ -232,7 +235,7 @@ class StopState:
 
     @staticmethod
     def draw(hero):
-        ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48,32,48,hero.x,hero.y)
+        ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),256-48,32,48,hero.x,hero.y)
 
 
 class DeadState:
@@ -284,7 +287,7 @@ class DeadState:
 
     @staticmethod
     def draw(hero):
-        ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),176-48,32,48,hero.x,hero.y)
+        ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),256-48,32,48,hero.x,hero.y)
         #임시
         ENGINE.font.draw(10, 15,'리스폰', (0,0,0))
 

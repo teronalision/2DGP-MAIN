@@ -24,11 +24,10 @@ def handle():
                 select +=1
             elif(event.key == SDLK_LEFT and select > 0):
                 select -=1
-            elif(event.key == SDLK_SPACE or event.key == SDLK_z and select == 0):
-                HERO.hero_select = 0
+            elif(event.key == SDLK_SPACE or event.key == SDLK_z):
+                HERO.hero_select = select
                 ENGINE.Change_state(STAGE)
             elif(event.key == SDLK_ESCAPE):
-                HERO.hero_select = 1
                 ENGINE.Pop_state()
     pass
 

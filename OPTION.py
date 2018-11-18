@@ -38,8 +38,8 @@ def update():
 
 def draw():
     clear_canvas()
-
-    ENGINE.background[1].draw(400,300)
+    
+    ENGINE.background[5].draw(400,300,800,600)
 
     ENGINE.bimage[1].draw(150,300 -50*select)
 
