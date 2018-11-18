@@ -72,11 +72,8 @@ class Hero:
             self.fireList.append(new)
         else:
             for i in range(self.power):
-                new = Shot(self.x,self.y)
-                if self.power%2== 0:
-                    new.r = 90
-                else:
-                    new.r = 90-30 +(30/self.power)*i
+                new = Shot(self.x,self.y+20)
+                new.r = 90 +10*i -(self.power-1)*5
                 self.fireList.append(new)
 
 

@@ -77,7 +77,10 @@ def update():
     for e in ENGINE.object_list[1]:
         for h_b in hero.fireList:
             if ENGINE.is_crash(e, h_b) and e.dead == False:
-                e.attacked(hero.power)
+                if(HERO.hero_select == 0):
+                    e.attacked(hero.power)
+                else:
+                    e.attacked(1)
                 h_b.x = -100
                 break
     
