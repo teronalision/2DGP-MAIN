@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Sound"
   ],
-  "SelectedNode": "\\ENGINE.py",
+  "SelectedNode": "\\SELECT.py",
   "PreviewInSolutionExplorer": false
 }

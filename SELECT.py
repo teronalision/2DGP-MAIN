@@ -1,5 +1,6 @@
 from pico2d import *
 import ENGINE
+import AUDIO
 import STAGE
 import TITLE
 import HERO
@@ -20,10 +21,12 @@ def handle():
 
     for event in events:
         if(event.type == SDL_KEYDOWN):
-            if(event.key == SDLK_RIGHT and select < 1):
-                select +=1
-            elif(event.key == SDLK_LEFT and select > 0):
-                select -=1
+            if(event.key == SDLK_RIGHT):
+                select = (select+1) %2
+                AUDIO.play_se(0)
+            elif(event.key == SDLK_LEFT):
+                select = (select+1) %2
+                AUDIO.play_se(0)
             elif(event.key == SDLK_SPACE or event.key == SDLK_z):
                 HERO.hero_select = select
                 ENGINE.Change_state(STAGE)

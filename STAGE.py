@@ -67,6 +67,7 @@ def update():
         if ENGINE.is_crash(hero,obj):
             if hero.attacked == False and ENGINE.undead == False:
                 hero.attacked = True
+                AUDIO.play_se(1)
                 ENGINE.add_obj(ITEM.PowerUp(hero.x,hero.y),3)
             
                 if hero.life == 1:
