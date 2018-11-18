@@ -40,5 +40,14 @@ class PowerUp(Item):
 
 
     def effect(self, hero):
-        hero.power = min(hero.power+1, 10)
+        hero.power = min(hero.power+1, 8)
+        self.dead = True
+
+class LifeUp(Item):
+    def __init__(self, x, y):
+        Item.__init__(self, x, y)
+        self.image = 5
+
+    def effect(self, hero):
+        hero.life = min(hero.life+1, 6)
         self.dead = True

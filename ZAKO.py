@@ -72,7 +72,7 @@ class Zako:
 
 
     def attacked(self, damage):
-        self.hp -= 1#+ 0.1*damage
+        self.hp -= damage
         if(self.hp <=0):
             self.dead = True
 
