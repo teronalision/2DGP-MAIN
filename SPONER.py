@@ -17,7 +17,7 @@ class Sponer:
             if self.m == 0 and self.time >0.5:#저격탄
                 x, y = ENGINE.object_list[0][0].x-self.x, ENGINE.object_list[0][0].y-self.y
 
-                b = BULLET.Bullet(self.x, self.y,BULLET.BULL)
+                b = BULLET.Bullet(self.x, self.y,BULLET.CART)
                 b.order(1, math.atan2(x,y))
                 ENGINE.add_obj(b,2)
                 self.time = 0
@@ -29,7 +29,13 @@ class Sponer:
                     b.order(1,math.radians(i))
                     ENGINE.add_obj(b,2)
                     self.time = 0
-      
+           
+            elif self.m == 2 and self.time >0.25:#사방
+                for i in range(0,361,90):
+                    b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
+                    b.order(1,math.radians(i))
+                    ENGINE.add_obj(b,2)
+                    self.time = 0
             
 
 

@@ -103,7 +103,7 @@ def draw_stirge(mob):
 #몬스터 스포너
 FAIRY, JWRAITH, WRAITH, STIRGE, RUNE = range(5)
 #체력, 크기,속도, 탄스포너, 아이템, 그리기
-Monster_dic = {FAIRY:(1,20,1,0,None,draw_jwraith), JWRAITH:(1,20,2,0,None,draw_jwraith), WRAITH:(70,40,1,1,ITEM.PowerUp,draw_wraith),
+Monster_dic = {FAIRY:(1,20,1,0,None,draw_jwraith), JWRAITH:(1,20,2,0,None,draw_jwraith), WRAITH:(70,40,1,2,ITEM.PowerUp,draw_wraith),
               STIRGE:(1,20,2,0,None,draw_stirge) ,RUNE:(50,30,1,1,ITEM.PowerUp,draw_wraith)}
 
 class Monster_sponer:

@@ -2,7 +2,7 @@ from math import *
 from pico2d import *
 import ENGINE
 
-STAR, KNIFE, BULL = range(3)
+STAR, KNIFE, CART, BALL = range(4)
 
 class Bullet:
 
@@ -19,10 +19,13 @@ class Bullet:
         elif(type == STAR):
             self.size = 20
             self.box = ENGINE.CIRCLE
-        elif(type == BULL):
+        elif(type == CART):
             self.size = 10
             self.box = ENGINE.RECT
-
+        elif(type == BALL):
+            self.size = 15
+            self.box = ENGINE.CIRCLE
+        
 
     def order(self,v,r):
         self.v += v
@@ -48,6 +51,8 @@ class Bullet:
             ENGINE.bimage[2].clip_composite_draw(32,32*3,32,32,-self.r,'',self.x,self.y,self.size*2,self.size*2)
         elif(self.type == STAR):
             ENGINE.bimage[2].clip_composite_draw(32,256-32,32,32,self.d,'',self.x,self.y,self.size*2,self.size*2)
-        elif(self.type == BULL):
+        elif(self.type == CART):
             ENGINE.bimage[2].clip_composite_draw(32*5,32,32,32,-self.r,'',self.x,self.y,self.size*2,self.size*2)
+        elif(self.type == BALL):
+            ENGINE.bimage[4].clip_composite_draw(32*3,16+32*3,32,32,-self.r,'',self.x,self.y,self.size*2,self.size*2)
         
