@@ -31,7 +31,8 @@ def init():
               load_image('Image\etama6.png'), load_image('Image\etama2.png')]
     mimage = [load_image('Image\\jr_wraith.png'),load_image('Image\\wraith.png'),load_image('Image\\stirge.png')]
     background = [load_image('Image\\bg1.png'),load_image('Image\\bg2.png'),load_image('Image\\sky0.png'),
-                  load_image('Image\\sky1.jpg'),load_image('Image\\sky2.jpg'),load_image('Image\\bg3.png')]
+                  load_image('Image\\sky1.jpg'),load_image('Image\\sky2.jpg'),load_image('Image\\bg3.png'),
+                  load_image('Image\\cloud.png')]
 
     AUDIO.init()
     font = load_font('Image\Maplestory Bold.TTF',40)

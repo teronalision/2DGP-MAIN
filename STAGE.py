@@ -8,15 +8,16 @@ import ITEM
 import GAME_OVER
 
 hero = None
-
+cloud = None
 
 def start():
-    global hero
+    global hero,cloud
 
     GIMMICK.init()
     AUDIO.play_music(1)
     ENGINE.add_obj(HERO.Hero(250, 100),0)
     hero = ENGINE.object_list[0][0]
+    cloud = [0,0]
     
 
 def end():
@@ -44,9 +45,11 @@ def handle():
 
 
 def update():
+    global cloud
+    cloud[0] += ENGINE.frame_time
     #로직
     GIMMICK.run_stage()
-
+    
 
 
     #캐릭터 이동
@@ -97,7 +100,7 @@ def draw():
     clear_canvas()
     #BG
     ENGINE.background[3].clip_draw(0,int(ENGINE.frame_time),500,600,250,300)
-
+    ENGINE.background[6].clip_draw(0,0,800,300,250,100-cloud[0],500,200)
     #캐릭터
     hero.draw()
     #모든 객체
@@ -107,6 +110,7 @@ def draw():
 
     #UI
     ENGINE.background[0].draw(400,300)
+
     ENGINE.font.draw(510, 550,'Point', (255,255,255))
 
     for i in range(hero.life -1):
