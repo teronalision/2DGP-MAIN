@@ -21,7 +21,7 @@ class Sponer:
                 b = BULLET.Bullet(self.x, self.y,BULLET.CART)
                 b.order(1, math.atan2(x,y))
                 ENGINE.add_obj(b,2)
-                AUDIO.play_se(4)
+                #AUDIO.play_se(4)
                 self.time = 0
 
 

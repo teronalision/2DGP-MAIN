@@ -17,21 +17,28 @@ def init():
     for i in range(10):
         doing.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
         doing.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
-    doing += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(20,(ZAKO.FAIRY,400,600,ZAKO.D_400))]
+    doing += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(20,(ZAKO.FAIRY,400,600,ZAKO.D_400)),
+              (30,(ZAKO.WRAITH,250,600,ZAKO.D_400))]
 
 
     #보스
-    boss = [(0,(ZAKO.WRAITH,250,500,ZAKO.HIFEL))]
+    boss = [(35,ZAKO.HIFEL),
+            (40,ZAKO.HIFER)]
 
 
 def run_stage():
     global time, doing
     if len(doing) == 0:
-        doing = boss
-    if(len(boss) == 0):
-        return True
+        if(time > boss[0][0]):
+            ENGINE.object_list[1][0].moving = boss[0][1]
+            boss.pop
 
-    if time > doing[0][0]:
+
+
+        if(len(ENGINE.object_list[1]) == 0):
+            return True
+
+    elif time > doing[0][0]:
         a,b,c,d = doing[0][1]
         sponer.add_monster(a,b,c,d)
         doing.remove(doing[0])
