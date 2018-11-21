@@ -13,6 +13,11 @@ def init():
     se = [load_wav('Sound\se_select.wav'),load_wav('Sound\se_dead.wav')]
     select = -1
 
+    #
+    for m in musics:
+        m.play()
+        m.pause()
+
 
 def play_se(n):
     se[n].play()

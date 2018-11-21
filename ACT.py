@@ -3,7 +3,7 @@ import pico2d
 import TITLE
 
 
-pico2d.open_canvas()
+pico2d.open_canvas(800,600,True)
 
 ENGINE.init()
 ENGINE.Push_state(TITLE)
