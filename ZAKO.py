@@ -21,6 +21,12 @@ def set_moving(order, obj, speed):
             obj.vx, obj.vy = math.cos(r), math.sin(r)
         else:
             obj.vx = obj.vy = 0
+    elif(order == HIFER):
+        if(math.fabs(obj.x-400) > 1 or math.fabs(obj.y- 400) > 1):
+            r =math.atan2(400-obj.y,400-obj.x)
+            obj.vx, obj.vy = math.cos(r), math.sin(r)
+        else:
+            obj.vx = obj.vy = 0
 
     elif(order == D_400 and obj.y <= 400):
         obj.vy = 0
