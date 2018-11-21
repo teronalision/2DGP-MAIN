@@ -1,6 +1,7 @@
 import math
 import BULLET
 import ENGINE
+import AUDIO
 
 class Sponer:
 
@@ -20,6 +21,7 @@ class Sponer:
                 b = BULLET.Bullet(self.x, self.y,BULLET.CART)
                 b.order(1, math.atan2(x,y))
                 ENGINE.add_obj(b,2)
+                AUDIO.play_se(4)
                 self.time = 0
 
 
@@ -28,6 +30,7 @@ class Sponer:
                     b = BULLET.Bullet(self.x,self.y,BULLET.SUN)
                     b.order(1,math.radians(i))
                     ENGINE.add_obj(b,2)
+                    AUDIO.play_se(5)
                     self.time = 0
            
             elif self.m == 2 and self.time >0.25:#4방향
@@ -35,8 +38,9 @@ class Sponer:
                     b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
                     b.order(1,math.radians(i))
                     ENGINE.add_obj(b,2)
+                    AUDIO.play_se(3)
                     self.time = 0
-            
+                    
 
 
         self.time+= ENGINE.frame_time

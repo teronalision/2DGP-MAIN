@@ -51,7 +51,11 @@ def update():
     cloud[0] += ENGINE.frame_time
     cloud[1] += ENGINE.frame_time/3
     #로직
-    GIMMICK.run_stage()
+    if GIMMICK.run_stage():
+        AUDIO.play_se(2)
+        #스테이지 교체
+        ENGINE.Change_state(GAME_OVER)
+        return
     
 
 
