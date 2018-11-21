@@ -16,9 +16,9 @@ def set_moving(order, obj, speed):
             obj.vx = 1
 
     elif(order == HIFEL):
-        if(obj.x != 100 or obj.y != 400):
-            dx,dy = 100-obj.x,D_400-obj.y
-            obj.vx, obj.vy = dx/dx, dy/dx
+        if(math.fabs(obj.x-100) > 1 or math.fabs(obj.y- 400) > 1):
+            r =math.atan2(400-obj.y,100-obj.x)
+            obj.vx, obj.vy = math.cos(r), math.sin(r)
         else:
             obj.vx = obj.vy = 0
 
@@ -36,7 +36,7 @@ class Zako:
 
     def __init__(self, x, y):
         self.x, self.y = x,y
-        self.vx, self.vy = 0, 0
+        self.vx, self.vy = 0.0, 0.0
         self.hp = 0
         self.type = ENGINE.CIRCLE
         self.size = 20

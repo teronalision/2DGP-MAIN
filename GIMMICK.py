@@ -22,8 +22,8 @@ def init():
 
 
     #보스
-    boss = [(35,ZAKO.HIFEL),
-            (40,ZAKO.HIFER)]
+    boss = [(33,ZAKO.HIFEL),
+            (35,ZAKO.HIFER)]
 
 
 def run_stage():
