@@ -129,12 +129,14 @@ class Monster_sponer:
     def __init__(self):
         pass
 
-    def add_monster(self, name, x ,y, order):
+    def add_monster(self, name, x ,y, order, auto = True):
         m = Zako(x,y)
         m.hp, m.size,m.speed, sp, m.drap, m.draw_m = Monster_dic[name]
         m.sponer = SPONER.Sponer(x,y,sp)
         m.moving = order
         m.frame = ENGINE.randint(0,4)
 
-        ENGINE.add_obj(m,1)
-        pass
+        if(auto):
+            ENGINE.add_obj(m,1)
+        else:
+            return m

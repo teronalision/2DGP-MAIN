@@ -25,7 +25,7 @@ def init():
 
 
     #보스
-    b1 = sponer.add_monster(ZAKO.WRAITH, 250,600,None)
+    b1 = sponer.add_monster(ZAKO.WRAITH, 250,600,None,False)
     b2=None
     b3=None
     boss = [b1,b2,b3]
