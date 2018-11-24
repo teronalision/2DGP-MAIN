@@ -24,8 +24,9 @@ def init():
 
     #보스
     b1 = ZAKO.WRAITH
-    b2
-    b3
+    b1.x, b1.y = 250,600
+    b2=None
+    b3=None
     boss = [b1,b2,b3]
 
     move_boss = [(63,ZAKO.HIFEL),
@@ -35,19 +36,24 @@ def init():
 def run_stage():
     global time, doing, move_boss
 
-    if time <60:
+    #시간단축툴
+    if len(doing) == 0:
+        time=50
+
+
+    if time <60 and len(doing) != 0:
         if time > doing[0][0]:
             a,b,c,d = doing[0][1]
             sponer.add_monster(a,b,c,d)
             doing.remove(doing[0])
 
-    elif(time > boss[0][0]):
+    elif(time > move_boss[0][0]):
         boss[stage_num].moving = move_boss[0][1]
         move_boss.remove(move_boss[0])
 
 
 
-        if(len(ENGINE.object_list[1]) == 0):
+        if(boss[stage_num].hp <= 0):
             return True
 
     
