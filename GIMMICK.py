@@ -12,8 +12,8 @@ boss = None
 boss_idx = 0
 
 def init():
-    global time, doing, move_boss, boss_idx
-    time= 0
+    global time, doing, move_boss,boss, boss_idx
+    time= 30
     boss_idx = 0
     #시간, 실행내용
     doing = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
@@ -38,11 +38,17 @@ def run_stage():
     global time, doing, move_boss, boss,boss_idx
 
 
-    if time <60 and len(doing) != 0:
+    if len(doing) != 0:
         if time > doing[0][0]:
             a,b,c,d = doing[0][1]
             sponer.add_monster(a,b,c,d)
             doing.remove(doing[0])
+    elif(int(time) == 60):
+        if len(ENGINE.object_list[1])>0:
+            ENGINE.object_list[1].clear
+
+        ENGINE.add_obj(boss[stage_num],1)
+        time = 61
 
     elif(boss[stage_num].hp >0):
         if(time > move_boss[boss_idx][0]):
@@ -51,6 +57,7 @@ def run_stage():
         #끝나면 다시 처음부터
         if(len(move_boss) <= boss_idx):
             boss_idx = 0
+            time = 61
 
 
 
