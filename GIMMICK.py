@@ -25,8 +25,7 @@ def init():
 
 
     #보스
-    b1 = ZAKO.WRAITH
-    b1.x, b1.y = 250,600
+    b1 = sponer.add_monster(ZAKO.WRAITH, 250,600,None)
     b2=None
     b3=None
     boss = [b1,b2,b3]
@@ -51,7 +50,7 @@ def run_stage():
         
         #끝나면 다시 처음부터
         if(len(move_boss) <= boss_idx):
-            boss_idx = 1
+            boss_idx = 0
 
 
 
