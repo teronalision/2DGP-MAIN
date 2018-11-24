@@ -11,6 +11,7 @@ frame_time = 0.0
 
 run = True
 state_stack = []
+stage_num = 0
 
 #디버그 모드
 rect_mode = False

@@ -6,6 +6,7 @@ import HERO
 import ZAKO
 import ITEM
 import GAME_OVER
+import CLEARPAGE
 
 hero = None
 cloud = None
@@ -54,7 +55,7 @@ def update():
     if GIMMICK.run_stage():
         AUDIO.play_se(2)
         #스테이지 교체
-        ENGINE.Change_state(GAME_OVER)
+        ENGINE.Change_state(CLAERPAGE)
         return
     
 

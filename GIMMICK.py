@@ -2,7 +2,6 @@ import ENGINE
 import ZAKO
 
 time = 0.0
-stage_num = 0
 sponer = ZAKO.Monster_sponer()
 
 doing = []
@@ -47,12 +46,12 @@ def run_stage():
         if len(ENGINE.object_list[1])>0:
             ENGINE.object_list[1].clear
 
-        ENGINE.add_obj(boss[stage_num],1)
+        ENGINE.add_obj(boss[ENGINE.stage_num],1)
         time = 61
 
-    elif(boss[stage_num].hp >0):
+    elif(boss[ENGINE.stage_num].hp >0):
         if(time > move_boss[boss_idx][0]):
-            boss[stage_num].moving = move_boss[boss_idx][1]
+            boss[ENGINE.stage_num].moving = move_boss[boss_idx][1]
         
         #끝나면 다시 처음부터
         if(len(move_boss) <= boss_idx):
