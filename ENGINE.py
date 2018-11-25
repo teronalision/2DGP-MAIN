@@ -100,7 +100,11 @@ def del_obj():
 
     for i in range(len(object_list)):
         object_list[i].clear()
-            
+       
+def del_obj(num):
+    global object_list
+    object_list[num].clear()
+
 def yield_obj(i):
     for o in object_list[i]:
         yield o

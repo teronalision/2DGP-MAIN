@@ -52,6 +52,7 @@ def run_stage():
             doing.remove(doing[0])
 
     elif(snext == False):
+        ENGINE.del_obj(1)
         summon_boss()
         snext = True
 
