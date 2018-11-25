@@ -16,14 +16,18 @@ def init():
     time= 0
     boss_idx = 0
     #시간, 실행내용
-    field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
-             (7+(i*0.3),(ZAKO.STIRGE,500,600,ZAKO.LD)) for i in range(10)]
-    for i in range(10):
-        field_stage.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
-        field_stage.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
-    field_stage += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(20,(ZAKO.FAIRY,400,600,ZAKO.D_400)),
-                    (60,None)]
+    if(ENGINE.stage_num == 0):
+        field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
+                       (7+(i*0.3),(ZAKO.STIRGE,500,600,ZAKO.LD)) for i in range(10)]
+        for i in range(10):
+            field_stage.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
+            field_stage.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
+        field_stage += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(20,(ZAKO.FAIRY,400,600,ZAKO.D_400)),
+                        (60,None)]
 
+    elif(ENGINE.stage_num == 1):
+        pass
+        
 
     #보스
     if(ENGINE.stage_num == 0):
@@ -31,7 +35,10 @@ def init():
         boss_stage = [(0,ZAKO.HIFEL),
                       (10,ZAKO.HIFER),
                       (20,None)]
-
+    elif(ENGINE.stage_num == 1):
+        pass
+    else:
+        pass
 
     #
     doing = field_stage
