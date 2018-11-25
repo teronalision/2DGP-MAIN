@@ -4,23 +4,23 @@ import ZAKO
 time = 0.0
 sponer = ZAKO.Monster_sponer()
 
-doing = []
+field_stage = []
 
-move_boss = []
+boss_stage = []
 boss = None
 boss_idx = 0
 
 def init():
-    global time, doing, move_boss,boss, boss_idx
+    global time, field_stage, boss_stage,boss, boss_idx
     time= 30
     boss_idx = 0
     #시간, 실행내용
-    doing = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
+    field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
              (7+(i*0.3),(ZAKO.STIRGE,500,600,ZAKO.LD)) for i in range(10)]
     for i in range(10):
-        doing.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
-        doing.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
-    doing += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(20,(ZAKO.FAIRY,400,600,ZAKO.D_400))]
+        field_stage.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
+        field_stage.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
+    field_stage += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(20,(ZAKO.FAIRY,400,600,ZAKO.D_400))]
 
 
     #보스
@@ -29,19 +29,19 @@ def init():
     b3=None
     boss = [b1,b2,b3]
 
-    move_boss = [(63,ZAKO.HIFEL),
+    boss_stage = [(63,ZAKO.HIFEL),
                  (70,ZAKO.HIFER)]
 
 
 def run_stage():
-    global time, doing, move_boss, boss,boss_idx
+    global time, field_stage, boss_stage, boss,boss_idx
 
 
-    if len(doing) != 0:
-        if time > doing[0][0]:
-            a,b,c,d = doing[0][1]
+    if len(field_stage) != 0:
+        if time > field_stage[0][0]:
+            a,b,c,d = field_stage[0][1]
             sponer.add_monster(a,b,c,d)
-            doing.remove(doing[0])
+            field_stage.remove(field_stage[0])
     elif(int(time) == 60):
         if len(ENGINE.object_list[1])>0:
             ENGINE.object_list[1].clear
@@ -50,11 +50,11 @@ def run_stage():
         time = 61
 
     elif(boss[ENGINE.stage_num].hp >0):
-        if(time > move_boss[boss_idx][0]):
-            boss[ENGINE.stage_num].moving = move_boss[boss_idx][1]
+        if(time > boss_stage[boss_idx][0]):
+            boss[ENGINE.stage_num].moving = boss_stage[boss_idx][1]
         
         #끝나면 다시 처음부터
-        if(len(move_boss) <= boss_idx):
+        if(len(boss_stage) <= boss_idx):
             boss_idx = 0
             time = 61
 
