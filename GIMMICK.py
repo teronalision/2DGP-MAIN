@@ -4,14 +4,15 @@ import ZAKO
 time = 0.0
 sponer = ZAKO.Monster_sponer()
 
-field_stage = []
 
+doing = None
+field_stage = []
 boss_stage = []
 boss = None
 boss_idx = 0
 
 def init():
-    global time, field_stage, boss_stage,boss, boss_idx
+    global time, field_stage, boss_stage,boss, boss_idx, doing
     time= 30
     boss_idx = 0
     #시간, 실행내용
@@ -24,13 +25,14 @@ def init():
 
 
     #보스
-    b1 = sponer.add_monster(ZAKO.WRAITH, 250,600,None,False)
-    b2=None
-    b3=None
-    boss = [b1,b2,b3]
+    if(ENGINE.stage_num == 0):
+        boss = sponer.add_monster(ZAKO.WRAITH, 250,600,None,False)
+        boss_stage = [(63,ZAKO.HIFEL),
+                      (70,ZAKO.HIFER)]
 
-    boss_stage = [(63,ZAKO.HIFEL),
-                 (70,ZAKO.HIFER)]
+
+    #
+    doing = field_stage
 
 
 def run_stage():
@@ -46,12 +48,12 @@ def run_stage():
         if len(ENGINE.object_list[1])>0:
             ENGINE.object_list[1].clear
 
-        ENGINE.add_obj(boss[ENGINE.stage_num],1)
+        ENGINE.add_obj(boss,1)
         time = 61
 
-    elif(boss[ENGINE.stage_num].hp >0):
+    elif(boss.hp >0):
         if(time > boss_stage[boss_idx][0]):
-            boss[ENGINE.stage_num].moving = boss_stage[boss_idx][1]
+            boss.moving = boss_stage[boss_idx][1]
         
         #끝나면 다시 처음부터
         if(len(boss_stage) <= boss_idx):
@@ -66,3 +68,14 @@ def run_stage():
 
     time += ENGINE.frame_time
     return False
+
+
+def play_order(tuple):
+    if(len(tuple) == 4):
+         a,b,c,d = tuple
+         sponer.add_monster(a,b,c,d)
+
+    else:
+         boss.moving = boss_stage[boss_idx][1]
+
+    pass

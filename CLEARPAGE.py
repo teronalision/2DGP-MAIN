@@ -22,7 +22,7 @@ def handle():
         if(e.type == SDL_QUIT):
             ENGINE.Quit()
         elif(e.type == SDL_KEYDOWN and time > 3):
-            ENGINE.Change_state(TITLE)
+            ENGINE.Change_state(STAGE)
     pass
 
 
