@@ -35,10 +35,10 @@ def update():
 def draw():
     clear_canvas()
 
-    ENGINE.font.draw(400 -50, 350,'스테이지 클리어 ! !', (0,0,0))
+    ENGINE.font.draw(400 -150, 350,'스테이지 클리어 ! !', (0,0,0))
 
     if time > 3:
-        ENGINE.font.draw(400 -100, 200,'Press Any Button', (0,0,0))
+        ENGINE.font.draw(400 -200, 200,'Press Any Button', (0,0,0))
 
     update_canvas()
     pass

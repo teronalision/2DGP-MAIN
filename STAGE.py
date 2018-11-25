@@ -55,7 +55,7 @@ def update():
     if GIMMICK.run_stage():
         AUDIO.play_se(2)
         #스테이지 교체
-        ENGINE.Change_state(CLAERPAGE)
+        ENGINE.Change_state(CLEARPAGE)
         return
     
 
