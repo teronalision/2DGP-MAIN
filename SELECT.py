@@ -30,7 +30,7 @@ def handle():
             elif(event.key == SDLK_SPACE or event.key == SDLK_z):
                 HERO.hero_select = select
                 ENGINE.Change_state(STAGE)
-            elif(event.key == SDLK_ESCAPE):
+            elif(event.key == SDLK_ESCAPE or event.key == SDLK_x):
                 ENGINE.Pop_state()
     pass
 

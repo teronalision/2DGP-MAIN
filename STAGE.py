@@ -19,10 +19,12 @@ def start():
 
     GIMMICK.init()
     AUDIO.play_music(1)
-    ENGINE.add_obj(HERO.Hero(250, 100),0)
-    hero = ENGINE.object_list[0][0]
+    if hero == None:
+        ENGINE.add_obj(HERO.Hero(250, 100),0)
+        hero = ENGINE.object_list[0][0]
+        point = 0
     cloud = [0.0,0.0]
-    point = 0
+    
     
 
 def end():

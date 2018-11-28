@@ -39,7 +39,7 @@ def handle():
                 else:
                     AUDIO.se_volume = min(100, AUDIO.se_volume+5)
                     AUDIO.set_SEvolume()
-            elif(event.key == SDLK_ESCAPE):
+            elif(event.key == SDLK_ESCAPE or event.key == SDLK_x):
                 ENGINE.Pop_state()
     pass
 
