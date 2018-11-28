@@ -6,7 +6,7 @@ from pico2d import *
 frame_per_round = 5
 
 U, D, L, R, LU, LD, RU, RD ,PATROL,D_400,HIFEL,HIFER = range(12)
-Moving_dic = {U:(0,1), D:(0,-1), L:(-1,0), R:(1,0), LU:(-1,1), LD:(-1,-1), RU:(1,1), RD:(1,-1) ,PATROL:(0,0),D_400:(0,-1),HIFEL:(-1,0),HIFER:(1,0)}
+Moving_dic = {None:(0,0),U:(0,1), D:(0,-1), L:(-1,0), R:(1,0), LU:(-1,1), LD:(-1,-1), RU:(1,1), RD:(1,-1) ,PATROL:(0,0),D_400:(0,-1),HIFEL:(-1,0),HIFER:(1,0)}
 
 def set_moving(order, obj, speed):
     if(order == PATROL):
@@ -123,11 +123,12 @@ def draw_stirge(mob):
 
 
 #몬스터 스포너
-FAIRY, JWRAITH, WRAITH, STIRGE, RUNE, D_WRAITH = range(6)
+FAIRY, JWRAITH, WRAITH, STIRGE, RUNE, D_WRAITH, WING = range(7)
 #체력, 크기,속도, 탄스포너, 아이템, 그리기
 Monster_dic = {FAIRY:(50,20,1,1,None,draw_jwraith), JWRAITH:(1,20,2,0,None,draw_jwraith),
                WRAITH:(100,70,1,2,ITEM.LifeUp,draw_wraith), STIRGE:(1,20,2,0,None,draw_stirge),
-               RUNE:(50,30,1,2,ITEM.PowerUp,draw_wraith), D_WRAITH:(100,70,1,3,ITEM.LifeUp,draw_dwraith)}
+               RUNE:(50,30,1,2,ITEM.PowerUp,draw_wraith), D_WRAITH:(100,70,1,3,ITEM.LifeUp,draw_dwraith),
+               WING:(1,0,0,4,None,draw_jwraith)}
 
 class Monster_sponer:
 

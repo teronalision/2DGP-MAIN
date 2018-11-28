@@ -34,7 +34,7 @@ def init():
     if(ENGINE.stage_num == 0):
         boss = sponer.add_monster(ZAKO.WRAITH, 250,600,None,False)
         boss_stage = [(0,ZAKO.HIFEL),
-                      (5,ZAKO.HIFER),
+                      (5,ZAKO.HIFER),(5,(ZAKO.WING,100,400,None)),
                       (10,None)]
     elif(ENGINE.stage_num == 1):
         boss = sponer.add_monster(ZAKO.D_WRAITH, 250,600,None,False)
@@ -77,16 +77,17 @@ def run_stage():
     return False
 
 
-def play_order(tuple):
+def play_order(t):
     global boss
-    if snext == False:
-        if tuple == None:
-            return
-        a,b,c,d = tuple
+    if t == None:
+        return
+
+    if type(t) == tuple:
+        a,b,c,d = t
         sponer.add_monster(a,b,c,d)
 
     else:
-        boss.moving = tuple
+        boss.moving = t
 
 
 def summon_boss():
