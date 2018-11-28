@@ -26,7 +26,7 @@ class Sponer:
 
 
             elif self.m == 1 and self.time > 1:#페어리
-                for i in range(0,360,10):
+                for i in range(0,360,15):
                     b = BULLET.Bullet(self.x,self.y,BULLET.SUN)
                     b.order(1,math.radians(i))
                     ENGINE.add_obj(b,2)
@@ -36,7 +36,7 @@ class Sponer:
             elif self.m == 2 and self.time >0.25:#4방향
                 for i in range(0,360,90):
                     b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
-                    b.order(1,math.radians(i))
+                    b.order(1,math.radians(i+self.time))
                     ENGINE.add_obj(b,2)
                     AUDIO.play_se(3)
                     self.time = 0

@@ -11,6 +11,8 @@ import CLEARPAGE
 hero = None
 cloud = None
 point = 0
+stageclear = 5.0
+
 
 def start():
     global hero,cloud,point
@@ -24,11 +26,10 @@ def start():
     
 
 def end():
-    global hero
+
 
     AUDIO.stop_music()
     ENGINE.del_obj()
-    del(hero)
     time = 0.0
     step = 0
     pass
@@ -42,21 +43,30 @@ def handle():
             ENGINE.Pop_state()
             ENGINE.state_stack[-1].start()
             break
+        elif(e.type == SDL_KEYDOWN and e.key == SDLK_F1):
+            if ENGINE.undead:
+                ENGINE.undead = False
+            else:
+                ENGINE.undead = True
+        elif(e.type == SDL_KEYDOWN and e.key == SDLK_F2):
+            GIMMICK.time = 60
 
         hero.handle(e)
 
 
 
 def update():
-    global cloud, point
+    global cloud, point, stageclear
     cloud[0] += ENGINE.frame_time
     cloud[1] += ENGINE.frame_time/3
     #로직
     if GIMMICK.run_stage():
-        AUDIO.play_se(2)
-        #스테이지 교체
-        ENGINE.Change_state(CLEARPAGE)
-        return
+        stageclear -= ENGINE.frame_time
+        if stageclear <0:
+            AUDIO.play_se(2)
+            #스테이지 교체
+            ENGINE.Change_state(CLEARPAGE)
+            return
     
 
 

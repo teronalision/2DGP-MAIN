@@ -26,6 +26,7 @@ def init():
                         (60,None)]
 
     elif(ENGINE.stage_num == 1):
+        field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]
         pass
         
 

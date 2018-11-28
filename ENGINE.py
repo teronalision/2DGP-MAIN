@@ -95,15 +95,15 @@ object_list = [[],[],[],[],[]]   #0아군 1적 2총알 3아이템 4장식
 def add_obj(obj, i):
     object_list[i].append(obj)
 
-def del_obj():
+def del_obj(num = -1):
     global object_list
 
-    for i in range(len(object_list)):
-        object_list[i].clear()
+    if(num == -1):
+        for i in range(len(object_list)):
+            object_list[i].clear()
        
-def del_obj(num):
-    global object_list
-    object_list[num].clear()
+    else:
+        object_list[num].clear()
 
 def yield_obj(i):
     for o in object_list[i]:
