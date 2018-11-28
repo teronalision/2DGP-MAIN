@@ -12,9 +12,8 @@ boss = None
 snext = False
 
 def init():
-    global time, field_stage, boss_stage,boss, boss_idx, doing
+    global time, field_stage, boss_stage,boss, doing
     time= 0
-    boss_idx = 0
     #시간, 실행내용
     if(ENGINE.stage_num == 0):
         field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
@@ -37,6 +36,10 @@ def init():
                       (10,ZAKO.HIFER),
                       (20,None)]
     elif(ENGINE.stage_num == 1):
+        boss = sponer.add_monster(ZAKO.D_WRAITH, 250,600,None,False)
+        boss_stage = [(0,ZAKO.HIFEL),
+                      (10,ZAKO.HIFER),
+                      (20,None)]
         pass
     else:
         pass

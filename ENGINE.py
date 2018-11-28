@@ -31,7 +31,7 @@ def init():
     bimage = [load_image('Image\dumy_b.png'), load_image('Image\dumy_c.png'),
               load_image('Image\etama6.png'), load_image('Image\etama2.png'),
               load_image('Image\etama.png'), load_image('Image\\UI.png')]
-    mimage = [load_image('Image\\jr_wraith.png'),load_image('Image\\wraith.png'),load_image('Image\\stirge.png')]
+    mimage = [load_image('Image\\jr_wraith.png'),load_image('Image\\wraith.png'),load_image('Image\\stirge.png'),load_image('Image\\d_wraith.png')]
     background = [load_image('Image\\bg1.png'),load_image('Image\\bg2.png'),load_image('Image\\sky0.png'),
                   load_image('Image\\sky1.jpg'),load_image('Image\\sky2.jpg'),load_image('Image\\bg3.png'),
                   load_image('Image\\cloud.png')]
@@ -99,7 +99,7 @@ def del_obj(num = -1):
     global object_list
 
     if(num == -1):
-        for i in range(len(object_list)):
+        for i in range(1,len(object_list)):
             object_list[i].clear()
        
     else:

@@ -15,7 +15,7 @@ stageclear = 5.0
 
 
 def start():
-    global hero,cloud,point
+    global hero,cloud,point,stageclear
 
     GIMMICK.init()
     AUDIO.play_music(1)
@@ -24,6 +24,7 @@ def start():
         hero = ENGINE.object_list[0][0]
         point = 0
     cloud = [0.0,0.0]
+    stageclear = 5.0
     
     
 
