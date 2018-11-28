@@ -127,7 +127,7 @@ FAIRY, JWRAITH, WRAITH, STIRGE, RUNE, D_WRAITH = range(6)
 #체력, 크기,속도, 탄스포너, 아이템, 그리기
 Monster_dic = {FAIRY:(50,20,1,1,None,draw_jwraith), JWRAITH:(1,20,2,0,None,draw_jwraith),
                WRAITH:(100,70,1,2,ITEM.LifeUp,draw_wraith), STIRGE:(1,20,2,0,None,draw_stirge),
-               RUNE:(50,30,1,2,ITEM.PowerUp,draw_wraith), D_WRAITH:(100,70,1,2,ITEM.LifeUp,draw_dwraith)}
+               RUNE:(50,30,1,2,ITEM.PowerUp,draw_wraith), D_WRAITH:(100,70,1,3,ITEM.LifeUp,draw_dwraith)}
 
 class Monster_sponer:
 
