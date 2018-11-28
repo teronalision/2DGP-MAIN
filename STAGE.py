@@ -65,6 +65,7 @@ def update():
     #로직
     if GIMMICK.run_stage():
         stageclear -= ENGINE.frame_time
+        ENGINE.del_obj();
         if stageclear <0:
             AUDIO.play_se(2)
             #스테이지 교체

@@ -102,9 +102,13 @@ class Zako:
 #몬스터 드로우
 def draw_jwraith(mob):
     d = ''
+    size= 20
+    if(mob.size != 0):
+        size = mob.size
+
     if(mob.vx >0):
         d+='h'
-    ENGINE.mimage[0].clip_composite_draw(int(mob.frame)*50,60,50,50,0,d,mob.x,mob.y,mob.size*2,mob.size*2)
+    ENGINE.mimage[0].clip_composite_draw(int(mob.frame)*50,60,50,50,0,d,mob.x,mob.y,size*2,size*2)
 def draw_wraith(mob):
     d = ''
     if(mob.vx >0):

@@ -50,7 +50,7 @@ class Sponer:
                     self.count = 0
                     
             elif self.m == 4 and self.count > 0.1:
-                for i in range(3):
+                for i in range(2):
                     b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
                     b.order(1,math.radians(ENGINE.randint(0,360)))
                     ENGINE.add_obj(b,2)
