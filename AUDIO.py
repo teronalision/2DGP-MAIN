@@ -9,7 +9,7 @@ se_volume = 100
 def init():
     global musics, se, select
 
-    musics = [load_music('Sound\OP.mp3'),load_music('Sound\\1st.mp3')]
+    musics = [load_music('Sound\OP.mp3'),load_music('Sound\\1st.mp3'),load_music('Sound\\2nd.mp3'),load_music('Sound\\3rd.mp3')]
     se = [load_wav('Sound\se_select.wav'),load_wav('Sound\se_dead.wav'),load_wav('Sound\se_cardget.wav'),
           load_wav('Sound\se_tan00.wav'),load_wav('Sound\se_tan01.wav'),load_wav('Sound\se_tan02.wav')]
     select = -1

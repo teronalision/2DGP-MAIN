@@ -45,7 +45,7 @@ def draw():
         ENGINE.background[7].draw(400,300);
         ENGINE.font.draw(400 -150, 350,'스테이지 클리어 ! !', (255,255,255))
         if time > 3:
-            ENGINE.font.draw(400 -200, 200,'Press Any Button', (255,255,255))
+            ENGINE.font.draw(400 -170, 200,'Press Any Button', (255,255,255))
 
 
     else:

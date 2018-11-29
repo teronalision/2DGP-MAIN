@@ -18,7 +18,7 @@ def start():
     global hero,cloud,point,stageclear
 
     GIMMICK.init()
-    AUDIO.play_music(1)
+    AUDIO.play_music(ENGINE.stage_num+1)
     if hero == None:
         ENGINE.add_obj(HERO.Hero(250, 100),0)
         hero = ENGINE.object_list[0][0]
