@@ -38,14 +38,17 @@ def update():
 
 def draw():
     clear_canvas()
+
     if( ENGINE.stage_num <3):
-        ENGINE.font.draw(400 -150, 350,'스테이지 클리어 ! !', (0,0,0))
+        ENGINE.background[7].draw(400,300);
+        ENGINE.font.draw(400 -150, 350,'스테이지 클리어 ! !', (255,255,255))
         if time > 3:
-            ENGINE.font.draw(400 -200, 200,'Press Any Button', (0,0,0))
+            ENGINE.font.draw(400 -200, 200,'Press Any Button', (255,255,255))
 
 
     else:
-        ENGINE.font.draw(300, 350,'! ! YOU WIN ! !', (0,0,0))
+        ENGINE.background[8].draw(400,300);
+        ENGINE.font.draw(300, 350,'! ! YOU WIN ! !', (255,255,255))
 
     update_canvas()
     pass
