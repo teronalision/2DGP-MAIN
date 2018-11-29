@@ -117,7 +117,7 @@ def all_obj():
 
 
 #충돌박스
-CIRCLE, SQUARE, RECT = range(0,3)
+CIRCLE, SQUARE, RECT = range(3)
 
 def is_circle_crash(A,B):
     x , y = A.x - B.x, A.y - B.y
@@ -139,15 +139,16 @@ def is_crash(A, B):
     
 
 
-    if (A.type == CIRCLE and B.type == CIRCLE) and is_circle_crash(A,B):
-        return True
+    if (A.type == CIRCLE and B.type == CIRCLE):
+        if is_circle_crash(A,B):
+            return True
     elif (A.type == CIRCLE and B.type == SQUARE):
         p1,p2,p3,p4 = (B.x-B.size,B.y-B.size),(B.x+B.size,B.y-B.size),(B.x-B.size,B.y+B.size),(B.x+B.size,B.y+B.size)
         if crash_p2c(A,p1) or crash_p2c(A,p2) or crash_p2c(A,p3) or crash_p2c(A,p4):
             return True
     elif (A.type == CIRCLE and B.type == RECT):
         dx, dy = B.size*(math.sin(B.r))/2, B.size*(math.cos(B.r))
-        p1,p2,p3,p4 = (B.x -dx,B.y), (B.x +dx,B.y), (B.x,B.y -dy), (B.x,B.y +dy)
+        p1,p2,p3,p4 = (B.x -dx,B.y -dy), (B.x +dx,B.y -dy), (B.x -dx,B.y +dy), (B.x +dx,B.y +dy)
         if crash_p2c(A,p1) or crash_p2c(A,p2) or crash_p2c(A,p3) or crash_p2c(A,p4):
             return True
 

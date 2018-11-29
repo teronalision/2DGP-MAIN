@@ -20,7 +20,7 @@ class Sponer:
                 x, y = ENGINE.object_list[0][0].x-self.x, ENGINE.object_list[0][0].y-self.y
 
                 b = BULLET.Bullet(self.x, self.y,BULLET.CART)
-                b.order(1, math.atan2(x,y))
+                b.order(1, -math.atan2(x,y))
                 ENGINE.add_obj(b,2)
                 #AUDIO.play_se(4)
                 self.count = 0
