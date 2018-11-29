@@ -52,7 +52,7 @@ def handle():
             else:
                 ENGINE.undead = True
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_F2):
-            GIMMICK.time = 60
+            GIMMICK.time = 56
 
         hero.handle(e)
 

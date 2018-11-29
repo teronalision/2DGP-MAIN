@@ -1,5 +1,6 @@
 import ENGINE
 import ZAKO
+import DECO
 
 time = 0.0
 sponer = ZAKO.Monster_sponer()
@@ -23,7 +24,7 @@ def init():
             field_stage.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
             field_stage.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
         field_stage += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(20,(ZAKO.FAIRY,400,600,ZAKO.D_400)),
-                        (60,None)]
+                        (56,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(60,None)]
 
     elif(ENGINE.stage_num == 1):
         field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]
@@ -83,9 +84,14 @@ def play_order(t):
         return
 
     if type(t) == tuple:
-        a,b,c,d = t
-        sponer.add_monster(a,b,c,d)
-
+        if len(t) == 4:
+            a,b,c,d = t
+            sponer.add_monster(a,b,c,d)
+        elif len(t) == 2:
+            dec = t[0]
+            dec.timer =0
+            ENGINE.add_obj(dec,4)
+   
     else:
         boss.moving = t
 
