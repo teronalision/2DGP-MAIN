@@ -11,9 +11,10 @@ Moving_dic = {None:(0,0),U:(0,1), D:(0,-1), L:(-1,0), R:(1,0), LU:(-1,1), LD:(-1
               PATROL:(0,0),D_400:(0,-1),HIFEL:(-1,0),HIFER:(1,0),SPINE:(0,0)}
 
 #몬스터
-FAIRY, JWRAITH, WRAITH, STIRGE, RUNE, D_WRAITH, WING = range(7)
+FAIRY, JWRAITH, WRAITH, STIRGE, RUNE, D_WRAITH, WING, WITCH = range(8)
 #그리기
-drawing_dic = {FAIRY:(4,4,64,64), JWRAITH:(0,5,50,50), WRAITH:(1,5,75,70), STIRGE:(2,2,46,46), D_WRAITH:(3,5,75,70), WING:(0,5,50,50)}
+drawing_dic = {FAIRY:(4,4,64,64), JWRAITH:(0,5,50,50), WRAITH:(1,5,75,70), STIRGE:(2,2,46,46), D_WRAITH:(3,5,75,70),
+               WING:(0,5,50,50), WITCH:(5,3,107,75)}
 
 def set_moving(obj):
     order = obj.moving
@@ -119,8 +120,8 @@ class Zako:
 #체력, 크기,속도, 탄스포너, 아이템
 Monster_dic = {FAIRY:(50,20,1,1,None), JWRAITH:(50,20,2,0,None),
                WRAITH:(500,70,1,2,ITEM.LifeUp), STIRGE:(1,20,2,0,None),
-               RUNE:(50,30,1,2,ITEM.PowerUp), D_WRAITH:(1000,70,1,3,ITEM.LifeUp),
-               WING:(30,20,0,4,ITEM.PowerUp)}
+               RUNE:(50,30,1,2,ITEM.PowerUp), D_WRAITH:(700,70,1,3,ITEM.LifeUp),
+               WING:(30,20,0,4,ITEM.PowerUp),WITCH:(700,60,2,1,None)}
 
 class Monster_sponer:
 

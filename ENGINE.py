@@ -33,7 +33,7 @@ def init():
               load_image('Image\etama.png'), load_image('Image\\UI.png'),
               load_image('Image\\warning.png')]
     mimage = [load_image('Image\\jr_wraith.png'),load_image('Image\\wraith.png'),load_image('Image\\stirge.png'),
-              load_image('Image\\d_wraith.png'),load_image('Image\\fairy.png')]
+              load_image('Image\\d_wraith.png'),load_image('Image\\fairy.png'),load_image('Image\\witch.png')]
     background = [load_image('Image\\bg1.png'),load_image('Image\\bg2.png'),load_image('Image\\sky0.png'),
                   load_image('Image\\sky1.jpg'),load_image('Image\\sky2.jpg'),load_image('Image\\bg3.png'),
                   load_image('Image\\cloud.png'),load_image('Image\\clear0.jpg'),load_image('Image\\clear1.jpg')]

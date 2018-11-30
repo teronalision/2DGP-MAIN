@@ -47,9 +47,10 @@ def init():
         boss_stage = [(0,ZAKO.D_400)]+[
                       (5+(i/2),(ZAKO.JWRAITH,150,400,ZAKO.SPINE)) for i in range(6)]+[
                       (60,None)]
-        pass
     else:
-        pass
+        boss = sponer.add_monster(ZAKO.WITCH,300,550,None,False)
+        boss_stage = [(0,ZAKO.HIFEL),(6,ZAKO.RD),(8,ZAKO.HIFER),(15,ZAKO.LD),
+                      (17,None)]
 
     #
     doing = field_stage

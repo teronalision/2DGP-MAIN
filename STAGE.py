@@ -26,7 +26,12 @@ def start():
     else:
         hero.x , hero.y = 250, 100
         hero.vx , hero.vy = 0, 0
-    cloud = [0.0,0.0]
+    if(ENGINE.stage_num == 0):
+        cloud = [0.0,0.0]
+    elif(ENGINE.stage_num == 1):
+        cloud = [50.0,200.0]
+    else:
+        cloud = [100.0,300.0]
     stageclear = 5.0
     
     
