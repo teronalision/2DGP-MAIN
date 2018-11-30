@@ -23,6 +23,9 @@ def start():
         ENGINE.add_obj(HERO.Hero(250, 100),0)
         hero = ENGINE.object_list[0][0]
         point = 0
+    else:
+        hero.x , hero.y = 250, 100
+        hero.vx , hero.vy = 0, 0
     cloud = [0.0,0.0]
     stageclear = 5.0
     
@@ -53,6 +56,8 @@ def handle():
                 ENGINE.undead = True
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_F2):
             GIMMICK.time = 56
+        elif(e.type == SDL_KEYDOWN and e.key == SDLK_F3):
+            ENGINE.Change_state(CLEARPAGE)
 
         hero.handle(e)
 
@@ -71,7 +76,6 @@ def update():
             #스테이지 교체
             ENGINE.Change_state(CLEARPAGE)
             return
-    
 
 
     #캐릭터 이동

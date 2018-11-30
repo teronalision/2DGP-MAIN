@@ -23,7 +23,7 @@ class Bullet:
             self.size = 10
             self.type = ENGINE.RECT
         elif(type == BALL):
-            self.size = 16
+            self.size = 10
             self.type = ENGINE.CIRCLE
         elif(type == SUN):
             self.size = 16

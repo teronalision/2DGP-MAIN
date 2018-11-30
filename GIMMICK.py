@@ -31,7 +31,8 @@ def init():
                         (56,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(60,None)]
 
     elif(ENGINE.stage_num == 1):
-        field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]
+        field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
+                       (46,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(52,None)]
         pass
         
 
@@ -43,9 +44,9 @@ def init():
                       (10,(ZAKO.WING,400,400,None))]
     elif(ENGINE.stage_num == 1):
         boss = sponer.add_monster(ZAKO.D_WRAITH, 250,600,None,False)
-        boss_stage = [(0,ZAKO.HIFEL),
-                      (5,ZAKO.HIFER),
-                      (10,None)]
+        boss_stage = [(0,ZAKO.D_400)]+[
+                      (5+(i/2),(ZAKO.JWRAITH,150,400,ZAKO.SPINE)) for i in range(6)]+[
+                      (60,None)]
         pass
     else:
         pass

@@ -33,9 +33,9 @@ def update():
 
 def draw():
     clear_canvas()
-
-    ENGINE.font.draw(400 -30, 350,'게임 오버', (0,0,0))
-    ENGINE.font.draw(400 -100, 200,'Press Any Button', (0,0,0))
+    ENGINE.background[7].draw(400,300);
+    ENGINE.font.draw(400 -60, 350,'게임 오버', (0,0,0))
+    ENGINE.font.draw(400 -250, 200,'Press Any Button', (0,0,0))
 
     update_canvas()
     pass
