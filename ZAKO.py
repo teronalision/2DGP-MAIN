@@ -5,8 +5,14 @@ from pico2d import *
 
 frame_per_round = 5
 
+#이동
 U, D, L, R, LU, LD, RU, RD ,PATROL,D_400,HIFEL,HIFER = range(12)
 Moving_dic = {None:(0,0),U:(0,1), D:(0,-1), L:(-1,0), R:(1,0), LU:(-1,1), LD:(-1,-1), RU:(1,1), RD:(1,-1) ,PATROL:(0,0),D_400:(0,-1),HIFEL:(-1,0),HIFER:(1,0)}
+
+#몬스터
+FAIRY, JWRAITH, WRAITH, STIRGE, RUNE, D_WRAITH, WING = range(7)
+#그리기
+drawing_dic = {FAIRY:(4,4,64,64), JWRAITH:(0,5,50,50), WRAITH:(1,5,75,70), STIRGE:(2,2,46,46), D_WRAITH:(3,5,75,70), WING:(0,5,50,50)}
 
 def set_moving(order, obj, speed):
     if(order == PATROL):
@@ -45,11 +51,11 @@ class Zako:
         self.vx, self.vy = 0.0, 0.0
         self.hp = 0
         self.type = ENGINE.CIRCLE
+        self.name = None
         self.size = 20
         self.point = 5
         self.moving = None
         self.speed = 1
-        self.draw_m = None
         self.drap = None
         self.dead = False
         self.sponer = None
@@ -77,8 +83,12 @@ class Zako:
 
 
     def draw(self):
-        if self.dead == False and self.draw_m != None:
-           self.draw_m(self)
+        if self.dead == False:
+            num, f, x, y =drawing_dic[self.name]
+            d = ''
+            if(self.vx >0):
+                d+='h'
+            ENGINE.mimage[num].clip_composite_draw(int(self.frame%f)*x,0,x,y,0,d,self.x,self.y,self.size*2,self.size*2)
         
         if(ENGINE.rect_mode):
             draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
@@ -99,40 +109,11 @@ class Zako:
 
 
 
-#몬스터 드로우
-def draw_jwraith(mob):
-    d = ''
-    size= 20
-    if(mob.size != 0):
-        size = mob.size
-
-    if(mob.vx >0):
-        d+='h'
-    ENGINE.mimage[0].clip_composite_draw(int(mob.frame)*50,60,50,50,0,d,mob.x,mob.y,size*2,size*2)
-def draw_wraith(mob):
-    d = ''
-    if(mob.vx >0):
-        d+='h'
-    ENGINE.mimage[1].clip_composite_draw(int(mob.frame)*75,0,75,70,0,d,mob.x,mob.y,mob.size*2,mob.size*2)
-def draw_dwraith(mob):
-    d = ''
-    if(mob.vx >0):
-        d+='h'
-    ENGINE.mimage[3].clip_composite_draw(int(mob.frame)*75,0,75,70,0,d,mob.x,mob.y,mob.size*2,mob.size*2)
-def draw_stirge(mob):
-    d = ''
-    if(mob.vx >0):
-        d+='h'
-    ENGINE.mimage[2].clip_composite_draw(int(mob.frame%2)*46,0,46,46,0,d,mob.x,mob.y,mob.size*2,mob.size*2)
-
-
-#몬스터 스포너
-FAIRY, JWRAITH, WRAITH, STIRGE, RUNE, D_WRAITH, WING = range(7)
-#체력, 크기,속도, 탄스포너, 아이템, 그리기
-Monster_dic = {FAIRY:(50,20,1,1,None,draw_jwraith), JWRAITH:(1,20,2,0,None,draw_jwraith),
-               WRAITH:(100,70,1,2,ITEM.LifeUp,draw_wraith), STIRGE:(1,20,2,0,None,draw_stirge),
-               RUNE:(50,30,1,2,ITEM.PowerUp,draw_wraith), D_WRAITH:(100,70,1,3,ITEM.LifeUp,draw_dwraith),
-               WING:(1,0,0,4,None,draw_jwraith)}
+#체력, 크기,속도, 탄스포너, 아이템
+Monster_dic = {FAIRY:(50,20,1,1,None), JWRAITH:(1,20,2,0,None),
+               WRAITH:(100,70,1,2,ITEM.LifeUp), STIRGE:(1,20,2,0,None),
+               RUNE:(50,30,1,2,ITEM.PowerUp), D_WRAITH:(100,70,1,3,ITEM.LifeUp),
+               WING:(1,0,0,4,None)}
 
 class Monster_sponer:
 
@@ -141,7 +122,8 @@ class Monster_sponer:
 
     def add_monster(self, name, x ,y, order, auto = True):
         m = Zako(x,y)
-        m.hp, m.size,m.speed, sp, m.drap, m.draw_m = Monster_dic[name]
+        m.name = name
+        m.hp, m.size,m.speed, sp, m.drap = Monster_dic[name]
         m.sponer = SPONER.Sponer(x,y,sp)
         m.moving = order
         m.frame = ENGINE.randint(0,4)
