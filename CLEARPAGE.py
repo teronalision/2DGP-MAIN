@@ -14,6 +14,7 @@ def start():
 def end():
     if ENGINE.stage_num == 3:
         ENGINE.stage_num = 0
+        ENGINE.del_obj()
     pass
 
 

@@ -49,7 +49,7 @@ class Hero:
         self.x, self.y = x, y
         self.vx, self.vy = 0, 0 
         self.type = ENGINE.CIRCLE
-        self.size = 10
+        self.size = 7
         if hero_select == 0:
             self.speed = 1.5 * ENGINE.p_per_meter
         else:
@@ -307,8 +307,6 @@ class DeadState:
         else:
             ENGINE.hero_image[hero_select].opacify(0.5)
         ENGINE.hero_image[hero_select].clip_draw(32*int(hero.frame),256-48,32,48,hero.x,hero.y)
-        #임시
-        ENGINE.font.draw(10, 15,'리스폰', (0,0,0))
 
 
 

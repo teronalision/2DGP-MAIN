@@ -6,6 +6,7 @@ time = 0.0
 
 
 def start():
+    ENGINE.del_obj()
     pass
 
 

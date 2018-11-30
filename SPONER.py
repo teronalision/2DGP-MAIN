@@ -34,7 +34,7 @@ class Sponer:
                     AUDIO.play_se(5)
                     self.count = 0
            
-            elif self.m == 2 and self.count >0.25:#4방향
+            elif self.m == 2 and self.count >0.7:#4방향
                 for i in range(0,360,90):
                     b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
                     b.order(1,math.radians(i))
@@ -42,14 +42,14 @@ class Sponer:
                     AUDIO.play_se(3)
                     self.count = 0
 
-            elif self.m == 3 and self.count >0.33:#회오리
+            elif self.m == 3 and self.count >0.7:#회오리
                 for i in range(0,360,60):
                     b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
                     b.order(1,math.radians(i+(self.time*10)))
                     ENGINE.add_obj(b,2)
                     self.count = 0
                     
-            elif self.m == 4 and self.count > 0.1:
+            elif self.m == 4 and self.count > 0.1:#랜덤
                 for i in range(2):
                     b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
                     b.order(1,math.radians(ENGINE.randint(0,360)))

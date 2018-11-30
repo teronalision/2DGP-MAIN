@@ -23,7 +23,7 @@ class Bullet:
             self.size = 10
             self.type = ENGINE.RECT
         elif(type == BALL):
-            self.size = 10
+            self.size = 15
             self.type = ENGINE.CIRCLE
         elif(type == SUN):
             self.size = 16
@@ -47,18 +47,18 @@ class Bullet:
 
 
     def draw(self):
-        #ENGINE.font.draw(self.x,self.y,'%2.2f'%degrees(self.r),(255,255,255))
+        gap = 0
         if(ENGINE.rect_mode):
             draw_rectangle(self.x -self.size, self.y -self.size, self.x +self.size, self.y +self.size)
             
         if(self.name == KNIFE):
-            ENGINE.bimage[2].clip_composite_draw(32,32*3,32,32,self.r,'',self.x,self.y,self.size*2,self.size*2)
+            ENGINE.bimage[2].clip_composite_draw(32,32*3,32,32,self.r,'',self.x,self.y,self.size*2+gap,self.size*2+gap)
         elif(self.name == STAR):
-            ENGINE.bimage[2].clip_composite_draw(32,256-32,32,32,self.d,'',self.x,self.y,self.size*2,self.size*2)
+            ENGINE.bimage[2].clip_composite_draw(32,256-32,32,32,self.d,'',self.x,self.y,self.size*2+gap,self.size*2+gap)
         elif(self.name == CART):
-            ENGINE.bimage[2].clip_composite_draw(32*5,32,32,32,self.r,'',self.x,self.y,self.size*2,self.size*2)
+            ENGINE.bimage[2].clip_composite_draw(32*5,32,32,32,self.r,'',self.x,self.y,self.size*2+gap,self.size*2+gap)
         elif(self.name == BALL):
-            ENGINE.bimage[4].clip_composite_draw(32*3,16+32*3,32,32,self.r,'',self.x,self.y,self.size*2,self.size*2)
+            ENGINE.bimage[4].clip_composite_draw(32*3,16+32*3,32,32,self.r,'',self.x,self.y,self.size*2+gap,self.size*2+gap)
         elif(self.name == SUN):
-            ENGINE.bimage[2].clip_composite_draw(32*6,32,32,32,self.r,'',self.x,self.y,self.size*2,self.size*2)
+            ENGINE.bimage[2].clip_composite_draw(32*6,32,32,32,self.r,'',self.x,self.y,self.size*2+gap,self.size*2+gap)
         
