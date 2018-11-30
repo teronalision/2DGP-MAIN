@@ -1,6 +1,7 @@
 import ENGINE
 import ZAKO
 import DECO
+import random
 
 time = 0.0
 sponer = ZAKO.Monster_sponer()
@@ -23,7 +24,10 @@ def init():
         for i in range(10):
             field_stage.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
             field_stage.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
-        field_stage += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(20,(ZAKO.FAIRY,400,600,ZAKO.D_400)),
+        field_stage += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(23,(ZAKO.FAIRY,400,600,ZAKO.D_400))]+[
+                        (39+(i*0.1),(ZAKO.STIRGE,random.randint(-200,400),600,ZAKO.RD)) for i in range(30)]+[
+                        (44+(i*0.1),(ZAKO.STIRGE,random.randint(200,700),600,ZAKO.LD)) for i in range(30)]+[
+                        (50,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(50,(ZAKO.FAIRY,400,600,ZAKO.D_400)),
                         (56,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(60,None)]
 
     elif(ENGINE.stage_num == 1):
@@ -36,7 +40,7 @@ def init():
         boss = sponer.add_monster(ZAKO.WRAITH, 250,600,None,False)
         boss_stage = [(0,ZAKO.HIFEL),
                       (5,ZAKO.HIFER),(5,(ZAKO.WING,100,400,None)),
-                      (10,None)]
+                      (10,(ZAKO.WING,400,400,None))]
     elif(ENGINE.stage_num == 1):
         boss = sponer.add_monster(ZAKO.D_WRAITH, 250,600,None,False)
         boss_stage = [(0,ZAKO.HIFEL),

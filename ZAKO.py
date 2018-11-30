@@ -111,9 +111,9 @@ class Zako:
 
 #체력, 크기,속도, 탄스포너, 아이템
 Monster_dic = {FAIRY:(50,20,1,1,None), JWRAITH:(1,20,2,0,None),
-               WRAITH:(100,70,1,2,ITEM.LifeUp), STIRGE:(1,20,2,0,None),
+               WRAITH:(500,70,1,2,ITEM.LifeUp), STIRGE:(1,20,2,0,None),
                RUNE:(50,30,1,2,ITEM.PowerUp), D_WRAITH:(100,70,1,3,ITEM.LifeUp),
-               WING:(1,0,0,4,None)}
+               WING:(30,20,0,4,ITEM.PowerUp)}
 
 class Monster_sponer:
 
