@@ -147,5 +147,5 @@ def draw():
 
     ENGINE.font.draw(510, 370,'Power  %r'%hero.power, (255,255,255))
 
-    ENGINE.font.draw(510, 100,'%r' %ENGINE.stage_num, (255,255,255))
+    ENGINE.font.draw(510, 100,'%3.2f'%GIMMICK.time, (255,255,255))
     update_canvas()

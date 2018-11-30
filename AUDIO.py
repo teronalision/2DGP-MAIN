@@ -18,6 +18,7 @@ def init():
     for m in musics:
         m.play()
         m.pause()
+    set_SEvolume()
 
 
 def play_se(n):
@@ -37,4 +38,4 @@ def set_volume():
         m.set_volume(bgm_volume)
 def set_SEvolume():
     for s in se:
-        s.set_volume(se_volume)
+        s.set_volume(int(se_volume*0.1))
