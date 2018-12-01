@@ -7,6 +7,8 @@ time = 0.0
 
 def start():
     ENGINE.del_obj()
+    ENGINE.del_obj(0)
+    ENGINE.stage_num = 0
     pass
 
 

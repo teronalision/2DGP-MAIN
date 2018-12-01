@@ -16,7 +16,7 @@ class Sponer:
         #생성
         if self.dead == False:
 
-            if self.m == 0 and self.count >0.5:#저격탄
+            if self.m == 0 and self.count >1:#저격탄
                 x, y = ENGINE.object_list[0][0].x-self.x, ENGINE.object_list[0][0].y-self.y
 
                 b = BULLET.Bullet(self.x, self.y,BULLET.CART)
@@ -49,7 +49,7 @@ class Sponer:
                     ENGINE.add_obj(b,2)
                     self.count = 0
                     
-            elif self.m == 4 and self.count > 0.1:#랜덤
+            elif self.m == 4 and self.count > 0.3:#랜덤
                 for i in range(2):
                     b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
                     b.order(1,math.radians(ENGINE.randint(0,360)))
