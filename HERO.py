@@ -53,7 +53,7 @@ class Hero:
         if hero_select == 0:
             self.speed = 1.5 * ENGINE.p_per_meter
         else:
-            self.speed = 1.0 * ENGINE.p_per_meter
+            self.speed = 1.2 * ENGINE.p_per_meter
         self.life = 4
         self.attacked = False
         self.fireList = []

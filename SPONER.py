@@ -16,7 +16,7 @@ class Sponer:
         #생성
         if self.dead == False:
 
-            if self.m == 0 and self.count >1:#저격탄
+            if self.m == 0 and self.count >0.6:#저격탄
                 x, y = ENGINE.object_list[0][0].x-self.x, ENGINE.object_list[0][0].y-self.y
 
                 b = BULLET.Bullet(self.x, self.y,BULLET.CART)
@@ -26,7 +26,7 @@ class Sponer:
                 self.count = 0
 
 
-            elif self.m == 1 and self.count > 1:#페어리
+            elif self.m == 1 and self.count > 0.7:#페어리
                 for i in range(0,360,30):
                     b = BULLET.Bullet(self.x,self.y,BULLET.SUN)
                     b.order(1,math.radians(i))
@@ -34,7 +34,7 @@ class Sponer:
                     AUDIO.play_se(5)
                     self.count = 0
            
-            elif self.m == 2 and self.count >0.7:#4방향
+            elif self.m == 2 and self.count >0.5:#4방향
                 for i in range(0,360,90):
                     b = BULLET.Bullet(self.x,self.y,BULLET.BALL)
                     b.order(1,math.radians(i))

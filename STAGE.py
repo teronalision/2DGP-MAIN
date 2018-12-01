@@ -25,7 +25,7 @@ def start():
         ENGINE.add_obj(HERO.Hero(250, 100),0)
         hero = ENGINE.object_list[0][0]
         point = 0
-        boom = 0
+        boom = 1
     else:
         hero.x , hero.y = 250, 100
         hero.vx , hero.vy = 0, 0
@@ -86,7 +86,7 @@ def update():
     if GIMMICK.run_stage():
         stageclear -= ENGINE.frame_time
         ENGINE.del_obj();
-        if stageclear -int(stageclear) <0.05:
+        if stageclear >4.7:
             AUDIO.play_se(6)
         if stageclear <0:
             AUDIO.play_se(2)
@@ -169,7 +169,7 @@ def draw():
 
     ENGINE.font.draw(510, 370,'Power  %1i'%hero.power, (255,255,255))
 
-    ENGINE.font.draw(510, 100,'%3.2f'%GIMMICK.time, (255,255,255))
+    #ENGINE.font.draw(510, 100,'%3.2f'%GIMMICK.time, (255,255,255))
     update_canvas()
 
 

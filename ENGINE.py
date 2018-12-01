@@ -14,8 +14,8 @@ state_stack = []
 stage_num = 0
 
 #디버그 모드
-rect_mode = True
-undead = True
+rect_mode = False
+undead = False
 
 #이미지
 hero_image, bimage, mimage = None, None, None

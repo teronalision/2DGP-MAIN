@@ -43,10 +43,11 @@ def draw():
     clear_canvas()
     ENGINE.background[5].draw(400,300,800,600)
 
-    ENGINE.bimage[1].draw(150 +250*select, 200)
+    c = [(0,0,0),(0,0,0)]
+    c[select] = (255,255,255)
 
-    ENGINE.font.draw(150, 250,'1번', (255,255,255))
-    ENGINE.font.draw(400, 250,'2번', (255,255,255))
+    ENGINE.font.draw(150, 250,'화력형', c[0])
+    ENGINE.font.draw(400, 250,'범위형', c[1])
 
     update_canvas()
     pass
