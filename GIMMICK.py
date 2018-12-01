@@ -33,7 +33,8 @@ def init():
     elif(ENGINE.stage_num == 1):
         field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
                        (46,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(52,None)]
-        pass
+    else:
+        field_stage = [(0,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(5,None)]
         
 
     #보스

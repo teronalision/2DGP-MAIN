@@ -12,10 +12,10 @@ hero = None
 cloud = None
 point = 0
 stageclear = 5.0
-
+BossHP = 0
 
 def start():
-    global hero,cloud,point,stageclear
+    global hero,cloud,point,stageclear,BossHP
 
     GIMMICK.init()
     AUDIO.play_music(ENGINE.stage_num+1)
@@ -33,7 +33,7 @@ def start():
     else:
         cloud = [100.0,300.0]
     stageclear = 5.0
-    
+    BossHP = GIMMICK.boss.hp
     
 
 def end():
@@ -145,7 +145,8 @@ def draw():
 
     #UI
     ENGINE.background[0].draw(400,300)
-
+    if GIMMICK.snext:
+        ENGINE.bimage[7].draw_to_origin(30,600-50,GIMMICK.boss.hp/BossHP*440,20)
     ENGINE.font.draw(510, 550,'Point  %r'%point, (255,255,255))
 
     for i in range(hero.life -1):
