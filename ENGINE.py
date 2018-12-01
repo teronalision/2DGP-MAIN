@@ -28,12 +28,13 @@ def init():
     global hero_image,bimage,simage,mimage,background,bgm,font
 
     hero_image = [load_image('Image\C1.png'),load_image('Image\\C2.png')]
-    bimage = [load_image('Image\dumy_b.png'), load_image('Image\dumy_c.png'),
-              load_image('Image\etama6.png'), load_image('Image\etama2.png'),
-              load_image('Image\etama.png'), load_image('Image\\UI.png'),
-              load_image('Image\\warning.png'), load_image('Image\\HP.png')]
+    bimage = [load_image('Image\dumy_b.png'),load_image('Image\dumy_c.png'),load_image('Image\etama6.png'),
+              load_image('Image\etama2.png'),load_image('Image\etama.png'), load_image('Image\\UI.png'),
+              load_image('Image\\warning.png'), load_image('Image\\HP.png'),load_image('Image\\boom.png')]
+
     mimage = [load_image('Image\\jr_wraith.png'),load_image('Image\\wraith.png'),load_image('Image\\stirge.png'),
               load_image('Image\\d_wraith.png'),load_image('Image\\fairy.png'),load_image('Image\\witch.png')]
+
     background = [load_image('Image\\bg1.png'),load_image('Image\\bg2.png'),load_image('Image\\sky0.png'),
                   load_image('Image\\sky1.jpg'),load_image('Image\\sky2.jpg'),load_image('Image\\bg3.png'),
                   load_image('Image\\cloud.png'),load_image('Image\\clear0.jpg'),load_image('Image\\clear1.jpg')]
@@ -112,8 +113,8 @@ def yield_obj(i):
         yield o
 
 def all_obj():
-    for i in range(len(object_list)):
-        for o in object_list[i]:
+    for list in object_list:
+        for o in list:
             yield o
 
 

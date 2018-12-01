@@ -5,17 +5,19 @@ import GIMMICK
 import HERO
 import ZAKO
 import ITEM
+import DECO
 import GAME_OVER
 import CLEARPAGE
 
 hero = None
 cloud = None
 point = 0
+boom = 0
 stageclear = 5.0
 BossHP = 0
 
 def start():
-    global hero,cloud,point,stageclear,BossHP
+    global hero,cloud,point,stageclear,BossHP,boom
 
     GIMMICK.init()
     AUDIO.play_music(ENGINE.stage_num+1)
@@ -23,6 +25,7 @@ def start():
         ENGINE.add_obj(HERO.Hero(250, 100),0)
         hero = ENGINE.object_list[0][0]
         point = 0
+        boom = 0
     else:
         hero.x , hero.y = 250, 100
         hero.vx , hero.vy = 0, 0
@@ -34,7 +37,8 @@ def start():
         cloud = [100.0,300.0]
     stageclear = 5.0
     BossHP = GIMMICK.boss.hp
-    
+    boom += 1
+
 
 def end():
 
@@ -47,6 +51,7 @@ def end():
 
 
 def handle():
+    global boom
     events = get_events()
 
     for e in events:
@@ -63,7 +68,10 @@ def handle():
             GIMMICK.time = 56
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_F3):
             ENGINE.Change_state(CLEARPAGE)
-
+        elif(e.type == SDL_KEYDOWN and e.key == SDLK_x):
+            if(boom >0):
+                make_boom()
+                boom -=1
         hero.handle(e)
 
 
@@ -153,9 +161,22 @@ def draw():
         ENGINE.bimage[5].clip_draw(0,0,100,100,620 +50*i,490,40,40)
     ENGINE.font.draw(510, 490,'Life', (255,255,255))
 
-    ENGINE.font.draw(510, 430,'boom', (255,255,255))
+    ENGINE.font.draw(510, 430,'boom   %1i'%boom, (255,255,255))
 
-    ENGINE.font.draw(510, 370,'Power  %r'%hero.power, (255,255,255))
+    ENGINE.font.draw(510, 370,'Power  %1i'%hero.power, (255,255,255))
 
     ENGINE.font.draw(510, 100,'%3.2f'%GIMMICK.time, (255,255,255))
     update_canvas()
+
+
+def make_boom():
+    if GIMMICK.snext:
+        GIMMICK.boss.hp -= 100
+        ENGINE.del_obj(2)
+    else:
+        ENGINE.del_obj()
+    bom = DECO.Deco(ENGINE.bimage[8],250,300,300,300,7)
+    bom.timer = 0
+    ENGINE.add_obj(bom,4)
+    AUDIO.play_se(6)
+    

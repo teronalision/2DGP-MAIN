@@ -11,7 +11,8 @@ def init():
 
     musics = [load_music('Sound\OP.mp3'),load_music('Sound\\1st.mp3'),load_music('Sound\\2nd.mp3'),load_music('Sound\\3rd.mp3')]
     se = [load_wav('Sound\se_select.wav'),load_wav('Sound\se_dead.wav'),load_wav('Sound\se_cardget.wav'),
-          load_wav('Sound\se_tan00.wav'),load_wav('Sound\se_tan01.wav'),load_wav('Sound\se_tan02.wav')]
+          load_wav('Sound\se_tan00.wav'),load_wav('Sound\se_tan01.wav'),load_wav('Sound\se_tan02.wav'),
+          load_wav('Sound\Explosion.wav')]
     select = -1
 
     #
@@ -38,4 +39,4 @@ def set_volume():
         m.set_volume(bgm_volume)
 def set_SEvolume():
     for s in se:
-        s.set_volume(int(se_volume*0.1))
+        s.set_volume(int(se_volume*0.3))
