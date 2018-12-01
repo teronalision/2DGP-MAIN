@@ -32,6 +32,9 @@ def init():
 
     elif(ENGINE.stage_num == 1):
         field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
+                       (10,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(10,(ZAKO.FAIRY,400,600,ZAKO.D_400)),
+                       (20,(ZAKO.FAIRY,100,430,ZAKO.PATROL)),(20,(ZAKO.FAIRY,250,600,ZAKO.D_400)),
+                       (29,(ZAKO.WING,200,400,ZAKO.PATROL)),(29,(ZAKO.WING,0,700,ZAKO.RD)),(29,(ZAKO.WING,500,700,ZAKO.LD)),
                        (46,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(52,None)]
     else:
         field_stage = [(0,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(5,None)]

@@ -27,7 +27,7 @@ class Sponer:
 
 
             elif self.m == 1 and self.count > 1:#페어리
-                for i in range(0,360,15):
+                for i in range(0,360,30):
                     b = BULLET.Bullet(self.x,self.y,BULLET.SUN)
                     b.order(1,math.radians(i))
                     ENGINE.add_obj(b,2)

@@ -68,6 +68,8 @@ def handle():
             GIMMICK.time = 56
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_F3):
             ENGINE.Change_state(CLEARPAGE)
+        elif(e.type == SDL_KEYDOWN and e.key == SDLK_F4):
+            make_boom()
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_x):
             if(boom >0):
                 make_boom()
@@ -84,6 +86,8 @@ def update():
     if GIMMICK.run_stage():
         stageclear -= ENGINE.frame_time
         ENGINE.del_obj();
+        if stageclear -int(stageclear) <0.05:
+            AUDIO.play_se(6)
         if stageclear <0:
             AUDIO.play_se(2)
             #스테이지 교체
