@@ -1,0 +1,9 @@
+Z	: Attack
+X	: Bomb
+
+
+
+F1	: Invulnerability
+F2	: Stage skip
+F3	: Stage clear
+F4	: Infinity bomb

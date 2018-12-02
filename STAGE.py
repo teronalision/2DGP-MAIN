@@ -12,12 +12,12 @@ import CLEARPAGE
 hero = None
 cloud = None
 point = 0
-boom = 0
+bomb = 0
 stageclear = 5.0
 BossHP = 0
 
 def start():
-    global hero,cloud,point,stageclear,BossHP,boom
+    global hero,cloud,point,stageclear,BossHP,bomb
 
     GIMMICK.init()
     AUDIO.play_music(ENGINE.stage_num+1)
@@ -25,7 +25,7 @@ def start():
         ENGINE.add_obj(HERO.Hero(250, 100),0)
         hero = ENGINE.object_list[0][0]
         point = 0
-        boom = 1
+        bomb = 1
     else:
         hero.x , hero.y = 250, 100
         hero.vx , hero.vy = 0, 0
@@ -37,7 +37,7 @@ def start():
         cloud = [100.0,300.0]
     stageclear = 5.0
     BossHP = GIMMICK.boss.hp
-    boom += 1
+    bomb += 1
 
 
 def end():
@@ -51,7 +51,7 @@ def end():
 
 
 def handle():
-    global boom
+    global bomb
     events = get_events()
 
     for e in events:
@@ -71,9 +71,9 @@ def handle():
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_F4):
             make_boom()
         elif(e.type == SDL_KEYDOWN and e.key == SDLK_x):
-            if(boom >0):
+            if(bomb >0):
                 make_boom()
-                boom -=1
+                bomb -=1
         hero.handle(e)
 
 
@@ -165,7 +165,7 @@ def draw():
         ENGINE.bimage[5].clip_draw(0,0,100,100,620 +50*i,490,40,40)
     ENGINE.font.draw(510, 490,'Life', (255,255,255))
 
-    ENGINE.font.draw(510, 430,'boom   %1i'%boom, (255,255,255))
+    ENGINE.font.draw(510, 430,'Bomb   %1i'%bomb, (255,255,255))
 
     ENGINE.font.draw(510, 370,'Power  %1i'%hero.power, (255,255,255))
 
