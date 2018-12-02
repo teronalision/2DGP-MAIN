@@ -1,7 +1,7 @@
 from pico2d import *
 import ENGINE
 
-
+new_deco = 1
 
 class Deco:
 

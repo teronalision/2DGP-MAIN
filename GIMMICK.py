@@ -2,6 +2,7 @@ import ENGINE
 import ZAKO
 import DECO
 import random
+import json
 
 time = 0.0
 sponer = ZAKO.Monster_sponer()
@@ -19,46 +20,30 @@ def init():
     snext = False
     #시간, 실행내용
     if(ENGINE.stage_num == 0):
-        field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
-                       (7+(i*0.3),(ZAKO.STIRGE,500,600,ZAKO.LD)) for i in range(10)]
-        for i in range(10):
-            field_stage.append((15+(i*0.3),(ZAKO.STIRGE,0,550,ZAKO.R)))
-            field_stage.append((15+(i*0.3),(ZAKO.STIRGE,500,500,ZAKO.L)))
-        field_stage += [(20,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(23,(ZAKO.FAIRY,400,600,ZAKO.D_400))]+[
-                        (39+(i*0.1),(ZAKO.STIRGE,random.randint(-200,400),600,ZAKO.RD)) for i in range(30)]+[
-                        (44+(i*0.1),(ZAKO.STIRGE,random.randint(200,700),600,ZAKO.LD)) for i in range(30)]+[
-                        (50,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(50,(ZAKO.FAIRY,400,600,ZAKO.D_400)),
-                        (56,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(60,None)]
+        field_stage = load('Data\\1stage.txt')
 
     elif(ENGINE.stage_num == 1):
-        field_stage = [(4+(i*0.3),(ZAKO.STIRGE,0,600,ZAKO.RD)) for i in range(10)]+[
-                       (10,(ZAKO.FAIRY,100,600,ZAKO.D_400)),(10,(ZAKO.FAIRY,400,600,ZAKO.D_400)),
-                       (20,(ZAKO.FAIRY,100,430,ZAKO.PATROL)),(20,(ZAKO.FAIRY,250,600,ZAKO.D_400)),
-                       (29,(ZAKO.WING,200,400,ZAKO.PATROL)),(29,(ZAKO.WING,0,700,ZAKO.RD)),(29,(ZAKO.WING,500,700,ZAKO.LD)),
-                       (46,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(52,None)]
+        field_stage = load('Data\\2stage.txt')
+        
     else:
-        field_stage = [(0,(DECO.Deco(ENGINE.bimage[6],10,500,150,50),None)),(5,None)]
+        field_stage = load('Data\\3stage.txt')
+        
         
 
     #보스
     if(ENGINE.stage_num == 0):
         boss = sponer.add_monster(ZAKO.WRAITH, 250,600,None,False)
-        boss_stage = [(0,ZAKO.HIFEL),
-                      (5,ZAKO.HIFER),(5,(ZAKO.WING,100,400,None)),
-                      (10,(ZAKO.WING,400,400,None))]
+        boss_stage = load('Data\\1boss_stage.txt')
     elif(ENGINE.stage_num == 1):
         boss = sponer.add_monster(ZAKO.D_WRAITH, 250,600,None,False)
-        boss_stage = [(0,ZAKO.D_400)]+[
-                      (5+(i/2),(ZAKO.JWRAITH,150,400,ZAKO.SPINE)) for i in range(6)]+[
-                      (60,None)]
+        boss_stage = load('Data\\2boss_stage.txt')
     else:
         boss = sponer.add_monster(ZAKO.WITCH,300,550,None,False)
-        boss_stage = [(0,ZAKO.HIFEL),(6,ZAKO.RD),(8,ZAKO.HIFER),(15,ZAKO.LD),
-                      (17,None)]
+        boss_stage = load('Data\\3boss_stage.txt')
 
     #
     doing = field_stage
-
+    
 
 def run_stage():
     global doing, time, field_stage, boss_stage, boss, snext
@@ -93,12 +78,12 @@ def play_order(t):
     if t == None:
         return
 
-    if type(t) == tuple:
+    if type(t) == list or type(t) == tuple:
         if len(t) == 4:
             a,b,c,d = t
             sponer.add_monster(a,b,c,d)
         elif len(t) == 2:
-            dec = t[0]
+            dec = DECO.Deco(ENGINE.bimage[6],10,500,150,50)
             dec.timer =0
             ENGINE.add_obj(dec,4)
    
@@ -111,3 +96,15 @@ def summon_boss():
         ENGINE.object_list[1].clear
 
     ENGINE.add_obj(boss,1)
+
+
+def save(file,data):
+    with open(file, 'w') as f:
+        s = json.dumps(data)
+        json.dump(s,f)
+
+def load(file):
+    with open(file, 'r') as f:
+        s = json.load(f)
+        o = json.loads(s)
+        return o
