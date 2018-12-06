@@ -79,7 +79,7 @@ def handle():
 
 
 def update():
-    global cloud, point, stageclear
+    global cloud, point, stageclear,hero
     cloud[0] += ENGINE.frame_time
     cloud[1] += ENGINE.frame_time/3
     #로직
@@ -112,8 +112,8 @@ def update():
             
                 if hero.life == 1:
                     ENGINE.Change_state(GAME_OVER)
+                    hero = None
                     return
-            obj.kill()
             break
     for item in ENGINE.object_list[3]:
         if ENGINE.is_crash(hero,item):
